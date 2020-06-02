@@ -1,0 +1,30 @@
+<div class="login-page" [@routerTransition]>
+    <div class="row justify-content-md-center">
+        <div class="main-page">
+            <div class="shop-logo">
+                 <img class="shopImg" src="assets/images/logo.png"/> 
+            </div>
+            <h1>My Shop</h1>
+            <form [formGroup]="login" class="login-form" (keydown)="onFormKeyDown($event)">
+                <div class="form-content">
+                    <div class="input-wrapper">
+                        <input #userName a-id="username" type="text" name="username" class="form-control input-underline input-lg" formControlName='userName'
+                               id="username" placeholder="UserName" maxlength=60>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <input type="password" class="form-control input-underline input-lg" placeholder="Password" maxlength=60 formControlName="password" 
+                               id="pass-word">
+                    </div>
+                </div>
+                <div class="btn-login-reg">
+                    <button class="btn rounded-btn" (click)="onLogin()">Log in</button>
+                    <button class="btn rounded-btn" (click)="onRegister()">Register</button>
+                </div>
+                <!-- <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()"> Log in </a>
+                &nbsp;
+                <a class="btn rounded-btn" [routerLink]="['/signup']">Register</a> -->
+            </form>
+        </div>
+    </div>
+</div>

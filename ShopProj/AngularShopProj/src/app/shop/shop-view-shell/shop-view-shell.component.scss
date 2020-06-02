@@ -1,0 +1,57 @@
+// .shopping-list {
+//  //   float: left;
+
+// }
+
+// .product-list {
+//  //   float: left;
+
+// }
+
+// .main {
+//  //   display: inline-block; 
+//     //display: flex;
+//     width: 100%;
+//     justify-content: space-between;
+// }
+
+
+.main {
+//    overflow: hidden;
+    display: block;
+}
+
+.app-shopping-list {
+ //   width: 50%; float: left; 
+// float: left; 
+}
+
+.app-product-list {
+//    width: 50%; float: right;
+//float: right;
+}
+
+.shopping-list-title {
+    padding-left: 55em;
+}
+
+.products-title {
+    padding-left: 23em;
+}
+
+.title {
+  //  padding-left: 56em;
+  display: flex;
+}
+
+.sub-titles {
+    display: flex;
+}
+
+.main-title {
+    width: 100%;
+}
+
+.user-name {
+    width: 92%;
+}

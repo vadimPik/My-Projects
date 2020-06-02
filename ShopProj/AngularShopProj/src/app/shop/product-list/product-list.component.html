@@ -1,0 +1,23 @@
+
+<div class="product-table">
+  <table>
+    <tr><th *ngFor="let header of headers">
+        {{header}}
+    </th> </tr>
+    <!-- <tr *ngFor="let product of (products | async).products; let i = index"> -->
+      <tr *ngFor="let product of products; let i = index">
+        <td>{{product.ProductName}}</td>
+        <td>{{product.ProductPrice}}</td>
+        <td> <img src={{product.ProductPicturePath}} width="50%">   </td>
+        <!-- <td>{{product.ItemID}}</td> -->
+        <td>
+          <div class="btn-add-to-shopping-list">
+            <button type="button" class="btn-secondary" (click)="onAddToShoppingList(i)" [disabled]="rowIWannaDisable === i &&  isDisabled"> ADD to Shopping List </button>
+            <!-- <button type="button" class="btn-secondary" (click)="onAddToShoppingList(i); product.clicked = true;" [disabled]="product.clicked && isDisabled"> ADD to Shopping List </button> -->
+          </div>
+        </td>
+    </tr>
+    <tr >
+    </tr>
+  </table>
+</div>
