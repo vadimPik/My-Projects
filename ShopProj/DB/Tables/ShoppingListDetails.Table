@@ -1,0 +1,21 @@
+USE ShopProj
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF NOT EXISTS ( SELECT TOP (1) 1 
+				FROM sys.tables AS T
+				WHERE T.name = 'ShoppingListDetails' )
+BEGIN
+
+	CREATE TABLE dbo.ShoppingListDetails(
+		ShoppingListID INT NOT NULL,
+		ItemID INT NOT NULL,
+		Quantity INT NOT NULL
+	)
+
+END 

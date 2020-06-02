@@ -1,0 +1,21 @@
+USE [ShopProj]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE OR ALTER PROCEDURE dbo.DeleteProduct
+
+		@UserID NVARCHAR(255),
+		@ShoppingListID int,
+		@ItemID int,
+		@Quantity int
+AS
+
+
+DELETE FROM [dbo].[ShoppingListDetails] 
+WHERE (ShoppingListID = @ShoppingListID) AND (ItemID = @ItemID);
+
+SELECT @UserID as  userID

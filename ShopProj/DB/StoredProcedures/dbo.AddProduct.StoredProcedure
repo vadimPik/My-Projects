@@ -1,0 +1,61 @@
+USE [ShopProj]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE OR ALTER PROCEDURE dbo.AddProduct
+
+		@UserID NVARCHAR(255),
+		@ShoppingListID int,
+		@ItemID int,
+		@Quantity int,
+		@productPrice float,
+		@Status int
+AS
+
+DECLARE @TotalPrice float, @TotalPriceUpdated float
+SET @TotalPriceUpdated = 0;
+------If ShoppingList already exists - calculate the new totalPrice-------
+IF (@ShoppingListID <> 0) 
+	BEGIN	
+
+		SET @TotalPrice = (	SELECT TotalPrice
+							FROM [dbo].[ShoppingList] sl
+							WHERE	(sl.ShoppingListID = @ShoppingListID) AND (sl.UserId = @UserID))
+
+
+		SET @TotalPriceUpdated = (@productPrice * @Quantity) + @TotalPrice
+
+		
+	--	INSERT INTO [dbo].[ShoppingList] (TotalPrice)
+	--		VALUES (@TotalPriceUpdated)
+
+		INSERT INTO [dbo].[ShoppingListDetails] (ShoppingListID, ItemId, Quantity)
+			VALUES (@ShoppingListID, @ItemID, @Quantity)
+	END 
+
+ELSE 
+------If ShoppingList don`t exists - create new ShoppingListID-------
+	BEGIN
+		SET @TotalPriceUpdated = (@productPrice * @Quantity)
+
+		INSERT INTO [dbo].[ShoppingList] (UserID, Status, TotalPrice)
+			VALUES (@UserID, @Status, @TotalPriceUpdated)
+
+		SET @ShoppingListID = (SELECT TOP(1) sl.ShoppingListID
+						   FROM	[dbo].[ShoppingList] sl
+						   WHERE (sl.UserID = @UserID)
+						   ORDER BY sl.ShoppingListID DESC)
+
+		INSERT INTO [dbo].[ShoppingListDetails] (ShoppingListID, ItemId, Quantity)
+			VALUES (@ShoppingListID, @ItemID, @Quantity)
+ 
+	END
+
+
+SELECT @ShoppingListID as ShoppingListID
+
+

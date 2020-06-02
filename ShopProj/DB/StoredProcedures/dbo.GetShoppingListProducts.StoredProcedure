@@ -1,0 +1,21 @@
+USE [ShopProj]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER   PROCEDURE [dbo].[GetShoppingListProducts]
+	@UserID NVARCHAR(255)
+
+AS
+
+SELECT sl.ShoppingListID, sld.ItemID,sld.Quantity, prd.ProductName, prd.ProductPicturePath, prd.ProductPrice
+FROM	[dbo].[ShoppingList] sl
+	INNER JOIN [dbo].[ShoppingListDetails] sld
+	ON (sl.ShoppingListID = sld.ShoppingListID)
+	AND (sl.UserID = @UserID) AND (sl.Status = 0)
+
+	INNER JOIN [dbo].[Products] prd
+	ON ( sld.ItemID = prd.ItemID)

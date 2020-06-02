@@ -1,0 +1,22 @@
+USE ShopProj
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF NOT EXISTS ( SELECT TOP (1) 1 
+				FROM sys.tables AS T
+				WHERE T.name = 'Products' )
+BEGIN
+
+	CREATE TABLE dbo.Products(
+		ItemID INT IDENTITY(1,1) NOT NULL,
+		ProductName VARCHAR(255) NOT NULL,
+		ProductPicturePath VARCHAR(255) NULL,
+		ProductPrice FLOAT NOT NULL
+	)
+
+END 

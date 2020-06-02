@@ -1,0 +1,20 @@
+USE [ShopProj]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER   PROCEDURE [dbo].[UpdateProductQuantity]
+
+		@ShoppingListID int,
+		@ItemID int,
+		@Quantity int
+AS
+
+UPDATE [dbo].[ShoppingListDetails] 
+SET Quantity = @Quantity
+WHERE (ShoppingListID = @ShoppingListID) AND (ItemID = @ItemID);
+
+SELECT @ShoppingListID as  ShoppingListID
