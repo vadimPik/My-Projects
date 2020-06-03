@@ -4,13 +4,11 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { Store } from '@ngrx/store';
 import { User } from './login.model';
 import { LoginAction } from './store/login.actions';
-import { routerTransition } from '../router.animations';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  animations: [routerTransition()]
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
