@@ -160,7 +160,7 @@ export class ShoppingListService {
     let newTotalQuantity: number = 0;
     let CalculateNewTotalPrice : number = 0;
     productArr.forEach(element => {
-      newTotalQuantity += element.Quantity;
+      newTotalQuantity += +element.Quantity;
       CalculateNewTotalPrice += (element.ProductPrice * element.Quantity);
     });
 

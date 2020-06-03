@@ -10,12 +10,14 @@
           <td>{{product.ProductPrice}}</td>
           <td> <img src={{product.ProductPicturePath}} width="50%">   </td>
 
+          <td>
           <div class="quantity-block">
             <input  type="text" [(ngModel)]="product.Quantity" name ="{{'name'+index}}"
              placeholder="{{product.Quantity}}"/>
              
             <button name type="button" id="quantity-btn" (click)="onUpdateQuantity(i)"> Update Quantity </button>
           </div>
+         </td>
           <!-- <span><i class="fa fa-times" aria-hidden="true"></i></span> -->
           <!-- <td>{{product.Quantity}}</td> -->
           <!-- (keyup)="quantityKeyPressed($event)"  -->
