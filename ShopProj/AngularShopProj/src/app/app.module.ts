@@ -44,7 +44,12 @@ import { ShoppingListService } from './shop/shopping-list/Services/shopping-list
     HttpClientModule,
     TableModule,
     DialogModule,
-    StoreModule.forRoot(fromApp.rootReducers),
+    StoreModule.forRoot(fromApp.rootReducers, {
+      runtimeChecks : {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    }),
     StoreDevtoolsModule.instrument(),
 		DialogModule,
 		ButtonModule,

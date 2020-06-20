@@ -65,7 +65,7 @@ export class DeleteProductSuccessAction implements Action {
 
 
 export class DeleteProductFailedAction implements Action {
-  readonly type = UPDATE_QUANTITY_FAILED;
+  readonly type = DELETE_PRODUCT_FAILED;
 
   constructor(public payload: number) {}
 }
@@ -84,8 +84,8 @@ export class UpdateQuantitySuccessAction implements Action {
 
 
 export class UpdateQuantityFailedAction implements Action {
-  readonly type = DELETE_PRODUCT_FAILED;
-
+  
+  readonly type = UPDATE_QUANTITY_FAILED;
   constructor(public payload: ShoppingListUpdateQuantityRequest) {}
 }
 

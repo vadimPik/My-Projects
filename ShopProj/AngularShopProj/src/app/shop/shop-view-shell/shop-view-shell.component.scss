@@ -24,11 +24,17 @@
 .app-shopping-list {
  //   width: 50%; float: left; 
 // float: left; 
+    width: 50%;
 }
 
 .app-product-list {
 //    width: 50%; float: right;
 //float: right;
+    width: 50%;
+}
+
+.main-products {
+    display: flex;
 }
 
 .shopping-list-title {

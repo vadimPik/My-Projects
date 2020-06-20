@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AppRootState } from 'src/app/reducers';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { Observable, throwError, BehaviorSubject, of } from 'rxjs';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { ApiURL } from 'src/app/api.model';
 import { Product } from '../../product-list/model/products.model';
@@ -91,12 +91,8 @@ export class ShoppingListService {
     addProduct(product: ShoppingListProduct): Observable<number> {
         const apiUrl: string = ApiURL.addProductToShoppingList;
 
-        if (product.ShoppingListID === undefined) {
-            product.ShoppingListID = 0;
-        }
-
         const shoppingListRequest: ShoppingListRequest = {
-            ShoppingListID: product.ShoppingListID,
+            ShoppingListID: product.ShoppingListID === undefined? 0 : product.ShoppingListID,
             UserID: this.UserID,
             ItemID: product.ItemID,
             Quantity: product.Quantity,
@@ -117,14 +113,18 @@ export class ShoppingListService {
         return this.httpCall(apiUrl, body);
     }
 
-    updateQuantityProduct(shoppingListUpdateQuantityRequest: ShoppingListUpdateQuantityRequest): Observable<string> {
-      shoppingListUpdateQuantityRequest = this.UpdateshoppingListUpdateQuantityRequest(shoppingListUpdateQuantityRequest);
+    updateQuantityProduct(shoppingListUpdateQuantityRequest: ShoppingListUpdateQuantityRequest): Observable<ShoppingListUpdateQuantityRequest> {
+
+      let shoppingListUpdateQuantityRequestCopy = JSON.parse(JSON.stringify(shoppingListUpdateQuantityRequest));
+      shoppingListUpdateQuantityRequestCopy = this.UpdateshoppingListUpdateQuantityRequest(shoppingListUpdateQuantityRequestCopy);
       
       const apiUrl: string = ApiURL.updateQuantityProductOnShoppingList;
 
       const body = JSON.stringify(shoppingListUpdateQuantityRequest);
 
-      return this.httpCall(apiUrl, body);
+      this.httpCall(apiUrl, body);
+
+      return of(shoppingListUpdateQuantityRequestCopy);
   }
 
   httpCall(apiUrl, body) : Observable<any> {
@@ -145,6 +145,7 @@ export class ShoppingListService {
   }
 
   UpdateshoppingListUpdateQuantityRequest(shoppingListUpdateQuantityRequest: ShoppingListUpdateQuantityRequest) : ShoppingListUpdateQuantityRequest {
+
     const UpdatedShoppingList = shoppingListUpdateQuantityRequest.UpdatedProducts;
     
     const res = this.CalculateNewTotalSumAndPrice(UpdatedShoppingList);

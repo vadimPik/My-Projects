@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 //import { ProductListService } from '../Services/product-list.service';
 import { Product } from '../../product-list/model/products.model';
 import { AddProductAction, ADD_PRODUCT, AddProductFailedAction, AddProductSuccessAction, DELETE_PRODUCT, DeleteProductAction, DeleteProductSuccessAction, DeleteProductFailedAction, UPDATE_QUANTITY, UpdateQuantityAction, UpdateQuantitySuccessAction, UpdateQuantityFailedAction, GetShoppingListProductsAction, GET_SL_PRODUCT, GetShoppingListProductsSuccessAction, GetShoppingListProductsFailedAction } from './shopping-list.actions';
-import { ShoppingListState, ShoppingListProduct } from '../model/shoppingList.model';
+import { ShoppingListState, ShoppingListProduct, ShoppingListUpdateQuantityRequest } from '../model/shoppingList.model';
 import { ShoppingListService } from '../Services/shopping-list.service';
 
 
@@ -46,7 +46,6 @@ export class ShoppingListEffects {
         return this.shoppingListService.addProduct(action.payload).pipe(
           map((res: number) => {
             if (res) {
-                action.payload.ShoppingListID = res;
                 this.store.dispatch(new AddProductSuccessAction(action.payload));
             }
             else {
@@ -90,12 +89,12 @@ export class ShoppingListEffects {
       ofType<UpdateQuantityAction>(UPDATE_QUANTITY),
       mergeMap(action => {
         return this.shoppingListService.updateQuantityProduct(action.payload).pipe(
-          map((res: string) => {
+          map((res: ShoppingListUpdateQuantityRequest) => {
             if (res) {
-                this.store.dispatch(new UpdateQuantitySuccessAction(action.payload));
+                this.store.dispatch(new UpdateQuantitySuccessAction(res));
             }
             else {
-              this.store.dispatch(new UpdateQuantityFailedAction(action.payload));
+              this.store.dispatch(new UpdateQuantityFailedAction(res));
             }
           }),
           catchError(err => {

@@ -68,7 +68,8 @@ export function ShoppingListReducer(state: ShoppingListState = initialState, act
 
         products: action.payload.UpdatedProducts,
         totalprice: action.payload.UpdatedTotalPrice,
-        numberOfProducts: action.payload.UpdatedNumberOfProducts
+        numberOfProducts: action.payload.UpdatedNumberOfProducts,
+        Quantity: action.payload.Quantity
       };
 
       case ShoppingListActions.UPDATE_QUANTITY_FAILED:

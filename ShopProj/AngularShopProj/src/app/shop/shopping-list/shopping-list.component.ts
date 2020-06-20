@@ -56,7 +56,8 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   });
 
    this.store.select(shoppingListProductsSelector, takeUntil(this.ngUnsubscribe)).subscribe((res: Product[]) => {
-    this.products = res;
+   // this.products = res;
+   this.products = JSON.parse(JSON.stringify(res));
   });
 
     this.store.select(totalPriceSelector, takeUntil(this.ngUnsubscribe)).subscribe(value => {
