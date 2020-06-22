@@ -13,29 +13,27 @@ import { Router } from '@angular/router';
 @Injectable()
 export class LoginEffects {
 
-    @Effect({dispatch: false})
-    login$: Observable<any> = this.actions.pipe(
-      ofType<LoginAction>(LOGIN),
-      mergeMap(action => {
-        return this.authenticationService.login(action.payload).pipe(
-          map((res: UserDetails) => {
-            if (res) {
-              if(res.UserID) {
-                this.store.dispatch(new LoginSuccessAction(res));
-                this.router.navigate(['shop-view-shell']);
-              }
-              else {
-                alert ("User Not Exist, or bad UserName/Password");
-              }
-            }
-          }),
-          catchError(err => {
-            return observableOf(new LoginFailedAction(err));
+  @Effect()
+  login$: Observable<any> = this.actions.pipe(
+    ofType<LoginAction>(LOGIN),
+    switchMap(action => {
+      return this.authenticationService.login(action.payload).pipe(
+        map((res: UserDetails) => {
+          if(res && res.UserID) {
+            this.router.navigate(['shop-view-shell']);
+            return new LoginSuccessAction(res);
           }
-          )
-        );
-        })
-    );
+          else {
+            alert ("User Not Exist, or bad UserName/Password");
+          }
+        }),
+        catchError(err => {
+          return observableOf(new LoginFailedAction(err));
+        }
+        )
+      );
+      })
+  );
 
     constructor(
         private actions: Actions,

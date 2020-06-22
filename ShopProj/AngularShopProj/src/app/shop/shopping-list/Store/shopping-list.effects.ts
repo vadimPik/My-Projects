@@ -16,7 +16,7 @@ import { ShoppingListService } from '../Services/shopping-list.service';
 @Injectable()
 export class ShoppingListEffects {
 
-    @Effect({dispatch: false})
+    @Effect()
     getShoppingListProducts$: Observable<any> = this.actions.pipe(
       ofType<GetShoppingListProductsAction>(GET_SL_PRODUCT),
       mergeMap(action => {
@@ -25,85 +25,78 @@ export class ShoppingListEffects {
             if (res) {
                 let shoppingListState : ShoppingListState;
                 shoppingListState = this.shoppingListService.convertShoppingListProductsToShoppingListState(res);
-                this.store.dispatch(new GetShoppingListProductsSuccessAction(shoppingListState));
+                return new GetShoppingListProductsSuccessAction(shoppingListState);
             }
             else {
-              this.store.dispatch(new GetShoppingListProductsFailedAction());
+              return new GetShoppingListProductsFailedAction();
             }
           }),
           catchError(err => {
             return observableOf(new GetShoppingListProductsFailedAction());
-          }
-          )
+          })
         );
-        })
+      })
     );
 
-    @Effect({dispatch: false})
+    @Effect()
     addProduct$: Observable<any> = this.actions.pipe(
       ofType<AddProductAction>(ADD_PRODUCT),
       mergeMap(action => {
         return this.shoppingListService.addProduct(action.payload).pipe(
           map((res: number) => {
             if (res) {
-                this.store.dispatch(new AddProductSuccessAction(action.payload));
+              return new AddProductSuccessAction(action.payload);
             }
             else {
-              this.store.dispatch(new AddProductFailedAction());
+              return new AddProductFailedAction();
             }
           }),
           catchError(err => {
-  
             return observableOf(new AddProductFailedAction());
-          }
-          )
+          })
         );
-        })
+      })
     );
 
-    @Effect({dispatch: false})
+    @Effect()
     deleteProduct$: Observable<any> = this.actions.pipe(
       ofType<DeleteProductAction>(DELETE_PRODUCT),
       mergeMap(action => {
         return this.shoppingListService.deleteProduct(action.payload).pipe(
           map((res: string) => {
             if (res) {
-                this.store.dispatch(new DeleteProductSuccessAction(action.payload.IndexToDelete));
+              return new DeleteProductSuccessAction(action.payload.IndexToDelete);
             }
             else {
-              this.store.dispatch(new DeleteProductFailedAction(action.payload.IndexToDelete));
+              return new DeleteProductFailedAction(action.payload.IndexToDelete);
             }
           }),
           catchError(err => {
-  
             return observableOf(new DeleteProductFailedAction(action.payload.IndexToDelete));
-          }
-          )
+          })
         );
-        })
+      })
     );
 
 
-    @Effect({dispatch: false})
+    @Effect()
     updateQuantityProduct$: Observable<any> = this.actions.pipe(
       ofType<UpdateQuantityAction>(UPDATE_QUANTITY),
       mergeMap(action => {
         return this.shoppingListService.updateQuantityProduct(action.payload).pipe(
           map((res: ShoppingListUpdateQuantityRequest) => {
             if (res) {
-                this.store.dispatch(new UpdateQuantitySuccessAction(res));
+              return new UpdateQuantitySuccessAction(res);
             }
             else {
-              this.store.dispatch(new UpdateQuantityFailedAction(res));
+              return new UpdateQuantityFailedAction(res);
             }
           }),
           catchError(err => {
-
             return observableOf(new UpdateQuantityFailedAction(action.payload));
-          }
-          )
+          })
         );
-        })
+      })
     );
     
 

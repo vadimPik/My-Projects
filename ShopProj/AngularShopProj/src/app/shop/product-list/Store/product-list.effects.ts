@@ -13,25 +13,24 @@ import { Product, ProductListState, } from '../model/products.model';
 @Injectable()
 export class ProductListEffects {
 
-    @Effect({dispatch: false})
+    @Effect()
     getProducts$: Observable<any> = this.actions.pipe(
       ofType<GetProductAction>(GET_PRODUCT),
       mergeMap(action => {
         return this.productListServer.getProducts().pipe(
           map((res: ProductListState) => {
             if (res.products) {
-                this.store.dispatch(new GetProductSuccessAction(res));
+                return new GetProductSuccessAction(res);
             }
             else {
-              this.store.dispatch(new GetProductFailedAction());
+              return new GetProductFailedAction();
             }
           }),
           catchError(err => {
             return observableOf(new GetProductFailedAction());
-          }
-          )
+          })
         );
-        })
+      })
     );
 
     constructor(
