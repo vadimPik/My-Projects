@@ -1,0 +1,22 @@
+USE CustomersProj
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF NOT EXISTS ( SELECT TOP (1) 1 
+				FROM sys.tables AS T
+				WHERE T.name = 'Customers' )
+BEGIN
+
+	CREATE TABLE dbo.Customers(
+		CustomerID INT IDENTITY(1,1) NOT NULL UNIQUE,
+		CustomerName VARCHAR(255) NOT NULL,
+		CustomerEmail VARCHAR(255) NOT NULL UNIQUE,
+		CustomerAdress VARCHAR(255) NOT NULL
+	)
+
+END 

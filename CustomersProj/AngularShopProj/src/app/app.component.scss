@@ -1,0 +1,73 @@
+/* .date-label {
+  float: left;
+} */
+
+/* .date-input {
+  margin-left: 2em;
+} */
+
+/*
+.add-btn {
+  margin: 100em;
+} */
+
+.date-label {
+  margin-top: 4em;
+  margin-left: 42.5em;
+}
+
+.price-label {
+  margin-top: 1em;
+  margin-left: 41em;
+}
+
+button {
+  margin-left: 53em;
+  margin-top: 1em;
+  /* padding: 10em;
+  width: 10em; */
+ }
+
+ input[type=text] {
+  margin-left: 0.7em;
+  padding: 0.2em;
+  width: 14em;
+ }
+
+ .list-group .list-group-item {
+  margin-top: 10em;
+  padding: 1em;
+ }
+
+ .product-table {
+   padding: 3em;
+   /* margin-left: 2em; */
+ }
+
+ table, th , td {
+  border: 0.2em solid grey;
+  border-collapse: collapse;
+  padding: 0.3em;
+  margin-left: -2.7em;
+  width: 118em;
+}
+
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.btn-secondary {
+  width: 5em;
+  padding: 0.5em;
+}
+
+.btn-delete {
+  margin-left: -23.5em;
+  /* margin-top: 0.5em; */
+  /* padding: 0.2em; */
+  margin-bottom: 1.3em;
+}

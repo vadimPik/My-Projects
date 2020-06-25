@@ -1,0 +1,15 @@
+D:\ShopProj\ShopProj_ServerSide\ShopProj_ServerSide.DAL\bin\Release\ShopProj_ServerSide.DAL.dll
+D:\ShopProj\ShopProj_ServerSide\ShopProj_ServerSide.DAL\bin\Release\ShopProj_ServerSide.DAL.pdb
+D:\ShopProj\ShopProj_ServerSide\ShopProj_ServerSide.DAL\bin\Release\System.Configuration.ConfigurationManager.dll
+D:\ShopProj\ShopProj_ServerSide\ShopProj_ServerSide.DAL\bin\Release\System.Security.AccessControl.dll
+D:\ShopProj\ShopProj_ServerSide\ShopProj_ServerSide.DAL\bin\Release\System.Security.Permissions.dll
+D:\ShopProj\ShopProj_ServerSide\ShopProj_ServerSide.DAL\bin\Release\System.Security.Principal.Windows.dll
+D:\ShopProj\ShopProj_ServerSide\ShopProj_ServerSide.DAL\bin\Release\System.Configuration.ConfigurationManager.xml
+D:\ShopProj\ShopProj_ServerSide\ShopProj_ServerSide.DAL\bin\Release\System.Security.AccessControl.xml
+D:\ShopProj\ShopProj_ServerSide\ShopProj_ServerSide.DAL\bin\Release\System.Security.Permissions.xml
+D:\ShopProj\ShopProj_ServerSide\ShopProj_ServerSide.DAL\bin\Release\System.Security.Principal.Windows.xml
+D:\ShopProj\ShopProj_ServerSide\ShopProj_ServerSide.DAL\obj\Release\ShopProj_ServerSide.DAL.csprojAssemblyReference.cache
+D:\ShopProj\ShopProj_ServerSide\ShopProj_ServerSide.DAL\obj\Release\ShopProj_ServerSide.DAL.csproj.CoreCompileInputs.cache
+D:\ShopProj\ShopProj_ServerSide\ShopProj_ServerSide.DAL\obj\Release\ShopProj_ServerSide.DAL.csproj.CopyComplete
+D:\ShopProj\ShopProj_ServerSide\ShopProj_ServerSide.DAL\obj\Release\ShopProj_ServerSide.DAL.dll
+D:\ShopProj\ShopProj_ServerSide\ShopProj_ServerSide.DAL\obj\Release\ShopProj_ServerSide.DAL.pdb
