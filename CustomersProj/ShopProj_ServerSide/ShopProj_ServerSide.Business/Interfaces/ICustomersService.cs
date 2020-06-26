@@ -15,6 +15,6 @@ namespace ShopProj_ServerSide.Business.Interfaces
 
         Task<string> DeleteCustomer(int customerIndexToDelete);
 
-        Task<Customer> AddCustomer(CustomerAddRequest customer);
+        Task<Customer> AddCustomer(Customer customer);
     }
 }

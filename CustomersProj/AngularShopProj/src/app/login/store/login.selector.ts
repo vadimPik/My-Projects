@@ -1,3 +1,3 @@
-import { AppRootState } from 'src/app/reducers';
+// import { AppRootState } from 'src/app/reducers';
 
-export const loginSelector = (state: AppRootState) => state.userDetails;
+// export const loginSelector = (state: AppRootState) => state.userDetails;

@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShopViewShellComponent } from './shop-view-shell.component';
-import { ShoppingListComponent } from '../shopping-list/shopping-list.component';
-import { ProductListComponent } from '../product-list/product-list.component';
+import { CustomersListComponent } from '../shopping-list/customers-list.component';
+
 
 describe('ShopViewShellComponent', () => {
   let component: ShopViewShellComponent;
@@ -10,7 +10,7 @@ describe('ShopViewShellComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShopViewShellComponent, ShoppingListComponent, ProductListComponent ]
+      declarations: [ ShopViewShellComponent, CustomersListComponent]
     })
     .compileComponents();
   }));

@@ -66,7 +66,7 @@ namespace ShopProj_ServerSide.Business.Services
             }
         }
 
-        public async Task<Customer> AddCustomer(CustomerAddRequest customer)
+        public async Task<Customer> AddCustomer(Customer customer)
         {
             try
             {
@@ -75,9 +75,10 @@ namespace ShopProj_ServerSide.Business.Services
 
                 Dictionary<string, string> sqlInParameters = new Dictionary<string, string>();
 
-                sqlInParameters.Add("@CustomerName", customer.CustomersName);
-                sqlInParameters.Add("@CustomerEmail", customer.CustomersEmail);
-                sqlInParameters.Add("@CustomerAdress", customer.CustomersAddress);
+                sqlInParameters.Add("@CustomerID", customer.CustomerID);
+                sqlInParameters.Add("@CustomerName", customer.CustomerName);
+                sqlInParameters.Add("@CustomerEmail", customer.CustomerEmail);
+                sqlInParameters.Add("@CustomerAdress", customer.CustomerAdress);
 
                 DataAccess sqlDal = new DataAccess("dbo.AddCustomer", sqlInParameters);
 
@@ -86,23 +87,24 @@ namespace ShopProj_ServerSide.Business.Services
 
                 DataTable firstTable = ds.Tables[0];
 
-                int customerID = -1;
+                //string customerID = string.Empty;
 
-                if (firstTable.Rows.Count != 0)
-                {
-                    //Get values from DataTable result
-                    DataRow result = firstTable.Rows[0];
+                //if (firstTable.Rows.Count != 0)
+                //{
+                //    //Get values from DataTable result
+                //    DataRow result = firstTable.Rows[0];
 
-                    customerID = Convert.ToInt32(result["CustomerID"]);
-                }
+                //    customerID = result["CustomerID"].ToString();
+                //}
 
-                newCustomer.CustomerID = customerID;
-                newCustomer.CustomerName = customer.CustomersName;
-                newCustomer.CustomerEmail = customer.CustomersEmail;
-                newCustomer.CustomerAddress = customer.CustomersAddress;
+                //newCustomer.CustomerID = customerID;
+                //newCustomer.CustomerName = customer.CustomerName;
+                //newCustomer.CustomerEmail = customer.CustomerEmail;
+                //newCustomer.CustomerAdress = customer.CustomerAdress;
 
-                return newCustomer;
-            //    return "Record has successfully Added";
+                return customer;
+             //   return newCustomer;
+             //    return "Record has successfully Added";
             }
 
             catch (Exception ex)

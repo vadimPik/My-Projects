@@ -44,7 +44,7 @@ namespace ShopProj_ServerSide.API.Controllers
         // api/Customers/AddCustomer
         [HttpPost]
 
-        public async Task<HttpResponseMessage> AddCustomer([FromBody] CustomerAddRequest newCustomer)
+        public async Task<HttpResponseMessage> AddCustomer([FromBody] Customer newCustomer)
         {
             try
             {
@@ -60,10 +60,10 @@ namespace ShopProj_ServerSide.API.Controllers
         }
 
 
-        // api/Customers/DeleteCustomer/id
-        [HttpDelete]
+        // api/Customers/DeleteCustomer
+        [HttpPost]
 
-        public async Task<HttpResponseMessage> DeleteCustomer(int customerIDToDelete)
+        public async Task<HttpResponseMessage> DeleteCustomer([FromBody] int customerIDToDelete)
         //  public async Task<HttpResponseMessage> DeleteCustomer(int customerIDToDelete)
         {
             try

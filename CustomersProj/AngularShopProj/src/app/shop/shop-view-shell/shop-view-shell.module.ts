@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { ShopViewShellRoutingModule } from './shop-view-shell-routing.module';
-import { ProductListComponent } from '../product-list/product-list.component';
-import { ShoppingListComponent } from '../shopping-list/shopping-list.component';
+import { CustomersListComponent } from '../shopping-list/customers-list.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ProductComponent } from '../product/product.component';
 // import {MatCardModule} from '@angular/material/card';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { MatChipsModule } from '@angular/material/chips';
-
+import { MatSelectModule } from '@angular/material/select';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 @NgModule({
     imports: [
@@ -22,10 +21,12 @@ import { MatChipsModule } from '@angular/material/chips';
         MatIconModule,
         FlexLayoutModule,
         NgxPaginationModule,
-        MatChipsModule
+        MatChipsModule,
+        MatSelectModule,
+        AngularMultiSelectModule
     ],
-    declarations: [ProductListComponent, ShoppingListComponent, ProductComponent],
-    exports:[ProductListComponent, ShoppingListComponent, ProductComponent],
+    declarations: [CustomersListComponent],
+    exports:[CustomersListComponent, MatSelectModule],
     providers: []
   })
   export class ShopViewShellModule {}

@@ -1,4 +1,3 @@
-import { ShoppingListState } from './shop/shopping-list/model/shoppingList.model';
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';

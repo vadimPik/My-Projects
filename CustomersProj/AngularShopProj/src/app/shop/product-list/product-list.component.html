@@ -31,5 +31,18 @@
     </div>
   <!-- </div> -->
 <!-- </div> -->
+
+<div fxFlex="75" fxFlex.lt-sm="100" class="all-products" ngClass.gt-sm="p-right">
+<div *ngIf="products.length > 0" fxLayout="row wrap ">
+  <div fxFlex="100">
+      <mat-card class="p-0 text-center no-shadow">
+        <div class="pagination">
+          <pagination-controls class="customer-pagination" autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
+        </div>
+      </mat-card>
+  </div>
 </div>
+</div>
+</div>
+<!-- </div> -->
 </div>

@@ -1,10 +1,10 @@
 export enum ApiURL {
-    login = 'http://localhost:52941/api/Login/AuthenticateLogIn',
-    getProducts = 'http://localhost:52941/api/Products/GetProductList',
-    addProductToShoppingList = 'http://localhost:52941/api/ShoppingList/AddProduct',
-    deleteProductFromShoppingList = 'http://localhost:52941/api/ShoppingList/DeleteProduct',
-    updateQuantityProductOnShoppingList = 'http://localhost:52941/api/ShoppingList/UpdateQuantityProduct',
-    getShoppingListProducts = 'http://localhost:52941/api/ShoppingList/GetShoppingListProductList',
+  //  login = 'http://localhost:52941/api/Login/AuthenticateLogIn',
+    getCustomers = 'http://localhost:52941/api/Customers/GetProductList',
+    addNewCustomer = 'http://localhost:52941/api/Customers/AddCustomer',
+    deleteCustomer = 'http://localhost:52941/api/Customers/DeleteCustomer',
+  //  updateQuantityProductOnShoppingList = 'http://localhost:52941/api/ShoppingList/UpdateQuantityProduct',
+   // getShoppingListProducts = 'http://localhost:52941/api/ShoppingList/GetShoppingListProductList',
 
 
     //Hosted on IIS
