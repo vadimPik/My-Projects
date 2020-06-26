@@ -9,6 +9,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ShopProj_ServerSide.Business.Enums.AddCustomerExceptioEnum;
 
 namespace ShopProj_ServerSide.Business.Services
 {
@@ -66,7 +67,7 @@ namespace ShopProj_ServerSide.Business.Services
             }
         }
 
-        public async Task<Customer> AddCustomer(Customer customer)
+        public async Task<string> AddCustomer(Customer customer)
         {
             try
             {
@@ -87,6 +88,26 @@ namespace ShopProj_ServerSide.Business.Services
 
                 DataTable firstTable = ds.Tables[0];
 
+
+                int errorID = 0;
+                string duplicateErrorMassage = string.Empty;
+
+                if (firstTable.Rows.Count != 0)
+                {
+
+                    DataRow result = firstTable.Rows[0];
+
+                    errorID = int.Parse(result["DuplicateError"].ToString());
+
+                    if (errorID == AddCustomerException.DuplicateID.GetHashCode())
+                    {
+                        duplicateErrorMassage = "Duplicate ID";
+                    }
+                    else if (errorID == AddCustomerException.DuplicateEmail.GetHashCode())
+                    {
+                        duplicateErrorMassage = "Duplicate Email";
+                    }
+                }
                 //string customerID = string.Empty;
 
                 //if (firstTable.Rows.Count != 0)
@@ -102,7 +123,7 @@ namespace ShopProj_ServerSide.Business.Services
                 //newCustomer.CustomerEmail = customer.CustomerEmail;
                 //newCustomer.CustomerAdress = customer.CustomerAdress;
 
-                return customer;
+                return duplicateErrorMassage;
              //   return newCustomer;
              //    return "Record has successfully Added";
             }
@@ -112,8 +133,8 @@ namespace ShopProj_ServerSide.Business.Services
                 Logger.Error(ex);
                 Customer newCustomer = new Customer();
 
-                return newCustomer;
-                // return ex.ToString();
+              //  return newCustomer;
+                 return ex.ToString();
 
             }
         }

@@ -92,6 +92,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\AddCustomerExceptioEnum.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Interfaces\ICustomersService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

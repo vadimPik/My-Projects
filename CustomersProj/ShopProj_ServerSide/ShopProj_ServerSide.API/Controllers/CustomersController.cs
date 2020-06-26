@@ -48,7 +48,7 @@ namespace ShopProj_ServerSide.API.Controllers
         {
             try
             {
-                Customer response = await _customersService.AddCustomer(newCustomer);
+                string response = await _customersService.AddCustomer(newCustomer);
 
                 return Request.CreateResponse(HttpStatusCode.OK, response);
             }

@@ -12,8 +12,21 @@
 </div> -->
 
 <div class="add-customer">
-   <button type="button" (click)="onAddCustomer()" class="btn btn-raised btn-lg add-customer-button">Add Customer</button>
+   <!-- <mat-form-field>
+      <input matInput [(ngModel)]="sendValue" placeholder="Enter value for Dialog">
+   </mat-form-field> -->
+   <!-- <div *ngIf="dialogValue">
+      <b>Value From Dialog</b>: {{dialogValue}}
+   </div> -->
+   <div>
+      <button type="button" (click)="openDialog()" class="btn btn-raised btn-lg add-customer-button">Add Customer</button>
+      <!-- <button mat-raised-button (click)="openDialog()">Open Dialog</button> -->
+   </div>
 </div>
+
+<!-- <div class="add-customer">
+   <button type="button" (click)="onAddCustomer()" class="btn btn-raised btn-lg add-customer-button">Add Customer</button>
+</div> -->
 
 <!-- <p>Envelope icon: <span class="glyphicon glyphicon-envelope"></span></p>  -->
 

@@ -1,6 +1,6 @@
 USE [CustomersProj]
 GO
-/****** Object:  StoredProcedure [dbo].[GetCustomers]    Script Date: 24/06/2020 02:48:20 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetCustomers]    Script Date: 26/06/2020 09:19:10 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -13,6 +13,6 @@ ALTER   PROCEDURE [dbo].[GetCustomers]
 As  
 
 Begin  
-	 SELECT * FROM Customers ORDER BY CustomerID OFFSET (@PageNumber-1)* @PageSize ROWS FETCH NEXT @PageSize ROWS ONLY;  
+	 SELECT * FROM Customers ORDER BY ID DESC OFFSET (@PageNumber-1)* @PageSize ROWS FETCH NEXT @PageSize ROWS ONLY;  
 	 SELECT count(*) as totalCustomersCount FROM Customers;  
 End  

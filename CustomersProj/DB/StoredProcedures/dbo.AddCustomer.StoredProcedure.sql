@@ -1,6 +1,6 @@
 USE [CustomersProj]
 GO
-/****** Object:  StoredProcedure [dbo].[AddCustomer]    Script Date: 26/06/2020 12:43:00 AM ******/
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -16,12 +16,24 @@ AS
 
 
 BEGIN
-		
-		INSERT INTO [dbo].[Customers] (CustomerID, CustomerName, CustomerEmail, CustomerAdress)
-			VALUES (@CustomerID, @CustomerName, @CustomerEmail, @CustomerAdress)
+		   
+		   IF NOT EXISTS (SELECT * FROM [dbo].[Customers]
+                   WHERE CustomerID = @CustomerID)
+
+		   BEGIN
+				IF NOT EXISTS (SELECT * FROM [dbo].[Customers]
+					   WHERE CustomerEmail = @CustomerEmail)
+
+			   BEGIN
+					INSERT INTO [dbo].[Customers] (CustomerID, CustomerName, CustomerEmail, CustomerAdress)
+					  VALUES (@CustomerID, @CustomerName, @CustomerEmail, @CustomerAdress)
+			   END
+
+			   ELSE 
+				SELECT 2 as DuplicateError;
+			   
+		   END
+				
+		   ELSE
+			SELECT 1 as DuplicateError;
 END
-
-
-select TOP(1) CustomerID
-from [dbo].[Customers]
-ORDER BY CustomerID DESC

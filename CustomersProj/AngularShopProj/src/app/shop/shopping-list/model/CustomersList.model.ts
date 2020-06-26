@@ -32,6 +32,13 @@ export class Customer {
   CustomerName: string;
   CustomerEmail: string;
   CustomerAdress: string;
+
+  constructor(CustomerID: string, CustomerName: string, CustomerEmail: string, CustomerAdress: string) {
+    this.CustomerID = CustomerID;
+    this.CustomerName = CustomerName;
+    this.CustomerEmail = CustomerEmail;
+    this.CustomerAdress = CustomerAdress;
+  }
 }
 
 // export class CustomerAddRequest {
@@ -47,7 +54,7 @@ export class CustomerDeleteRequest {
   constructor(IndexToDelete: number, CustomerID: string) {
     this.IndexToDelete = IndexToDelete;
     this.CustomerID = CustomerID;
-}
+  }
 }
 
 // export class ShoppingListProduct {

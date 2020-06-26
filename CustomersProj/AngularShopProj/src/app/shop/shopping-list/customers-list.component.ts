@@ -8,18 +8,20 @@ import { numberOfCustomersSelector, customersListSelector } from './Store/custom
 import * as ShoppingListActions from './Store/Customers-list.actions';
 //import { ShoppingListState, ShoppingListDeleteRequest, ShoppingListUpdateQuantityRequest } from './model/CustomersList.model';
 import { Action } from 'rxjs/internal/scheduler/Action';
-import { Actions } from '@ngrx/store-devtools/src/reducer';
-import { ofType } from '@ngrx/effects';
+//import { Actions } from '@ngrx/store-devtools/src/reducer';
+import { Actions, ofType } from '@ngrx/effects';
 import { LOGIN_SUCCESS, LoginSuccessAction } from 'src/app/login/store/login.actions';
 import { UserDetails } from 'src/app/login/login.model';
 import { CustomerListService } from './Services/customers-list.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 //import { ProductListService } from '../product-list/Services/product-list.service';
-import { GetCustomersAction, ClearCustomersListAction, DeleteCustomerAction } from './Store/Customers-list.actions';
+import { GetCustomersAction, ClearCustomersListAction, DeleteCustomerAction, DELETE_CUSTOMERS_SUCCESS, ADD_CUSTOMERS_SUCCESS } from './Store/Customers-list.actions';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaginationRequest } from './model/Pagination.model';
 import { Customer, CustomerDeleteRequest } from './model/CustomersList.model';
 import { ViewEncapsulation } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PopapDialogModalComponent } from '../../Models/popap-dialog-modal/popap-dialog-modal.component';
 
 @Component({
   selector: 'app-customers-list',
@@ -52,6 +54,11 @@ export class CustomersListComponent implements OnInit, OnDestroy {
   pageSizeSelection = [];
   selectedItems = [];
   pageSizeDropdownSettings = {};
+
+ // dialogValue: string;
+  newCustomerFromDialogValue: Customer;
+  sendValue: Customer;
+
  // shoppingListID: number;
  // UserID: string;
  // existProductTobuy: boolean = false;
@@ -66,7 +73,16 @@ export class CustomersListComponent implements OnInit, OnDestroy {
 //   {label: 'All'}
 //   ];
 
-  constructor(private store: Store<AppRootState>, private customerListServer:CustomerListService,  private route: ActivatedRoute, private router: Router  ) {
+  constructor(private store: Store<AppRootState>, private customerListServer:CustomerListService,  private route: ActivatedRoute,
+              private router: Router, public dialog: MatDialog, private actions$: Actions  ) {
+
+    actions$.pipe(ofType(ADD_CUSTOMERS_SUCCESS, DELETE_CUSTOMERS_SUCCESS)).subscribe(res => {
+      
+      let paginationRequest = new PaginationRequest(this.page.toString(), this.pageSize.toString());
+      this.store.dispatch(new GetCustomersAction(paginationRequest));
+
+    })
+      
     // this.config = {
     //   currentPage : 1,
     //   itemsPerPage : 20,
@@ -191,6 +207,24 @@ export class CustomersListComponent implements OnInit, OnDestroy {
   
     onAddCustomer() {
       
+    }
+
+    openDialog(): void {
+      const dialogRef = this.dialog.open(PopapDialogModalComponent, {
+        width: '25%',
+        //minWidth: '25%',
+        // backdropClass: 'custom-dialog-backdrop-class',
+        // panelClass: 'add-customer-dialog-panel',
+        panelClass: 'custom-dialog-container',
+        autoFocus: true,
+        disableClose: true,
+        data: { pageValue: this.sendValue }
+      });
+  
+      dialogRef.afterClosed().subscribe((result: Customer)  => {
+        console.log('The dialog was closed', result);
+        this.newCustomerFromDialogValue = result;
+      });
     }
 
   // onUpdateQuantity(index: number, quantity: number) {

@@ -28,12 +28,19 @@ import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
 //import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+//import { PopapDialogModalComponent } from './Models/popap-dialog-modal/popap-dialog-modal.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ShopViewShellComponent,
+  //  PopapDialogModalComponent,
     // ProductComponent
   ],
   imports: [
@@ -65,6 +72,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatCardModule,
     MatIconModule,
     FlexLayoutModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatInputModule,
+    MatButtonModule
   //  NgbModule.forRoot()
 
   ],

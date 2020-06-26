@@ -24,8 +24,11 @@
 }
 
 .app-shopping-list {
- //   width: 40%;
- flex:1;
+ //   display: flex;
+  //  width: 100%;
+  //  justify-content: center;
+ //flex:1;
+// min-width: 660 px;
 }
 
 .app-product-list {
@@ -56,9 +59,24 @@
 }
 
 .main-title {
-    width: 100%;
+    display: flex;
+    justify-content: center;
+  //  width: 100%;
 }
 
 .user-name {
     width: 92%;
 }
+
+// body{
+//    // background-color: ;
+//     min-width:660px;        /* Suppose you want minimum width of 1000px */
+//   //  width: auto !important;  /* Firefox will set width as auto */
+//    // width:1000px;            /* As IE6 ignores !important it will set width as 1000px; */
+//  }
+
+//  html,body
+//  {
+//     min-width: 700px;
+//     width: 100%;
+//  }

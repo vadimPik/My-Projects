@@ -32,50 +32,31 @@ export function CustomersListReducer(state: CustomerListState = initialState, ac
         ErrorMessage: undefined
       };
 
-    case CustomersListActions.ADD_CUSTOMERS_SUCCESS:
-      // return { ...state, ...action.payload };
-      return {
-        ...state,
-        Customers : [...state.Customers, action.payload],
-        TotalCustomers: state.TotalCustomers + 1,
-      };
+    // case CustomersListActions.ADD_CUSTOMERS_SUCCESS:
+    //   return {
+    //     ...state,
+    //     Customers : [...state.Customers, action.payload],
+    //     TotalCustomers: state.TotalCustomers + 1,
+    //   };
 
-      // return {
-      //   ...state,
-      //   ...{
-      //   customers : [...state.customers, action.payload] }
-      // //  totalCustomers: state.totalCustomers + 1
-      // };
 
     case CustomersListActions.ADD_CUSTOMERS_FAILED:
       return { ...state, ...action };
-      // return { ...state, 
-      //          ...{ ErrorMessage: action.payload } };
 
+    // case CustomersListActions.DELETE_CUSTOMERS_SUCCESS: {
+    //   const customerToDelete = state.Customers[action.payload];
 
-    case CustomersListActions.DELETE_CUSTOMERS_SUCCESS: {
-      const customerToDelete = state.Customers[action.payload];
-
-      return {
-        ...state,
-        Customers: state.Customers.filter((customer) => {
-               return customer !== customerToDelete;
-        }),
-        TotalCustomers: state.TotalCustomers - 1 
-
-        // ...{
-        // customers: state.Customers.filter((customer) => {
-        //     return customer !== productToDelete;
-        // }) }
-       
-        // totalCustomers: state.totalCustomers - 1 
-      };
-    }
+    //   return {
+    //     ...state,
+    //     Customers: state.Customers.filter((customer) => {
+    //            return customer !== customerToDelete;
+    //     }),
+    //     TotalCustomers: state.TotalCustomers - 1 
+    //   };
+    // }
 
     case CustomersListActions.DELETE_CUSTOMERS_FAILED:
       return { ...state, ...action };
-        // return { ...state, 
-        //          ...{ ErrorMessage: action.payload } };
     
     default:
       return state;

@@ -11,9 +11,16 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { PopapDialogModalComponent } from 'src/app/Models/popap-dialog-modal/popap-dialog-modal.component';
+import {  ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
     imports: [
+        ReactiveFormsModule,
         ShopViewShellRoutingModule,
         CommonModule,
         FormsModule,
@@ -23,9 +30,13 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
         NgxPaginationModule,
         MatChipsModule,
         MatSelectModule,
-        AngularMultiSelectModule
+        AngularMultiSelectModule,
+        MatFormFieldModule,
+        MatDialogModule,
+        MatInputModule,
+        MatButtonModule
     ],
-    declarations: [CustomersListComponent],
+    declarations: [CustomersListComponent, PopapDialogModalComponent],
     exports:[CustomersListComponent, MatSelectModule],
     providers: []
   })

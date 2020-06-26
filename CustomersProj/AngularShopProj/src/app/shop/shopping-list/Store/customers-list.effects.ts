@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { AppRootState } from 'src/app/reducers';
 import { Router } from '@angular/router';
 //import { Product } from '../../product-list/model/customers.model';
-import { AddCustomerAction, ADD_CUSTOMERS, AddCustomerFailedAction, AddCustomerSuccessAction, DELETE_CUSTOMERS, DeleteCustomerAction, DeleteCustomerSuccessAction, DeleteCustomerFailedAction, GetCustomersAction, GET_CUSTOMERS, GetCustomersSuccessAction, GetCustomersFailedAction } from './Customers-list.actions';
+import { AddCustomerAction, ADD_CUSTOMERS, AddCustomerFailedAction, AddCustomerSuccessAction, DELETE_CUSTOMERS, DeleteCustomerAction, DeleteCustomerSuccessAction, DeleteCustomerFailedAction, GetCustomersAction, GET_CUSTOMERS, GetCustomersSuccessAction, GetCustomersFailedAction, ADD_CUSTOMERS_SUCCESS, DELETE_CUSTOMERS_SUCCESS } from './Customers-list.actions';
 import { CustomerListState, Customer } from '../model/CustomersList.model';
 import { CustomerListService } from '../Services/customers-list.service';
 
@@ -38,7 +38,7 @@ export class CustomersListEffects {
     );
 
     @Effect()
-    addProduct$: Observable<any> = this.actions.pipe(
+    addCustomer$: Observable<any> = this.actions.pipe(
       ofType<AddCustomerAction>(ADD_CUSTOMERS),
       mergeMap(action => {
         return this.customerListService.addProduct(action.payload).pipe(
@@ -57,8 +57,31 @@ export class CustomersListEffects {
       })
     );
 
+    // @Effect()
+    // getUpdatedCustomersList$: Observable<any> = this.actions.pipe(
+    //   ofType(ADD_CUSTOMERS_SUCCESS, DELETE_CUSTOMERS_SUCCESS),
+    //   mergeMap(action => {
+    //     return this.customerListService.addProduct(action.payload).pipe(
+    //       map((res: Customer) => {
+    //         if (res) {
+    //         }
+    //         return new AddCustomerSuccessAction(res);
+    //         else {
+    //           return new AddCustomerFailedAction("error");
+    //         }
+    //       }),
+    //       catchError(err => {
+    //         return observableOf(new AddCustomerFailedAction(err));
+    //       })
+    //     );
+    //   })
+    // );
+
+
+    
+
     @Effect()
-    deleteProduct$: Observable<any> = this.actions.pipe(
+    deleteCustomer$: Observable<any> = this.actions.pipe(
       ofType<DeleteCustomerAction>(DELETE_CUSTOMERS),
       mergeMap(action => {
         return this.customerListService.deleteProduct(action.payload.CustomerID).pipe(
