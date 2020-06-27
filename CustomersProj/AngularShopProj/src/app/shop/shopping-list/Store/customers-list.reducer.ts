@@ -9,7 +9,7 @@ import { cloneDeep } from 'lodash';
 
 const initialState: CustomerListState = {
   Customers: [],
-  TotalCustomers: 0,
+  TotalCustomersCount: 0,
   ErrorMessage: undefined
 };
 
@@ -20,7 +20,11 @@ export function CustomersListReducer(state: CustomerListState = initialState, ac
       return { ...state, ...action };
 
     case CustomersListActions.GET_CUSTOMERS_SUCCESS:
-      return { ...state, ...action.payload };
+     // return { ...state, ...action.payload };
+     return { ...state, 
+              Customers: action.payload.Customers,
+              TotalCustomersCount: action.payload.TotalCustomersCount
+    };
 
     case CustomersListActions.GET_CUSTOMERS_FAILED:
       return { ...state, ...action };
@@ -28,7 +32,7 @@ export function CustomersListReducer(state: CustomerListState = initialState, ac
     case CustomersListActions.CLEAR_CUSTOMERS_LIST:
       return {
         Customers: [],
-        TotalCustomers: 0,
+        TotalCustomersCount: 0,
         ErrorMessage: undefined
       };
 
@@ -37,12 +41,19 @@ export function CustomersListReducer(state: CustomerListState = initialState, ac
       // return {
       //   ...state,
       //   Customers : [...state.Customers, action.payload],
-      //   TotalCustomers: state.TotalCustomers + 1,
+      //   TotalCustomersCount: state.TotalCustomers + 1,
       // };
+
+      case CustomersListActions.ADD_CUSTOMERS_SUCCESS:
+         return { ...state, ...action };
 
 
     case CustomersListActions.ADD_CUSTOMERS_FAILED:
       return { ...state, ...action };
+
+      case CustomersListActions.DELETE_CUSTOMERS_SUCCESS: 
+           return { ...state, ...action };
+      
 
     // case CustomersListActions.DELETE_CUSTOMERS_SUCCESS: {
     //   return { ...state, ...action };
@@ -53,7 +64,7 @@ export function CustomersListReducer(state: CustomerListState = initialState, ac
     //   //   Customers: state.Customers.filter((customer) => {
     //   //          return customer !== customerToDelete;
     //   //   }),
-    //   //   TotalCustomers: state.TotalCustomers - 1 
+    //   //   TotalCustomersCount: state.TotalCustomers - 1 
     //   // };
     // }
 

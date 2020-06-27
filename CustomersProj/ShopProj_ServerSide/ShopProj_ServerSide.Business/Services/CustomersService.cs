@@ -57,17 +57,9 @@ namespace ShopProj_ServerSide.Business.Services
 
                     customersResponse.Customers = Helper.ConvertDataTableToObject<Customer>(firstTable);
 
-                    int totalCount = -1;
+                    int totalCount = await GetTotalCustomers();
 
-                    //if (dsTotalCount.Tables[0].Rows.Count != 0)
-                    //{
-                    //    //Get values from DataTable result
-                    //    DataRow result = dsTotalCount.Tables[0].Rows[0];
-
-                    //    totalCount = Convert.ToInt32(result["totalCustomersCount"]);
-                    //}
-
-                    customersResponse.totalCustomersCount = totalCount;
+                    customersResponse.TotalCustomersCount = totalCount;
                 }
 
                 return customersResponse;
@@ -81,6 +73,45 @@ namespace ShopProj_ServerSide.Business.Services
                 customersResponse.ErrorMessage = ex;
 
                 return customersResponse;
+
+            }
+        }
+
+        public async Task<int> GetTotalCustomers()
+        {
+            try
+            {
+                Dictionary<string, string> sqlInParameters = new Dictionary<string, string>();
+
+                DataAccess sqlDal = new DataAccess("dbo.GetTotalCustomers", sqlInParameters); ;
+
+
+                DataSet dsTotal = await sqlDal.Execute_SP_Async();
+
+                int totalCount = -1;
+
+                if (dsTotal.Tables.Count > 0)
+                {
+
+                    DataTable firstTable = dsTotal.Tables[0];
+
+                    if (firstTable.Rows.Count != 0)
+                    {
+
+                        DataRow result = firstTable.Rows[0];
+
+                        totalCount = int.Parse(result["totalCustomersCount"].ToString());
+                    }
+                }
+
+                return totalCount;
+            }
+
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+
+                return -1;
 
             }
         }

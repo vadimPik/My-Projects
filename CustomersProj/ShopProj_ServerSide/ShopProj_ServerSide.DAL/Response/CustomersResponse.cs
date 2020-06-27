@@ -12,7 +12,7 @@ namespace ShopProj_ServerSide.DAL.Response
         #region Properties
 
         public List<Customer> Customers { get; set; }
-        public int totalCustomersCount { get; set; }
+        public int TotalCustomersCount { get; set; }
         public Exception ErrorMessage { get; set; }
 
         #endregion

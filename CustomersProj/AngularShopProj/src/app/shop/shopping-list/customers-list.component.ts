@@ -177,7 +177,7 @@ export class CustomersListComponent implements OnInit, OnDestroy {
     // });
 
 
-    this.store.select(numberOfCustomersSelector, takeUntil(this.ngUnsubscribe)).subscribe(value => {
+    this.store.select(numberOfCustomersSelector, takeUntil(this.ngUnsubscribe)).subscribe((value: number) => {
       this.numberOfCustomers = value;
 
       // if(this.numberOfProducts > 0) {

@@ -23,7 +23,7 @@
 
 export class CustomerListState {
   Customers: Array<Customer>;
-  TotalCustomers: number;
+  TotalCustomersCount: number;
   ErrorMessage: string;
 }
 

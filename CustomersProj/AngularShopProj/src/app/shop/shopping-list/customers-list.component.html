@@ -35,7 +35,7 @@
             <div class="mat-header-cell">Address</div>
             <div class="mat-header-cell">Action</div>
          </div>
-         <div *ngFor="let item of customers | paginate: { id: 'pagination', itemsPerPage: pageSize, currentPage: page, totalItems: 200  }; let i = index"  class="mat-row">
+         <div *ngFor="let item of customers | paginate: { id: 'pagination', itemsPerPage: pageSize, currentPage: page, totalItems: numberOfCustomers  }; let i = index"  class="mat-row">
   
             <div class="mat-cell">{{item.CustomerID}}</div>
             <div class="mat-cell"><a  class="product-name">{{item.CustomerName}}</a></div>

@@ -40,35 +40,6 @@ export class CustomerListService {
         
     }
 
-    // setUserID(id: string) {
-    //     this.userIDSource.next(id);
-    // }
-
-
-    // convertShoppingListProductsToShoppingListState( shoppingListProducts :ShoppingListProduct[]) : ShoppingListState {
-    //     let shoppingListState : ShoppingListState  = new ShoppingListState();
-    //     shoppingListState.products = [];
-    //     for (let i = 0; i <  shoppingListProducts.length; i++) {
-    //       let product : Product = new Product();
-    //       product.ItemID = shoppingListProducts[i].ItemID;
-    //       product.ProductName = shoppingListProducts[i].ProductName;
-    //       product.ProductPicturePath = shoppingListProducts[i].ProductPicturePath;
-    //       product.ProductPrice = shoppingListProducts[i].ProductPrice;
-    //       product.Quantity = shoppingListProducts[i].Quantity;
-
-    //       shoppingListState.products[i] = product;
-    //     }
-      
-    //     shoppingListState.ShoppingListID = shoppingListProducts[0].ShoppingListID;
-
-    //     let calculatedSummeries = this.CalculateNewTotalSumAndPrice(shoppingListState.products)
-    //     shoppingListState.numberOfProducts = calculatedSummeries.retUpdatedNumberOfProducts;
-    //     shoppingListState.totalprice = calculatedSummeries.retCalculateNewTotalPrice;
-       
-    //     return shoppingListState;
-    // }
-
-
     getCustomersListProducts(paginationRequest: PaginationRequest): Observable<CustomerListState> {
       const apiUrl: string = ApiURL.getCustomers;
       const httpOptions = {
