@@ -107,7 +107,7 @@
         <div class="id-address">
             <mat-form-field class="form-field">
                 <input matInput placeholder="Enter Customer Address" formControlName="CustomerAdress" [errorStateMatcher]="matcher"  required>
-                <mat-error *ngIf="CustomerID.invalid">Name is  <strong>required</strong></mat-error>
+                <mat-error *ngIf="CustomerAdress.invalid">Name is  <strong>required</strong></mat-error>
             </mat-form-field>
         </div>
 
@@ -116,7 +116,7 @@
 
 <mat-dialog-actions>
     <button type="button" (click)="close()" class="btn btn-raised ">Close</button>
-    <button type="button" (click)="add()" class="btn btn-raised">Add</button>
+    <button type="button" [disabled]="CustomerID.invalid || CustomerEmail.hasError('email') && !CustomerEmail.hasError('required') || CustomerName.invalid || CustomerAdress.invalid" (click)="add()" class="btn btn-raised">Add</button>
 
     <mat-error *ngIf="duplicateError">
         {{duplicateError}}

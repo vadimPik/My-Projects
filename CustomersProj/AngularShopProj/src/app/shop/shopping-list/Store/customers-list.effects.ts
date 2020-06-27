@@ -41,12 +41,12 @@ export class CustomersListEffects {
       mergeMap(action => {
         return this.customerListService.addProduct(action.payload).pipe(
           map((res: string) => {
-            if (res.includes("exists") || res.includes("successfully")) {
+            // if (res.includes("exists") || res.includes("successfully")) {
               return new AddCustomerSuccessAction(res);
-            }
-            else {
-              return new AddCustomerFailedAction("error");
-            }
+            // }
+            // else {
+            //   return new AddCustomerFailedAction("error");
+            // }
           }),
           catchError(err => {
             return observableOf(new AddCustomerFailedAction(err));
