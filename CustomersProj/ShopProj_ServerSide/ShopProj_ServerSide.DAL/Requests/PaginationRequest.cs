@@ -14,10 +14,15 @@ namespace ShopProj_ServerSide.DAL.Requests
         {
             pageNumber = 1;
             pageSize = 20;
+            sortColumn = "ID";
+            sortType = "DESC";
         }
 
         public int pageNumber { get; set; }
         public int pageSize { get; set; }
+        public string sortColumn { get; set; }
+        public string sortType { get; set; }
+
 
         #endregion
     }

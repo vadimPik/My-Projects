@@ -1,8 +1,25 @@
 <section class="main"> 
 
-    <div class="main-title">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
+        <a class="navbar-brand" routerLink="/main">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+           
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/about">About</a>
+            </li>
+          </ul>
+        </div>  
+      </nav>
+
+      <!-- <router-outlet></router-outlet>  -->
+
+    <!-- <div class="main-title">
         <h2 class="text-muted"><b>Customers List</b></h2>
-    </div>
+    </div> -->
 
     <!-- <div class="main-products">
         <div class="app-shopping-list">

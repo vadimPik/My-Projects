@@ -52,14 +52,14 @@ export class PopapDialogModalComponent implements OnInit {
   
         this.duplicateError = data.duplicateError;
        // this.duplicateError = data;
-        this.initializeForm();
+        this.initializeForm(data.newCustomer.CustomerID, data.newCustomer.CustomerName, data.newCustomer.CustomerEmail, data.newCustomer.CustomerAdress);
   
-        this.newCustomersForm.patchValue({
-          CustomerID: data.newCustomer.CustomerID,
-          CustomerName: data.newCustomer.CustomerName,
-          CustomerEmail: data.newCustomer.CustomerEmail,
-          CustomerAdress: data.newCustomer.CustomerAdress
-        });
+        // this.newCustomersForm.patchValue({
+        //   [this.CustomerID]: data.newCustomer.CustomerID,
+        //   [this.CustomerName]: data.newCustomer.CustomerName,
+        //   [this.CustomerEmail]: data.newCustomer.CustomerEmail,
+        //   [this.CustomerAdress]: data.newCustomer.CustomerAdress
+        // });
       }
       
 
@@ -75,10 +75,10 @@ export class PopapDialogModalComponent implements OnInit {
    matcher: any;
    newCustomersForm : FormGroup;
   ngOnInit(): void {
-    this.initializeForm();
+ //   this.initializeForm("", "", "", "");
   }
 
-  initializeForm() {
+  initializeForm(customerID: string, customerName: string, customerEmail: string, customerAddress: string) {
 
     this.CustomerID = new FormControl('', [Validators.required]);
     this.CustomerName = new FormControl('', [Validators.required]);
@@ -92,6 +92,13 @@ export class PopapDialogModalComponent implements OnInit {
       CustomerAdress: this.CustomerAdress
     }); 
   
+    this.newCustomersForm.patchValue({
+      CustomerID: customerID,
+      CustomerName: customerName,
+      CustomerEmail: customerEmail,
+      CustomerAdress: customerAddress
+    });
+
     this.matcher = new MyErrorStateMatcher();
   }
 

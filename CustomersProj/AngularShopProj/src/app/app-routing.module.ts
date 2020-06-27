@@ -5,9 +5,9 @@ import { AppComponent } from './app.component';
 
 const routes: Routes = [
 
-  { path: '', pathMatch: 'full', redirectTo: 'shop-view-shell' },
-  { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule), data: { preload: true }},
-  { path: 'shop-view-shell', loadChildren: () => import('./shop/shop-view-shell/shop-view-shell.module').then(m => m.ShopViewShellModule), data: { preload: true } /*, canActivate: [AuthGuard]*/}
+  { path: '', pathMatch: 'full', redirectTo: 'main' },
+  { path: 'about', loadChildren: () => import('./about/about.module').then(m => m.AboutModule), data: { preload: true }},
+  { path: 'main', loadChildren: () => import('./shop/shop-view-shell/shop-view-shell.module').then(m => m.ShopViewShellModule), data: { preload: true } /*, canActivate: [AuthGuard]*/}
   
 ];
 

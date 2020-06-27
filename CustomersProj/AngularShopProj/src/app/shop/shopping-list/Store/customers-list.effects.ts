@@ -87,7 +87,8 @@ export class CustomersListEffects {
         return this.customerListService.deleteProduct(action.payload.CustomerID).pipe(
           map((res: string) => {
             if (res) {
-              return new DeleteCustomerSuccessAction(action.payload.IndexToDelete);
+              //return new DeleteCustomerSuccessAction(action.payload.IndexToDelete);
+              return new DeleteCustomerSuccessAction(res);
             }
             else {
               return new DeleteCustomerFailedAction(res);

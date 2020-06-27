@@ -63,7 +63,7 @@ namespace ShopProj_ServerSide.API.Controllers
         // api/Customers/DeleteCustomer
         [HttpPost]
 
-        public async Task<HttpResponseMessage> DeleteCustomer([FromBody] int customerIDToDelete)
+        public async Task<HttpResponseMessage> DeleteCustomer([FromBody] string customerIDToDelete)
         //  public async Task<HttpResponseMessage> DeleteCustomer(int customerIDToDelete)
         {
             try

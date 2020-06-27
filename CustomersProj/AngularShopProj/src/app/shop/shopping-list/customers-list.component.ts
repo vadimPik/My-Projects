@@ -10,12 +10,12 @@ import * as ShoppingListActions from './Store/Customers-list.actions';
 import { Action } from 'rxjs/internal/scheduler/Action';
 //import { Actions } from '@ngrx/store-devtools/src/reducer';
 import { Actions, ofType } from '@ngrx/effects';
-import { LOGIN_SUCCESS, LoginSuccessAction } from 'src/app/login/store/login.actions';
-import { UserDetails } from 'src/app/login/login.model';
+//import { LOGIN_SUCCESS, LoginSuccessAction } from 'src/app/login/store/login.actions';
+//import { UserDetails } from 'src/app/login/login.model';
 import { CustomerListService } from './Services/customers-list.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 //import { ProductListService } from '../product-list/Services/product-list.service';
-import { GetCustomersAction, ClearCustomersListAction, DeleteCustomerAction, DELETE_CUSTOMERS_SUCCESS, ADD_CUSTOMERS_SUCCESS, AddCustomerAction } from './Store/Customers-list.actions';
+import { GetCustomersAction, ClearCustomersListAction, DeleteCustomerAction, DELETE_CUSTOMERS_SUCCESS, ADD_CUSTOMERS_SUCCESS, AddCustomerAction, DeleteCustomerSuccessAction, AddCustomerSuccessAction } from './Store/Customers-list.actions';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaginationRequest } from './model/Pagination.model';
 import { Customer, CustomerDeleteRequest } from './model/CustomersList.model';
@@ -59,6 +59,8 @@ export class CustomersListComponent implements OnInit, OnDestroy {
   newCustomerFromDialogValue: Customer;
   sendValue: Customer;
 
+  sortingOrderASC: boolean = true;
+
  // shoppingListID: number;
  // UserID: string;
  // existProductTobuy: boolean = false;
@@ -76,10 +78,10 @@ export class CustomersListComponent implements OnInit, OnDestroy {
   constructor(private store: Store<AppRootState>, private customerListServer:CustomerListService,  private route: ActivatedRoute,
               private router: Router, public dialog: MatDialog, private actions$: Actions  ) {
 
-    actions$.pipe(ofType(ADD_CUSTOMERS_SUCCESS, DELETE_CUSTOMERS_SUCCESS), map((duplicateError: string) => duplicateError)).subscribe((res: string)=> {
+    actions$.pipe(ofType(ADD_CUSTOMERS_SUCCESS), map((duplicateError: AddCustomerSuccessAction) => duplicateError.payload)).subscribe((res: string)=> {
       
       if (res === "") {
-        let paginationRequest = new PaginationRequest(this.page.toString(), this.pageSize.toString());
+        let paginationRequest = new PaginationRequest(this.page.toString(), this.pageSize.toString(), "ID", "DESC");
         this.store.dispatch(new GetCustomersAction(paginationRequest));
       }
 
@@ -102,8 +104,16 @@ export class CustomersListComponent implements OnInit, OnDestroy {
         });
         
       }
-     
+      // let paginationRequest = new PaginationRequest(this.page.toString(), this.pageSize.toString(), "ID", "DESC");
+      // this.store.dispatch(new GetCustomersAction(paginationRequest));
 
+    })
+
+
+    actions$.pipe(ofType(DELETE_CUSTOMERS_SUCCESS), map((duplicateError: DeleteCustomerSuccessAction) => duplicateError.payload)).subscribe((res: string)=> {
+
+      let paginationRequest = new PaginationRequest(this.page.toString(), this.pageSize.toString(), "ID", "DESC");
+      this.store.dispatch(new GetCustomersAction(paginationRequest));
     })
       
     // this.config = {
@@ -142,7 +152,7 @@ export class CustomersListComponent implements OnInit, OnDestroy {
       escapeToClose: "true"
     };       
 
-  let paginationRequest = new PaginationRequest(this.page.toString(), this.pageSize.toString());
+  let paginationRequest = new PaginationRequest(this.page.toString(), this.pageSize.toString(), "ID", "DESC");
 
   this.store.dispatch(new GetCustomersAction(paginationRequest));
 
@@ -182,7 +192,7 @@ export class CustomersListComponent implements OnInit, OnDestroy {
     }
 
     this.pageSize = item.itemName;
-    let paginationRequest = new PaginationRequest(this.page.toString(), this.pageSize.toString());
+    let paginationRequest = new PaginationRequest(this.page.toString(), this.pageSize.toString(), "ID", "DESC");
 
     this.store.dispatch(new GetCustomersAction(paginationRequest));
 
@@ -221,18 +231,18 @@ export class CustomersListComponent implements OnInit, OnDestroy {
 
       this.page = newPage;
 
-      let paginationRequest = new PaginationRequest(newPage.toString(), this.pageSize.toString());
+      let paginationRequest = new PaginationRequest(newPage.toString(), this.pageSize.toString(), "ID", "DESC");
 
       this.store.dispatch(new GetCustomersAction(paginationRequest));
 
       window.scrollTo(0,0);
     }
-  
-    onAddCustomer() {
-      
-    }
+
 
     openDialog(): void {
+
+      let emptyCustomer = new Customer("", "", "", "");
+
       const dialogRef = this.dialog.open(PopapDialogModalComponent, {
         width: '25%',
         //minWidth: '25%',
@@ -241,7 +251,7 @@ export class CustomersListComponent implements OnInit, OnDestroy {
         panelClass: 'custom-dialog-container',
         autoFocus: true,
         disableClose: true,
-        data: { newCustomer: this.newCustomerFromDialogValue }
+        data: { newCustomer: emptyCustomer }
         //data: { pageValue: this.sendValue }
       });
   
@@ -256,9 +266,40 @@ export class CustomersListComponent implements OnInit, OnDestroy {
 
     sortByID(): void {
 
+      this.sortingOrderASC = !this.sortingOrderASC;
+
+      let paginationRequest: PaginationRequest; 
+
+      if (this.sortingOrderASC) {
+        paginationRequest = new PaginationRequest(this.page.toString(), this.pageSize.toString(), "CustomerID", "ASC");
+      }
+
+      else {
+        paginationRequest = new PaginationRequest(this.page.toString(), this.pageSize.toString(), "CustomerID", "DESC");
+      }
+
+      this.store.dispatch(new GetCustomersAction(paginationRequest));
+
+      window.scrollTo(0,0);
     }
 
     sortByEmail(): void {
+
+      this.sortingOrderASC = !this.sortingOrderASC;
+
+      let paginationRequestEmail: PaginationRequest; 
+
+
+      if (this.sortingOrderASC) {
+        paginationRequestEmail = new PaginationRequest(this.page.toString(), this.pageSize.toString(), "CustomerEmail", "ASC");
+      }
+
+      else {
+        paginationRequestEmail = new PaginationRequest(this.page.toString(), this.pageSize.toString(), "CustomerEmail", "DESC");
+      }
+      this.store.dispatch(new GetCustomersAction(paginationRequestEmail));
+
+      window.scrollTo(0,0);
       
     }
 

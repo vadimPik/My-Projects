@@ -33,6 +33,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
+import { AboutComponent } from './about/about.component';
 //import { PopapDialogModalComponent } from './Models/popap-dialog-modal/popap-dialog-modal.component';
 
 
@@ -41,6 +42,7 @@ import { MatSortModule } from '@angular/material/sort';
   declarations: [
     AppComponent,
     ShopViewShellComponent,
+    AboutComponent,
   //  PopapDialogModalComponent,
     // ProductComponent
   ],

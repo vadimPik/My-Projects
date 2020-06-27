@@ -10,8 +10,8 @@ import { ApiURL } from 'src/app/api.model';
 import { Actions, ofType } from '@ngrx/effects';
 import { map } from 'rxjs/operators';
 // import { BehaviorSubject } from "rxjs";
-import { LOGIN_SUCCESS, LoginSuccessAction } from 'src/app/login/store/login.actions';
-import { UserDetails } from 'src/app/login/login.model';
+//import { LOGIN_SUCCESS, LoginSuccessAction } from 'src/app/login/store/login.actions';
+//import { UserDetails } from 'src/app/login/login.model';
 import {  CustomerListState, Customer } from '../model/CustomersList.model';
 import { PaginationRequest } from '../model/Pagination.model';
 //import { ADD_CUSTOMERS_SUCCESS, AddCustomerSuccessAction } from '../Store/Customers-list.actions';
@@ -113,22 +113,26 @@ export class CustomerListService {
 
         const httpOptions = {
           headers: new HttpHeaders({
-          //  'Content-Type':  'application/json'
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type':  'application/json'
+           // 'Content-Type': 'application/x-www-form-urlencoded'
           })
         };
 
-        const body = new HttpParams()
-          .set('customerIDToDelete', customerIdToDelete.toString());
+        const body = JSON.stringify(customerIdToDelete);
+
+        return this.httpCall(apiUrl, body);
+
+        // const body = new HttpParams()
+        //   .set('customerIDToDelete', customerIdToDelete)
 
         
-          return this.http
-          .post<string>(apiUrl, body, httpOptions)
-          .pipe(
-            catchError(error => {
-              return throwError(error);
-            })
-          );
+          // return this.http
+          // .post<string>(apiUrl, body, httpOptions)
+          // .pipe(
+          //   catchError(error => {
+          //     return throwError(error);
+          //   })
+          // );
     }
 
   //   updateQuantityProduct(shoppingListUpdateQuantityRequest: ShoppingListUpdateQuantityRequest): Observable<ShoppingListUpdateQuantityRequest> {

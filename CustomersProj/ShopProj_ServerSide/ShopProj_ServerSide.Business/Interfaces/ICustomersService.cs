@@ -13,7 +13,7 @@ namespace ShopProj_ServerSide.Business.Interfaces
     {
         Task<CustomersResponse> GetCustomers(PaginationRequest paginationRequest);
 
-        Task<string> DeleteCustomer(int customerIndexToDelete);
+        Task<string> DeleteCustomer(string customerIndexToDelete);
 
         Task<string> AddCustomer(Customer customer);
     }

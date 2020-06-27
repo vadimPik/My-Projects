@@ -66,7 +66,7 @@ export class DeleteCustomerAction implements Action {
 export class DeleteCustomerSuccessAction implements Action {
   readonly type = DELETE_CUSTOMERS_SUCCESS;
 
-  constructor(public payload: number) {}
+  constructor(public payload: string) {}
 }
 
 

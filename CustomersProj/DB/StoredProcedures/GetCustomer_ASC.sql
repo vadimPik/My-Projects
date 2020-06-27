@@ -6,7 +6,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER    PROCEDURE [dbo].[GetCustomer_DESC]  
+CREATE OR ALTER  PROCEDURE [dbo].[GetCustomer_ASC]  
  @PageNumber INT,  
  @PageSize INT,
  @SortColumn NVARCHAR(255)
@@ -20,6 +20,6 @@ Begin
 								WHEN 'CustomerID' THEN CustomerID
 								WHEN 'CustomerEmail' THEN CustomerEmail
 							END 
-	  DESC OFFSET (@PageNumber-1)* @PageSize ROWS FETCH NEXT @PageSize ROWS ONLY; 
+	  ASC OFFSET (@PageNumber-1)* @PageSize ROWS FETCH NEXT @PageSize ROWS ONLY; 
 	 SELECT count(*) as totalCustomersCount FROM Customers;  
 End  

@@ -26,10 +26,24 @@ namespace ShopProj_ServerSide.Business.Services
                 Dictionary<string, string> sqlInParameters = new Dictionary<string, string>();
 
                 CustomersResponse customersResponse = new CustomersResponse();
-                DataAccess sqlDal = new DataAccess("dbo.GetCustomers", sqlInParameters);
+
+                DataAccess sqlDal = null;
+
+                if (paginationRequest.sortType.Contains("DESC"))
+                {
+                    sqlDal = new DataAccess("dbo.GetCustomers_DESC", sqlInParameters);
+                }
+
+                else
+                {
+                    sqlDal = new DataAccess("dbo.GetCustomers_ASC", sqlInParameters);
+                }
+              //  DataAccess sqlDal = new DataAccess("dbo.GetCustomers", sqlInParameters);
 
                 sqlInParameters.Add("@PageNumber", paginationRequest.pageNumber.ToString());
                 sqlInParameters.Add("@PageSize", paginationRequest.pageSize.ToString());
+                sqlInParameters.Add("@SortColumn", paginationRequest.sortColumn);
+                
 
                 //   DataSet dsCustomers =  sqlDal.Execute_SP();
                 //   DataSet dsTotalCount = sqlDal.Execute_SP();
@@ -139,7 +153,7 @@ namespace ShopProj_ServerSide.Business.Services
             }
         }
 
-        public async Task<string> DeleteCustomer(int customerIDToDelete)
+        public async Task<string> DeleteCustomer(string customerIDToDelete)
         {
             try
             {
