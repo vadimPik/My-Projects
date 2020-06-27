@@ -1,0 +1,9 @@
+USE [DocumentsExam]
+
+Select documents.DocID
+From [dbo].[DocumentKeywords] dk
+INNER JOIN [dbo].[Documents] documents
+	ON dk.DocID = documents.DocID
+INNER JOIN [dbo].[Keywords] keywords
+	ON dk.KeywordID = keywords.KeywordID
+Where keywords.Keyword like '%Blue%' 

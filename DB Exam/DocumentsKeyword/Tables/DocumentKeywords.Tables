@@ -1,0 +1,21 @@
+USE DocumentsExam
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF NOT EXISTS ( SELECT TOP (1) 1 
+				FROM sys.tables AS T
+				WHERE T.name = 'DocumentKeywords' )
+BEGIN
+
+	CREATE TABLE dbo.DocumentKeywords(
+	    DocumentKeywordsID INT IDENTITY(1,1) NOT NULL,
+		DocID INT NOT NULL,
+		KeywordID INT NOT NULL
+	)
+
+END 

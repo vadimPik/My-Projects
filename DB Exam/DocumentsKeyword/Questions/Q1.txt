@@ -1,0 +1,5 @@
+USE [DocumentsExam]
+
+Select * 
+From [dbo].[Documents]
+Where DocDate > '4/1/1995'
