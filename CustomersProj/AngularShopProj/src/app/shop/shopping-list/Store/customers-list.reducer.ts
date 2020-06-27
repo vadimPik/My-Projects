@@ -1,10 +1,6 @@
-import { AppComponent } from '../../../app.component';
 import { CustomerListState } from '../model/CustomersList.model';
 import * as CustomersListActions from './Customers-list.actions';
-import { ApplicationModule } from '@angular/core';
-import { createOfflineCompileUrlResolver } from '@angular/compiler';
-import { cloneDeep } from 'lodash';
-//import { Product } from '../../product-list/model/customers.model';
+
 
 
 const initialState: CustomerListState = {

@@ -21,8 +21,6 @@ namespace ShopProj_ServerSide.Business.Services
         {
             try
             {
-               // DataSet ds = new DataSet();
-
                 Dictionary<string, string> sqlInParameters = new Dictionary<string, string>();
 
                 CustomersResponse customersResponse = new CustomersResponse();
@@ -45,10 +43,7 @@ namespace ShopProj_ServerSide.Business.Services
                 sqlInParameters.Add("@SortColumn", paginationRequest.sortColumn);
                 
 
-                //   DataSet dsCustomers =  sqlDal.Execute_SP();
-                //   DataSet dsTotalCount = sqlDal.Execute_SP();
                 DataSet dsCustomers = await sqlDal.Execute_SP_Async();
-                //    DataSet dsTotalCount = await sqlDal.Execute_SP_Async();
 
                 if (dsCustomers.Tables.Count > 0)
                 {
@@ -132,7 +127,6 @@ namespace ShopProj_ServerSide.Business.Services
 
                 DataAccess sqlDal = new DataAccess("dbo.AddCustomer", sqlInParameters);
 
-                //   ds = sqlDal.Execute_SP();
                 ds = await sqlDal.Execute_SP_Async();
 
                 string duplicateErrorMassage = "Record has successfully Added";
@@ -161,30 +155,14 @@ namespace ShopProj_ServerSide.Business.Services
                         }
                     }
                 }
-                //string customerID = string.Empty;
-
-                //if (firstTable.Rows.Count != 0)
-                //{
-                //    //Get values from DataTable result
-                //    DataRow result = firstTable.Rows[0];
-
-                //    customerID = result["CustomerID"].ToString();
-                //}
-
-                //newCustomer.CustomerID = customerID;
-                //newCustomer.CustomerName = customer.CustomerName;
-                //newCustomer.CustomerEmail = customer.CustomerEmail;
-                //newCustomer.CustomerAdress = customer.CustomerAdress;
 
                 return duplicateErrorMassage;
-             //   return newCustomer;
-             //    return "Record has successfully Added";
             }
 
             catch (Exception ex)
             {
                 Logger.Error(ex);
-                Customer newCustomer = new Customer();
+             //   Customer newCustomer = new Customer();
 
               //  return newCustomer;
                  return ex.ToString();
@@ -204,22 +182,8 @@ namespace ShopProj_ServerSide.Business.Services
                
                 DataAccess sqlDal = new DataAccess("dbo.DeleteCustomer", sqlInParameters);
 
-                //  ds = sqlDal.Execute_SP();
                 ds = await sqlDal.Execute_SP_Async();
 
-                //DataTable firstTable = ds.Tables[0];
-
-                //string userId = string.Empty;
-
-                //if (firstTable.Rows.Count != 0)
-                //{
-                //    //Get values from DataTable result
-                //    DataRow result = firstTable.Rows[0];
-
-                //    userId = result["userID"].ToString();
-                //}
-
-                //  int ShoppingListID = Helper.ConvertDataTableToObject<int>(firstTable)[0];
 
                 return "Record has successfully Deleted";
             }

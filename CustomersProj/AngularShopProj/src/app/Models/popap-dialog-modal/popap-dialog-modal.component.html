@@ -1,79 +1,4 @@
 <div class="add-product-dialog">
-    <!-- <h2>Add New Customer</h2> 
-    <div class="main-input">
-
-        <div class="id-input">
-            <mat-form-field>  
-                <input matInput [(ngModel)]="customerID" placeholder="Enter ID" required>
-            </mat-form-field>
-        </div>
-        <div class="id-name">
-            <mat-form-field>  
-                <input matInput [(ngModel)]="customerName" placeholder="Enter Name" required>
-            </mat-form-field>
-        </div>
-
-        <div class="id-email">
-            <mat-form-field>  
-                <input matInput [(ngModel)]="customerEmail" placeholder="Ex. pat@example.com" [errorStateMatcher]="matcher" required>
-
-                <mat-hint>Errors appear instantly!</mat-hint>
-                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                  Please enter a valid email address
-                </mat-error>
-                <mat-error *ngIf="emailFormControl.hasError('required')">
-                  Email is <strong>required</strong>
-                </mat-error>
-
-            </mat-form-field>
-        </div>
-
-        <div class="id-address">
-            <mat-form-field>  
-                <input matInput [(ngModel)]="customerAddress" placeholder="Enter Address" required> 
-            </mat-form-field>
-        </div>
-
-
-    </div>
-
-    <button type="button" (click)="close()" class="btn btn-raised ">Close</button>
-    <button type="button" (click)="save()" class="btn btn-raised">Save</button> -->
-
-
-
-<!----------------------------->
-    <!-- <form [formGroup]="newCustomers" class="add-customer-form" (keydown)="onFormKeyDown($event)">
-        <div class="form-content">
-
-            <div class="input-wrapper">
-                <input type="password" class="form-control input-underline input-lg" placeholder="Password" maxlength=60 formControlName="CustomerID" 
-                       id="pass-word">
-            </div>
-
-            <div class="input-wrapper">
-                <input #userName a-id="customrt-name" type="text" name="name" class="form-control input-underline input-lg" formControlName='CustomerName'
-                       id="name" placeholder="Name" maxlength=60>
-            </div>
-
-            <div class="input-wrapper">
-                <input #userName a-id="customrt-email" type="text" name="email" class="form-control input-underline input-lg" formControlName='CustomerEmail'
-                       id="email" placeholder="Email" maxlength=60>
-            </div>
-
-            <div class="input-wrapper">
-                <input #userName a-id="customrt-address" type="text" name="address" class="form-control input-underline input-lg" formControlName='CustomerAddress'
-                       id="address" placeholder="Address" maxlength=60>
-            </div>
-
-
-        </div>
-    </form> -->
-<!-- </div>
-<div>
-    <button mat-raised-button (click)="closeDialog()">Close</button>
-</div> -->
-
 
 <h2 mat-dialog-title>Add New Product</h2>
 <mat-dialog-content [formGroup]="newCustomersForm" >
@@ -81,7 +6,7 @@
         <div class="id-input">
             <mat-form-field class="form-field">
                 <input matInput placeholder="Enter Customer ID" formControlName="CustomerID" [errorStateMatcher]="matcher"  required>
-                <mat-error *ngIf="CustomerID.invalid">Name is  <strong>required</strong></mat-error>
+                <mat-error *ngIf="CustomerID.invalid">ID is  <strong>required</strong></mat-error>
             </mat-form-field>
         </div>
 
@@ -107,10 +32,9 @@
         <div class="id-address">
             <mat-form-field class="form-field">
                 <input matInput placeholder="Enter Customer Address" formControlName="CustomerAdress" [errorStateMatcher]="matcher"  required>
-                <mat-error *ngIf="CustomerAdress.invalid">Name is  <strong>required</strong></mat-error>
+                <mat-error *ngIf="CustomerAdress.invalid">Address is  <strong>required</strong></mat-error>
             </mat-form-field>
         </div>
-
     </div>
 </mat-dialog-content>
 

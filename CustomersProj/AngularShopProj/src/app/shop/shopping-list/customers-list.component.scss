@@ -1,94 +1,4 @@
 
-
-// .date-label {
-//   margin-top: 4em;
-//   margin-left: 42.5em;
-// }
-
-// .price-label {
-//   margin-top: 1em;
-//   margin-left: 41em;
-// }
-
-// button {
-//   margin-left: 53em;
-//  }
-
-//  input[type=text] {
-//   margin-left: 0.7em;
-//   padding: 0.2em;
-//   width: 14em;
-//  }
-
-//  .list-group .list-group-item {
-//   margin-top: 10em;
-//   padding: 1em;
-//  }
-
-//  .shopping-table {
-//   width: 81%;
-//   float: right;
-//   padding: 3em 7.5em 0;
-
-//  }
-
-//  table, th , td {
-//   border: 0.2em solid grey;
-//   border-collapse: collapse;
-//    padding: 0.3em;
-//   margin-left: -2.7em;
-//   width: 57em;
-
-// }
-
-// table tr:nth-child(odd) {
-//   background-color: #f1f1f1;
-// }
-
-// table tr:nth-child(even) {
-//   background-color: #ffffff;
-// }
-
-// .btn-secondary {
-
-//   width: 12em;
-//   padding: 0.5em;
-// }
-
-// .btn-delete {
-
-// }
-
-// .quantity-block {
-//   margin: 0.1em;
-//   display: flex;
-// }
-
-
-// #quantity-btn {
-//  margin-left: 5em;
-//  margin-bottom: 0.1em;
-// }
-
-// #delete-btn {
-//   margin: 0.5em 0 0.5em 3em;
-// }
-
-// #quantity-input {
-//   width: 31px;
-// }
-
-// #buy-btn {
-//   margin-left: 25.5em;
-//   width: 10em;
-//   padding: 0.6em;
-// }
-
-// .btn-buy {
-//   margin: 1em;
-// }
-
-
 .sec-padding {
   //padding: 60px 0;
   padding: 2.7rem 1.5rem;
@@ -213,10 +123,6 @@
   flex:1;
 }
 
-// .remove-product {
-//   cursor: pointer;
-// }
-
 .delete-customer-icon {
   cursor: pointer;
 }
@@ -225,76 +131,6 @@
   cursor: pointer;
 }
 
-
-
-// .date-label {
-//     margin-top: 4em;
-//     margin-left: 42.5em;
-//   }
-  
-//   .price-label {
-//     margin-top: 1em;
-//     margin-left: 41em;
-//   }
-  
-//   button {
-//     margin-left: 53em;
-
-//    }
-  
-//    input[type=text] {
-//     margin-left: 0.7em;
-//     padding: 0.2em;
-//     width: 14em;
-//    }
-  
-//    .list-group .list-group-item {
-//     margin-top: 10em;
-//     padding: 1em;
-//    }
-  
-//    .product-table {
-//      padding: 3em;
-//      width: 40%;
-//      float: left;
-//      padding: 3em 4em 0;
-
-//    }
-  
-//    table, th , td {
-//     border: 0.2em solid grey;
-//     border-collapse: collapse;
-//      padding: 0.3em;
-//     margin-left: -2.7em;
-//     width: 57em;
-
-//   }
-  
-//   table tr:nth-child(odd) {
-//     background-color: #f1f1f1;
-//   }
-  
-//   table tr:nth-child(even) {
-//     background-color: #ffffff;
-//   }
-  
-//   .btn-secondary {
-
-//     width: 12em;
-//     padding: 0.5em;
-//   }
-  
-//   .btn-add-to-shopping-list {
-
-//    margin-left: -38.5em;
-
-//   }
-  
-
-// .all-products {
-//   padding-left: 17px;
-//   background: white;
-// }
 
 .filter-row {
   padding: 8px 25px;
@@ -340,7 +176,6 @@ select {
   background: transparent;
 
   cursor: pointer;
-  //background: url(/assets/images/dropdown.png) no-repeat 90%;
 }
   .col {
     padding: 9px 0 9px 0px;
@@ -488,48 +323,6 @@ select {
   padding: 3rem;
 }
 
-// .pagination {
-//   width: 10rem;
-//   background-color: white;
-// }
-
-
-
-.ngx-pagination {
-  //padding-left: 0;
-}
-
-// .mat-select-panel {
-//   background-color: red;
-// }
-
-
-// .mat-form-field-infix {
-//   background-color: red;
-// }
-
-// ::ng-deep .mat-select-content{
-//   width:2000px;
-//   background-color: red;
-//   font-size: 10px;   
-// }
-
-// ::ng-deep .mat-select-arrow-wrapper {
-//  // background-color: red;
-//  color: red;
-// }
-
-// .mat-select:focus:not(.mat-select-disabled).mat-primary 
-// .mat-select-arrow , .mat-select-underline , .mat-select-trigger 
-// {
-//     color: #63961C;
-// }
-
-// /* to change selected item color in the select list */
-// .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
-//     color: #63961C;
-// }
-
 .mat-select-arrow-wrapper {
   //  background-color: red;
    color: red !important;
@@ -539,50 +332,11 @@ select {
   color: red !important;
   }
 
-  // .mat-icon-button {
-  //   cursor: pointer;
-  // }
-
-// .mat-select {
-//   color: red !important;
-// }
-
-// .mat-select-value-text {
-//   color: green !important;
-// }
-
-// .not-empty-select.mat-selected {
-//   color: green !important;
-// }
-
-// .mat-select {
-//  // background-color: red;
-//  color: red;
-// }
-
-// mat-form-field span.mat-form-field-label-wrapper label {
-//   color:orange !important;
-// }
-
-// mat-form-field.mat-focused span.mat-form-field-label-wrapper label {
-//   color:green !important;
-// }
-
-// .myclass {
-//   background-color: red;
-//   font-size: 20px;
-//  }
-
 #background { 
   width: 100vw;
   min-height: 100vh;
   background-color: #9B59B6;
 }
-
-// .customers-page {
-//   background: #A52A2A;
-//  // background-color: red;
-// }
 
 .mat-select-value-text {
   color: rgba(0,0,0,.88);
@@ -647,10 +401,6 @@ select {
  // display: inline-block;
 }
 
-// .add-customer-dialog-panel {
-//   background-color: red;
-// }
-
 .container-dialog-container .mat-dialog-container {
   background-color: cornsilk;
   color: gray;
@@ -663,11 +413,4 @@ select {
   color: inherit;
   font-size: 1.2rem;
 }
-// .dialog-input .mat-form-field {
-//   color: red;
-// }
-
-// .mat-sort-header {
-//   display:flex;
-// }
 

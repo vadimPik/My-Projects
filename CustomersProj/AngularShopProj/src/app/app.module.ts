@@ -10,24 +10,19 @@ import {ButtonModule} from 'primeng/button';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-//mport { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { StoreModule } from '@ngrx/store';
 import * as fromApp from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { TableModule } from 'primeng/table';
-import { ShopViewShellComponent } from './shop/shop-view-shell/shop-view-shell.component';
-//import { LoginEffects } from './login/store/login.effects';
 import { EffectsModule, EffectsRootModule, EffectSources } from '@ngrx/effects';
-//import { AuthenticationService } from './login/services/authentication.service';
 import { ShopViewShellModule } from './shop/shop-view-shell/shop-view-shell.module';
 import { CustomersListEffects } from './shop/shopping-list/Store/customers-list.effects';
 import { CustomerListService } from './shop/shopping-list/Services/customers-list.service';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
-//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
@@ -35,20 +30,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
 import { AboutComponent } from './about/about.component';
 import { CustomersListModule } from './shop/shopping-list/customers-list.module';
-//import { AboutComponent } from './about/about.component';
-//import { PopapDialogModalComponent } from './Models/popap-dialog-modal/popap-dialog-modal.component';
-
 
 
 @NgModule({
   declarations: [
     AppComponent,
-  //  AboutComponent,
- //   ShopViewShellComponent,
- //   AboutComponent,
-
-  //  PopapDialogModalComponent,
-    // ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +59,6 @@ import { CustomersListModule } from './shop/shopping-list/customers-list.module'
 		InputTextModule,
     InputTextModule,
     EffectsModule.forRoot([
-     // LoginEffects,
       CustomersListEffects]),
     ShopViewShellModule,
     CustomersListModule,
@@ -85,7 +70,6 @@ import { CustomersListModule } from './shop/shopping-list/customers-list.module'
     MatInputModule,
     MatButtonModule,
     MatSortModule
-  //  NgbModule.forRoot()
 
   ],
   providers: [ EffectsRootModule, EffectSources, CustomersListEffects, CustomerListService],
