@@ -42,7 +42,7 @@ export class CustomersListEffects {
       ofType<AddCustomerAction>(ADD_CUSTOMERS),
       mergeMap(action => {
         return this.customerListService.addProduct(action.payload).pipe(
-          map((res: Customer) => {
+          map((res: string) => {
             if (res) {
               return new AddCustomerSuccessAction(res);
             }

@@ -33,26 +33,28 @@ export function CustomersListReducer(state: CustomerListState = initialState, ac
       };
 
     // case CustomersListActions.ADD_CUSTOMERS_SUCCESS:
-    //   return {
-    //     ...state,
-    //     Customers : [...state.Customers, action.payload],
-    //     TotalCustomers: state.TotalCustomers + 1,
-    //   };
+    //   return { ...state, ...action };
+      // return {
+      //   ...state,
+      //   Customers : [...state.Customers, action.payload],
+      //   TotalCustomers: state.TotalCustomers + 1,
+      // };
 
 
     case CustomersListActions.ADD_CUSTOMERS_FAILED:
       return { ...state, ...action };
 
     // case CustomersListActions.DELETE_CUSTOMERS_SUCCESS: {
-    //   const customerToDelete = state.Customers[action.payload];
+    //   return { ...state, ...action };
+    //   // const customerToDelete = state.Customers[action.payload];
 
-    //   return {
-    //     ...state,
-    //     Customers: state.Customers.filter((customer) => {
-    //            return customer !== customerToDelete;
-    //     }),
-    //     TotalCustomers: state.TotalCustomers - 1 
-    //   };
+    //   // return {
+    //   //   ...state,
+    //   //   Customers: state.Customers.filter((customer) => {
+    //   //          return customer !== customerToDelete;
+    //   //   }),
+    //   //   TotalCustomers: state.TotalCustomers - 1 
+    //   // };
     // }
 
     case CustomersListActions.DELETE_CUSTOMERS_FAILED:

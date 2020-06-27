@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSortModule } from '@angular/material/sort';
 import { PopapDialogModalComponent } from 'src/app/Models/popap-dialog-modal/popap-dialog-modal.component';
 import {  ReactiveFormsModule} from '@angular/forms';
 
@@ -34,7 +35,8 @@ import {  ReactiveFormsModule} from '@angular/forms';
         MatFormFieldModule,
         MatDialogModule,
         MatInputModule,
-        MatButtonModule
+        MatButtonModule,
+        MatSortModule
     ],
     declarations: [CustomersListComponent, PopapDialogModalComponent],
     exports:[CustomersListComponent, MatSelectModule],

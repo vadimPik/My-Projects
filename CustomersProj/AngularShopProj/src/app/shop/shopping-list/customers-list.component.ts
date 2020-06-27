@@ -15,7 +15,7 @@ import { UserDetails } from 'src/app/login/login.model';
 import { CustomerListService } from './Services/customers-list.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 //import { ProductListService } from '../product-list/Services/product-list.service';
-import { GetCustomersAction, ClearCustomersListAction, DeleteCustomerAction, DELETE_CUSTOMERS_SUCCESS, ADD_CUSTOMERS_SUCCESS } from './Store/Customers-list.actions';
+import { GetCustomersAction, ClearCustomersListAction, DeleteCustomerAction, DELETE_CUSTOMERS_SUCCESS, ADD_CUSTOMERS_SUCCESS, AddCustomerAction } from './Store/Customers-list.actions';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaginationRequest } from './model/Pagination.model';
 import { Customer, CustomerDeleteRequest } from './model/CustomersList.model';
@@ -76,10 +76,33 @@ export class CustomersListComponent implements OnInit, OnDestroy {
   constructor(private store: Store<AppRootState>, private customerListServer:CustomerListService,  private route: ActivatedRoute,
               private router: Router, public dialog: MatDialog, private actions$: Actions  ) {
 
-    actions$.pipe(ofType(ADD_CUSTOMERS_SUCCESS, DELETE_CUSTOMERS_SUCCESS)).subscribe(res => {
+    actions$.pipe(ofType(ADD_CUSTOMERS_SUCCESS, DELETE_CUSTOMERS_SUCCESS), map((duplicateError: string) => duplicateError)).subscribe((res: string)=> {
       
-      let paginationRequest = new PaginationRequest(this.page.toString(), this.pageSize.toString());
-      this.store.dispatch(new GetCustomersAction(paginationRequest));
+      if (res === "") {
+        let paginationRequest = new PaginationRequest(this.page.toString(), this.pageSize.toString());
+        this.store.dispatch(new GetCustomersAction(paginationRequest));
+      }
+
+      else {
+        const dialogRef = this.dialog.open(PopapDialogModalComponent, {
+          width: '25%',
+          //minWidth: '25%',
+          // backdropClass: 'custom-dialog-backdrop-class',
+          // panelClass: 'add-customer-dialog-panel',
+          panelClass: 'custom-dialog-container',
+          autoFocus: true,
+          disableClose: true,
+       //   data:  this.newCustomerFromDialogValue
+          data: { newCustomer: this.newCustomerFromDialogValue, duplicateError: res }
+        });
+    
+        dialogRef.afterClosed().subscribe((result: Customer)  => {
+          console.log('The dialog was closed', result);
+          this.newCustomerFromDialogValue = result;
+        });
+        
+      }
+     
 
     })
       
@@ -218,13 +241,25 @@ export class CustomersListComponent implements OnInit, OnDestroy {
         panelClass: 'custom-dialog-container',
         autoFocus: true,
         disableClose: true,
-        data: { pageValue: this.sendValue }
+        data: { newCustomer: this.newCustomerFromDialogValue }
+        //data: { pageValue: this.sendValue }
       });
   
       dialogRef.afterClosed().subscribe((result: Customer)  => {
         console.log('The dialog was closed', result);
         this.newCustomerFromDialogValue = result;
+        
+        this.store.dispatch(new AddCustomerAction(result));
       });
+    }
+
+
+    sortByID(): void {
+
+    }
+
+    sortByEmail(): void {
+      
     }
 
   // onUpdateQuantity(index: number, quantity: number) {

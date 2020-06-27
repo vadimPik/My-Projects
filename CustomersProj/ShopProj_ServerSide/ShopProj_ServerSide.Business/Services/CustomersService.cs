@@ -101,11 +101,11 @@ namespace ShopProj_ServerSide.Business.Services
 
                     if (errorID == AddCustomerException.DuplicateID.GetHashCode())
                     {
-                        duplicateErrorMassage = "Duplicate ID";
+                        duplicateErrorMassage = "ID already exists!";
                     }
                     else if (errorID == AddCustomerException.DuplicateEmail.GetHashCode())
                     {
-                        duplicateErrorMassage = "Duplicate Email";
+                        duplicateErrorMassage = "Email already exists!";
                     }
                 }
                 //string customerID = string.Empty;

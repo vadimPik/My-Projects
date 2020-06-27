@@ -47,7 +47,7 @@ export class AddCustomerAction implements Action {
 export class AddCustomerSuccessAction implements Action {
   readonly type = ADD_CUSTOMERS_SUCCESS;
 
-  constructor(public payload: Customer) {}
+  constructor(public payload: string) {}
 }
 
 export class AddCustomerFailedAction implements Action {

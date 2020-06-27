@@ -91,7 +91,7 @@ export class CustomerListService {
       //     );
     }
 
-    addProduct(product: Customer): Observable<Customer> {
+    addProduct(product: Customer): Observable<string> {
         const apiUrl: string = ApiURL.addNewCustomer;
 
         // const shoppingListRequest: ShoppingListRequest = {

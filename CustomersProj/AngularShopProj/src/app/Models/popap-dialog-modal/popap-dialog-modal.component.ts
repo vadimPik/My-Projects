@@ -24,15 +24,21 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class PopapDialogModalComponent implements OnInit {
 
   fromPage: string;
-  newCustomer: Customer;
+  CustomerFromParentPage: Customer;
+  duplicateError: string;
 
   //fromDialog: string;
   //newCustomersForm: FormGroup;
 
-  customerID: string;
-  customerName: string;
-  customerEmail: string;
-  customerAdress: string;
+   //customerID: string;
+  // customerName: string;
+  // customerEmail: string;
+  // customerAdress: string;
+
+  //CustomerID: string;
+  // CustomerName: string;
+  // CustomerEmail: string;
+  // CustomerAdress: string;
 
  // constructor(public dialogRef: MatDialogRef<PopapDialogModalComponent>, @Optional() @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder) {
   constructor(
@@ -41,29 +47,55 @@ export class PopapDialogModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data,
     private store: Store<AppRootState>) {
 
-    this.newCustomer = data.newCustomer;
+      if(data.newCustomer) {
+        this.CustomerFromParentPage = data.newCustomer;
+  
+        this.duplicateError = data.duplicateError;
+       // this.duplicateError = data;
+        this.initializeForm();
+  
+        this.newCustomersForm.patchValue({
+          CustomerID: data.newCustomer.CustomerID,
+          CustomerName: data.newCustomer.CustomerName,
+          CustomerEmail: data.newCustomer.CustomerEmail,
+          CustomerAdress: data.newCustomer.CustomerAdress
+        });
+      }
+      
+
+    //  this.newCustomersForm.setValue({'CustomerID': this.CustomerFromParentPage.CustomerID});
+   //   this.CustomerID = this.CustomerFromParentPage.CustomerID;
+ //   this.newCustomer = data.newCustomer;
    }
 
+   CustomerID: any;
+   CustomerName: any;
+   CustomerEmail: any;
+   CustomerAdress: any;
+   matcher: any;
+   newCustomersForm : FormGroup;
   ngOnInit(): void {
     this.initializeForm();
   }
 
   initializeForm() {
+
+    this.CustomerID = new FormControl('', [Validators.required]);
+    this.CustomerName = new FormControl('', [Validators.required]);
+    this.CustomerEmail = new FormControl('', [Validators.required, Validators.email]);
+    this.CustomerAdress = new FormControl('', [Validators.required]);
+  
+    this.newCustomersForm = new FormGroup({
+      CustomerID: this.CustomerID,
+      CustomerName: this.CustomerName,
+      CustomerEmail: this.CustomerEmail,
+      CustomerAdress: this.CustomerAdress
+    }); 
+  
+    this.matcher = new MyErrorStateMatcher();
   }
 
-  CustomerID = new FormControl('', [Validators.required]);
-  CustomerName = new FormControl('', [Validators.required]);
-  CustomerEmail = new FormControl('', [Validators.required, Validators.email]);
-  CustomerAdress = new FormControl('', [Validators.required]);
 
-  newCustomersForm = new FormGroup({
-    CustomerID: this.CustomerID,
-    CustomerName: this.CustomerName,
-    CustomerEmail: this.CustomerEmail,
-    CustomerAdress: this.CustomerAdress
-  }); 
-
-  matcher = new MyErrorStateMatcher();
 
   // newCustomersForm = new FormGroup({
   //   CustomerID: new FormControl('', [Validators.required]),
@@ -115,13 +147,15 @@ export class PopapDialogModalComponent implements OnInit {
 
 
   add() {
+
+
     let newCustomerToAdd = new Customer(this.newCustomersForm.value.CustomerID, this.newCustomersForm.value.CustomerName, 
                                         this.newCustomersForm.value.CustomerEmail, this.newCustomersForm.value.CustomerAdress);
 
-    this.store.dispatch(new AddCustomerAction(newCustomerToAdd));
-
-    
     this.dialogRef.close(newCustomerToAdd);
+
+   // this.store.dispatch(new AddCustomerAction(newCustomerToAdd));
+
     //this.dialogRef.close(this.newCustomersForm.value);
 }
 

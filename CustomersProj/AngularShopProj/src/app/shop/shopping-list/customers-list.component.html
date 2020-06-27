@@ -1,53 +1,26 @@
 <div class="customers-page">
-<!-- <div class="col-md-offset-11">
-   <select id="PerPage" class="form-control" [(ngModel)]="pageSize">
-       <option [ngValue]="5">5</option>
-       <option [ngValue]="10">10</option>
-       <option [ngValue]="25">25</option>
-   </select>
-</div> -->
 
-<!-- <div class="add-customer">
-   <button type="button" (click)="onAddCustomer()" class="btn btn-primary btn-lg add-customer-button">Add Customer</button>
-</div> -->
 
 <div class="add-customer">
-   <!-- <mat-form-field>
-      <input matInput [(ngModel)]="sendValue" placeholder="Enter value for Dialog">
-   </mat-form-field> -->
-   <!-- <div *ngIf="dialogValue">
-      <b>Value From Dialog</b>: {{dialogValue}}
-   </div> -->
+
    <div>
       <button type="button" (click)="openDialog()" class="btn btn-raised btn-lg add-customer-button">Add Customer</button>
-      <!-- <button mat-raised-button (click)="openDialog()">Open Dialog</button> -->
    </div>
 </div>
 
-<!-- <div class="add-customer">
-   <button type="button" (click)="onAddCustomer()" class="btn btn-raised btn-lg add-customer-button">Add Customer</button>
-</div> -->
-
-<!-- <p>Envelope icon: <span class="glyphicon glyphicon-envelope"></span></p>  -->
-
-<!-- <div class="add-customer">
-   <button mat-raised-button color="red">Add Customer <mat-icon>plus</mat-icon></button>
-</div>  -->
-
 <div class="cart-wrapper sec-padding">
-   <!-- <div fxLayout="column" fxLayoutAlign="space-around center" *ngIf="!customers.length">
-      <mat-chip-list>
-         <mat-chip color="warn" selected="true">YOU HAVE NO ITEMS IN YOUR SHOPPING CART.</mat-chip>
-      </mat-chip-list>
-   </div> -->
 
    <mat-card *ngIf="customers.length > 0"  class="p-0">
       <div class="mat-table cart-table">
          <div class="mat-header-row">
-            <!-- <div class="mat-header-cell">Product</div> -->
-            <div class="mat-header-cell">ID</div>
+            <!-- <div class="mat-header-cell">ID</div> -->
+            <button mat-icon-button  class="mat-header-cell" (click)="sortByID()">ID 	<mat-icon>sort</mat-icon> </button> 
+            <!-- <div class="dsds">
+            <button type="button" (click)="openDialog()" class="btn btn-raised add-customer-button">Add Customer</button>
+         </div> -->
             <div class="mat-header-cell">Name</div>
-            <div class="mat-header-cell">Email</div>
+            <!-- <div class="mat-header-cell">Email</div> -->
+            <button mat-icon-button  class="mat-header-cell" (click)="sortByEmail()">Email <mat-icon>sort</mat-icon></button> 
             <div class="mat-header-cell">Address</div>
             <div class="mat-header-cell">Action</div>
          </div>
@@ -57,159 +30,38 @@
             <div class="mat-cell"><a  class="product-name">{{item.CustomerName}}</a></div>
             <div class="mat-cell">{{item.CustomerEmail}}</div>
             <div class="mat-cell">{{item.CustomerAdress}}</div>
-            <!-- <div class="mat-cell text-muted">
-               <div fxLayout="row" fxLayout.xs="column"  class="text-muted">
-                  <div fxLayout="row" fxLayoutAlign="center start">
-                    <button mat-icon-button matTooltip="Remove" (click)="onUpdateQuantity(i, -1)">
-                     
-                        <mat-icon>remove</mat-icon>
-                     </button>
-                     <input type="text" name="quantity"  [(ngModel)]="item.CustomerID" disabled class="form-control input-number">
 
-                     <button mat-icon-button matTooltip="Add" (click)="onUpdateQuantity(i, 1)">
-                        <mat-icon>add</mat-icon>
-                     </button>
-                  </div>
-               </div>
-            </div> -->
-            <!-- <div class="mat-cell total">100</div> -->
             <div class="mat-cell text-center">
                <div class="remove-product p-1">
                   <mat-icon class="delete-customer-icon" (click)="onDeleteProduct(i)">close</mat-icon>
                </div>
             </div>
          </div>
-         <!-- <div class="mat-row">
-            
-            <div class="mat-cell"></div>
-            <div fxLayout="column" fxLayoutAlign="center end" class="grand-total px-2">
-               <span class="total-products">Number Of Products: {{numberOfProducts}}</span>
-            </div>
-            <div class="mat-cell text-right">
-               <div fxLayout="column" fxLayoutAlign="center end" class="grand-total px-2">
-                 <span class="total-price">Total Price: {{totalPrice}}</span>
-                 
-               </div>
-            </div>
-            <button mat-raised-button  class="btn-project" >Proceed To Checkout</button>
-         </div> -->
-         <!-- <div class="mat-row">
-            <div class="mat-cell"></div>
-            <div fxLayout="column" fxLayoutAlign="center end" class="grand-total px-2">
-
-            <div fxFlex="75" fxFlex.lt-sm="100" class="all-products" ngClass.gt-sm="p-right">
-               <div  fxLayout="row wrap ">
-   
-                 <div fxFlex="100">
-                     <mat-card class="p-0 text-center no-shadow">
-                       <div class="pagination">
-                         <pagination-controls class="customer-pagination" autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
-                       </div>
-                     </mat-card>
-                 </div>
-               </div>
-               </div>
-
-            </div> -->
-
-         <!-- </div> -->
       </div>
    </mat-card>
 
 
    <div class="classd" >
 
-      <!-- Items per page: -->
-      <!-- <mat-select [(ngModel)]="pageSize" (valueChange)="onPageChanged($event)" class="myclass" style="width: 50px;margin-left: 15px">
-       <mat-option [value]="1">20</mat-option>
-       <mat-option [value]="2">50</mat-option>
-       <mat-option [value]="3">100</mat-option>
-       <mat-option [value]="4">all</mat-option>
-      </mat-select> -->
-
       <div class="items-per-page-pagination">
-      <div class="items-per-page-label">
-         Items per page:
+         <div class="items-per-page-label">
+            Items per page:
+         </div>
+         <div class="items-per-page-dropList">
+            <angular2-multiselect 
+               [data]="pageSizeSelection" 
+               [(ngModel)]="selectedItems" 
+               [settings]="pageSizeDropdownSettings" 
+               (onSelect)="onItemSelect($event)" 
+               (onDeSelect)="OnItemDeSelect($event)">
+            </angular2-multiselect>
       </div>
-      <div class="items-per-page-dropList">
-         <angular2-multiselect 
-             [data]="pageSizeSelection" 
-             [(ngModel)]="selectedItems" 
-             [settings]="pageSizeDropdownSettings" 
-             (onSelect)="onItemSelect($event)" 
-             (onDeSelect)="OnItemDeSelect($event)">
-         </angular2-multiselect>
-     </div>
-  
 
-      <!-- <mat-form-field>
-         <mat-placeholder class="myclass">Select data</mat-placeholder>
-         <mat-select>
-             <mat-option value="A">A</mat-option>
-             <mat-option value="B">B</mat-option>
-             <mat-option value="C">C</mat-option>
-         </mat-select>
-       </mat-form-field> -->
+      <div class="pagination">
+            <pagination-controls class="customer-pagination" id="pagination"  maxSize="6" (pageChange)="onPageChanged($event)"></pagination-controls>
+      </div>
+   </div>
 
-      <!-- <mat-form-field>
-         <mat-label>Panel color</mat-label>
-         <mat-select [(ngModel)]="pageSize" (valueChange)="onPageChanged($event)">
-           <mat-option value="red">Red</mat-option>
-           <mat-option value="green">Green</mat-option>
-           <mat-option value="blue">Blue</mat-option>
-         </mat-select>
-       </mat-form-field> -->
-
-      <!-- <mat-form-field>
-         <mat-select placeholder="Select a Number" [(ngModel)]="pageSize" >
-            <mat-option *ngFor="let item of pageSizeSelection" [value]="item" >
-               {{item.label}}
-            </mat-option>
-
-         </mat-select>
-      </mat-form-field> -->
-
-
-            <!-- <div fxFlex="75" fxFlex.lt-sm="100" class="all-products" ngClass.gt-sm="p-left"> 
-             <div  fxLayout="row wrap ">
-
-              <div fxFlex="100">
-                  <mat-card class="p-0 text-center no-shadow">
-                    <div class="pagination">
-                      <pagination-controls class="customer-pagination"  maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
-                    </div>
-                  </mat-card>
-              </div>
-            </div> 
-            </div> -->
-
-
-            <!-- <div fxFlex="75" fxFlex.lt-sm="100" class="all-products" ngClass.gt-sm="p-left">  -->
-               <!-- <div  fxLayout="row wrap "> -->
-  
-                <!-- <div fxFlex="100"> -->
-                    <!-- <mat-card class="p-0 text-center no-shadow"> -->
-                      <div class="pagination">
-                        <pagination-controls class="customer-pagination" id="pagination"  maxSize="6" (pageChange)="onPageChanged($event)"></pagination-controls>
-                        <!-- <pagination-controls class="customer-pagination" id="pagination"  maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls> -->
-                      </div>
-                  </div>
-                    <!-- </mat-card> -->
-                <!-- </div> -->
-              <!-- </div>  -->
-              <!-- </div> -->
 
    </div>
 </div>
-            <!-- <div fxFlex="75" fxFlex.lt-sm="100" class="all-products" ngClass.gt-sm="p-right"> -->
-            <!-- <div  fxLayout="row wrap ">
-
-              <div fxFlex="100">
-                  <mat-card class="p-0 text-center no-shadow">
-                    <div class="pagination">
-                      <pagination-controls class="customer-pagination" autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
-                    </div>
-                  </mat-card>
-              </div>
-            </div> -->
-            <!-- </div> -->
