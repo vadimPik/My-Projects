@@ -80,7 +80,7 @@ export class CustomersListComponent implements OnInit, OnDestroy {
 
     actions$.pipe(ofType(ADD_CUSTOMERS_SUCCESS), map((duplicateError: AddCustomerSuccessAction) => duplicateError.payload)).subscribe((res: string)=> {
       
-      if (res === "") {
+      if (res.includes("successfully")) {
         let paginationRequest = new PaginationRequest(this.page.toString(), this.pageSize.toString(), "ID", "DESC");
         this.store.dispatch(new GetCustomersAction(paginationRequest));
       }
@@ -101,6 +101,11 @@ export class CustomersListComponent implements OnInit, OnDestroy {
         dialogRef.afterClosed().subscribe((result: Customer)  => {
           console.log('The dialog was closed', result);
           this.newCustomerFromDialogValue = result;
+
+          if(result.CustomerID) {
+            this.store.dispatch(new AddCustomerAction(result));
+          }
+          
         });
         
       }
@@ -259,23 +264,26 @@ export class CustomersListComponent implements OnInit, OnDestroy {
         console.log('The dialog was closed', result);
         this.newCustomerFromDialogValue = result;
         
-        this.store.dispatch(new AddCustomerAction(result));
+        if(result.CustomerID) {
+          this.store.dispatch(new AddCustomerAction(result));
+        }
+        
       });
     }
 
 
-    sortByID(): void {
+    sortByName(): void {
 
       this.sortingOrderASC = !this.sortingOrderASC;
 
       let paginationRequest: PaginationRequest; 
 
       if (this.sortingOrderASC) {
-        paginationRequest = new PaginationRequest(this.page.toString(), this.pageSize.toString(), "CustomerID", "ASC");
+        paginationRequest = new PaginationRequest(this.page.toString(), this.pageSize.toString(), "CustomerName", "ASC");
       }
 
       else {
-        paginationRequest = new PaginationRequest(this.page.toString(), this.pageSize.toString(), "CustomerID", "DESC");
+        paginationRequest = new PaginationRequest(this.page.toString(), this.pageSize.toString(), "CustomerName", "DESC");
       }
 
       this.store.dispatch(new GetCustomersAction(paginationRequest));

@@ -22,8 +22,6 @@ export class CustomersListEffects {
         return this.customerListService.getCustomersListProducts(action.payload).pipe(
           map((res: CustomerListState) => {
             if (res) {
-              //  let shoppingListState : ShoppingListState;
-              //  shoppingListState = this.shoppingListService.convertShoppingListProductsToShoppingListState(res);
                 return new GetCustomersSuccessAction(res);
             }
             else {
@@ -43,7 +41,7 @@ export class CustomersListEffects {
       mergeMap(action => {
         return this.customerListService.addProduct(action.payload).pipe(
           map((res: string) => {
-            if (res) {
+            if (res.includes("exists") || res.includes("successfully")) {
               return new AddCustomerSuccessAction(res);
             }
             else {

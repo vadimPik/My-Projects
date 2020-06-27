@@ -27,12 +27,9 @@
    <mat-card *ngIf="customers.length > 0"  class="p-0">
       <div class="mat-table cart-table">
          <div class="mat-header-row">
-            <!-- <div class="mat-header-cell">ID</div> -->
-            <button mat-icon-button  class="mat-header-cell" (click)="sortByID()">ID 	<mat-icon>sort</mat-icon> </button> 
-            <!-- <div class="dsds">
-            <button type="button" (click)="openDialog()" class="btn btn-raised add-customer-button">Add Customer</button>
-         </div> -->
-            <div class="mat-header-cell">Name</div>
+            <div class="mat-header-cell">ID</div>
+            <!-- <div class="mat-header-cell">Name</div> -->
+            <button mat-icon-button  class="mat-header-cell" (click)="sortByName()">Name<mat-icon>sort</mat-icon> </button> 
             <!-- <div class="mat-header-cell">Email</div> -->
             <button mat-icon-button  class="mat-header-cell" (click)="sortByEmail()">Email <mat-icon>sort</mat-icon></button> 
             <div class="mat-header-cell">Address</div>

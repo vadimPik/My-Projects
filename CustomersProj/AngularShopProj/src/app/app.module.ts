@@ -34,6 +34,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
 import { AboutComponent } from './about/about.component';
+import { CustomersListModule } from './shop/shopping-list/customers-list.module';
+//import { AboutComponent } from './about/about.component';
 //import { PopapDialogModalComponent } from './Models/popap-dialog-modal/popap-dialog-modal.component';
 
 
@@ -41,8 +43,10 @@ import { AboutComponent } from './about/about.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ShopViewShellComponent,
-    AboutComponent,
+  //  AboutComponent,
+ //   ShopViewShellComponent,
+ //   AboutComponent,
+
   //  PopapDialogModalComponent,
     // ProductComponent
   ],
@@ -72,6 +76,7 @@ import { AboutComponent } from './about/about.component';
      // LoginEffects,
       CustomersListEffects]),
     ShopViewShellModule,
+    CustomersListModule,
     MatCardModule,
     MatIconModule,
     FlexLayoutModule,

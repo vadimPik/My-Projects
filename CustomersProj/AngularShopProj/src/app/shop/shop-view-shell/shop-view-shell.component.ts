@@ -11,8 +11,6 @@ import { AppRootState } from 'src/app/reducers';
 
 
 
-
-
 @Component({
   selector: 'app-shop-view-shell',
   templateUrl: './shop-view-shell.component.html',

@@ -48,23 +48,27 @@ namespace ShopProj_ServerSide.Business.Services
                 //   DataSet dsCustomers =  sqlDal.Execute_SP();
                 //   DataSet dsTotalCount = sqlDal.Execute_SP();
                 DataSet dsCustomers = await sqlDal.Execute_SP_Async();
-            //    DataSet dsTotalCount = await sqlDal.Execute_SP_Async();
+                //    DataSet dsTotalCount = await sqlDal.Execute_SP_Async();
 
-                DataTable firstTable = dsCustomers.Tables[0];
+                if (dsCustomers.Tables.Count > 0)
+                {
 
-                customersResponse.Customers = Helper.ConvertDataTableToObject<Customer>(firstTable);
+                    DataTable firstTable = dsCustomers.Tables[0];
 
-                int totalCount = -1;
+                    customersResponse.Customers = Helper.ConvertDataTableToObject<Customer>(firstTable);
 
-                //if (dsTotalCount.Tables[0].Rows.Count != 0)
-                //{
-                //    //Get values from DataTable result
-                //    DataRow result = dsTotalCount.Tables[0].Rows[0];
+                    int totalCount = -1;
 
-                //    totalCount = Convert.ToInt32(result["totalCustomersCount"]);
-                //}
+                    //if (dsTotalCount.Tables[0].Rows.Count != 0)
+                    //{
+                    //    //Get values from DataTable result
+                    //    DataRow result = dsTotalCount.Tables[0].Rows[0];
 
-                customersResponse.totalCustomersCount = totalCount;
+                    //    totalCount = Convert.ToInt32(result["totalCustomersCount"]);
+                    //}
+
+                    customersResponse.totalCustomersCount = totalCount;
+                }
 
                 return customersResponse;
             }
@@ -100,26 +104,30 @@ namespace ShopProj_ServerSide.Business.Services
                 //   ds = sqlDal.Execute_SP();
                 ds = await sqlDal.Execute_SP_Async();
 
-                DataTable firstTable = ds.Tables[0];
+                string duplicateErrorMassage = "Record has successfully Added";
 
-
-                int errorID = 0;
-                string duplicateErrorMassage = string.Empty;
-
-                if (firstTable.Rows.Count != 0)
+                if (ds.Tables.Count > 0)
                 {
+                    DataTable firstTable = ds.Tables[0];
 
-                    DataRow result = firstTable.Rows[0];
 
-                    errorID = int.Parse(result["DuplicateError"].ToString());
+                    int errorID = 0;
 
-                    if (errorID == AddCustomerException.DuplicateID.GetHashCode())
+                    if (firstTable.Rows.Count != 0)
                     {
-                        duplicateErrorMassage = "ID already exists!";
-                    }
-                    else if (errorID == AddCustomerException.DuplicateEmail.GetHashCode())
-                    {
-                        duplicateErrorMassage = "Email already exists!";
+
+                        DataRow result = firstTable.Rows[0];
+
+                        errorID = int.Parse(result["DuplicateError"].ToString());
+
+                        if (errorID == AddCustomerException.DuplicateID.GetHashCode())
+                        {
+                            duplicateErrorMassage = "ID already exists!";
+                        }
+                        else if (errorID == AddCustomerException.DuplicateEmail.GetHashCode())
+                        {
+                            duplicateErrorMassage = "Email already exists!";
+                        }
                     }
                 }
                 //string customerID = string.Empty;
