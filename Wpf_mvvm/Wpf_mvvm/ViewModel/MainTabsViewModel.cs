@@ -51,7 +51,7 @@ namespace Wpf_mvvm.ViewModel
                 return _addDataGridTab ?? (_addDataGridTab = new MvvmCommand(
                    x =>
                    {
-                       AddDataGridTabItem();
+                       AddTabItem("Add DataGrid");
                    }));
             }
         }
@@ -63,36 +63,37 @@ namespace Wpf_mvvm.ViewModel
                 return _addEmailTab ?? (_addEmailTab = new MvvmCommand(
                    x =>
                    {
-                       AddEmailTabItem();
+                       AddTabItem("Add Email");
                    }));
             }
         }
 
-        private void AddEmailTabItem()
+        private void AddTabItem(object sender)
         {
-            var header = "Email Tab " + emailFormTabs;
-            var content = "Content " + emailFormTabs;
-           // var mailFormTabViewModel = new MailFormTabViewModel();
+            var header = string.Empty;
+            var content = string.Empty;
+
+            switch (sender.ToString())
+            {
+                case "Add Email":
+                    header = "Email Tab " + emailFormTabs;
+                    content = "Content " + emailFormTabs;
+
+                    emailFormTabs++;
+                    break;
+
+                case "Add DataGrid":
+                    header = "Datagrid Tab " + dataGridTabs;
+                    content = "Content " + dataGridTabs;
+                    dataGridTabs++;
+                    break;
+            }
+                // var mailFormTabViewModel = new MailFormTabViewModel();
 
             var item = new Item { Header = header, Content = content };
             //var item = new Item { Header = header, mailFormTabViewModel = mailFormTabViewModel };
 
             Titles.Add(item);
-            emailFormTabs++;
-            OnPropertyChanged("Titles");
-
-
-          
-        }
-
-        private void AddDataGridTabItem()
-        {
-            var header = "Datagrid Tab " + dataGridTabs;
-            var content = "Content " + dataGridTabs;
-            var item = new Item { Header = header, Content = content };
-
-            Titles.Add(item);
-            dataGridTabs++;
             OnPropertyChanged("Titles");
         }
 
