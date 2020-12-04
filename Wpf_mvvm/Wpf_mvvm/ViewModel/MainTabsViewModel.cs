@@ -24,7 +24,7 @@ namespace Wpf_mvvm.ViewModel
 
         public ObservableCollection<Item> Titles
         {
-            get => _titles ?? null;
+            get => _titles;
             set
             {
                 _titles = value;
