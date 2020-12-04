@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace Wpf_mvvm.ViewModel
 {
-    public class MailFormTabViewModel : ITabViewModel
+    public interface ITabViewModel
     {
-        public string Header { get; set; }
-
-        public MailFormTabViewModel()
-        {
-
-        }
+        string Header { get; set; }
     }
 }

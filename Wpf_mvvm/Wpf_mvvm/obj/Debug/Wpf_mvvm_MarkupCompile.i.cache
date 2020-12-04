@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\mdclone\Wpf_mvvm\Wpf_mvvm\obj\Debug\
+D:\GIT\My-Projects\Wpf_mvvm\Wpf_mvvm\obj\Debug\
 Wpf_mvvm
 none
 false
 DEBUG;TRACE
-D:\mdclone\Wpf_mvvm\Wpf_mvvm\App.xaml
+D:\GIT\My-Projects\Wpf_mvvm\Wpf_mvvm\App.xaml
 4-1209164212
 
-14-900681066
-129-1694568435
+151166936036
+129-622928368
 MainWindow.xaml;Views\DataGridTabView.xaml;Views\MailFormTabView.xaml;Views\MainTabsView.xaml;
 
 True

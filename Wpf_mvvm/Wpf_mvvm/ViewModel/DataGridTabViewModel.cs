@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Wpf_mvvm.ViewModel
 {
-    public class DataGridTabViewModel
+    public class DataGridTabViewModel : ITabViewModel
     {
+        public string Header { get; set; }
+
+        public DataGridTabViewModel()
+        {
+
+        }
     }
 }

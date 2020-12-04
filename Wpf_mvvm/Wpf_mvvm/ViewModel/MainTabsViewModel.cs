@@ -19,30 +19,23 @@ namespace Wpf_mvvm.ViewModel
 
         public MainTabsViewModel()
         {
-            Titles = new ObservableCollection<Item>();
+            Tabs = new ObservableCollection<ITabViewModel>();
         }
 
-        public ObservableCollection<Item> Titles
+        public ObservableCollection<ITabViewModel> Tabs
         {
-            get => _titles;
+            get => _tabs;
             set
             {
-                _titles = value;
-                OnPropertyChanged("Titles");
+                _tabs = value;
+                OnPropertyChanged("Tabs");
             }
-        }
-
-        public class Item
-        {
-            public string Header { get; set; }
-            //public MailFormTabViewModel mailFormTabViewModel { get; set; }
-         
-            public string Content { get; set; }
         }
 
         private ICommand _addDataGridTab;
         private ICommand _addEmailTab;
-        private ObservableCollection<Item> _titles;
+
+        private ObservableCollection<ITabViewModel> _tabs;
 
         public ICommand AddDataGridTab
         {
@@ -70,31 +63,28 @@ namespace Wpf_mvvm.ViewModel
 
         private void AddTabItem(object sender)
         {
-            var header = string.Empty;
-            var content = string.Empty;
+            string header;
+            ITabViewModel viewModel = null;
 
             switch (sender.ToString())
             {
                 case "Add Email":
                     header = "Email Tab " + _emailFormTabs;
-                    content = "Content " + _emailFormTabs;
-
                     _emailFormTabs++;
+                    viewModel = new MailFormTabViewModel {Header = header};
+
                     break;
 
                 case "Add DataGrid":
-                    header = "Datagrid Tab " + _dataGridTabs;
-                    content = "Content " + _dataGridTabs;
+                    header = "DataGrid Tab " + _dataGridTabs;
                     _dataGridTabs++;
+                    viewModel = new DataGridTabViewModel {Header = header};
+                    
                     break;
             }
-                // var mailFormTabViewModel = new MailFormTabViewModel();
 
-            var item = new Item { Header = header, Content = content };
-            //var item = new Item { Header = header, mailFormTabViewModel = mailFormTabViewModel };
-
-            Titles.Add(item);
-            OnPropertyChanged("Titles");
+            Tabs.Add(viewModel);
+            OnPropertyChanged("Tabs");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

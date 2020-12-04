@@ -87,6 +87,7 @@
     <Compile Include="Model\EventRaiser.cs" />
     <Compile Include="Model\MvvmCommand.cs" />
     <Compile Include="ViewModel\DataGridTabViewModel.cs" />
+    <Compile Include="ViewModel\ITabViewModel.cs" />
     <Compile Include="ViewModel\MailFormTabViewModel.cs" />
     <Compile Include="ViewModel\MainTabsViewModel.cs" />
     <Compile Include="Views\DataGridTabView.xaml.cs">
