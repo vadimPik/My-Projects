@@ -8,5 +8,6 @@ namespace Wpf_mvvm.ViewModel
 {
     public class MailFormTabViewModel
     {
+        
     }
 }
