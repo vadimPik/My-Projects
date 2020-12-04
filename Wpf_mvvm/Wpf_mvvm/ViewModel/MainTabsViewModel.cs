@@ -14,8 +14,8 @@ namespace Wpf_mvvm.ViewModel
 {
     public class MainTabsViewModel : INotifyPropertyChanged
     {
-        static int dataGridTabs = 1;
-        static int emailFormTabs = 1;
+        private static int _dataGridTabs = 1;
+        private static int _emailFormTabs = 1;
 
         public MainTabsViewModel()
         {
@@ -24,7 +24,7 @@ namespace Wpf_mvvm.ViewModel
 
         public ObservableCollection<Item> Titles
         {
-            get { return _titles; }
+            get => _titles ?? null;
             set
             {
                 _titles = value;
@@ -76,16 +76,16 @@ namespace Wpf_mvvm.ViewModel
             switch (sender.ToString())
             {
                 case "Add Email":
-                    header = "Email Tab " + emailFormTabs;
-                    content = "Content " + emailFormTabs;
+                    header = "Email Tab " + _emailFormTabs;
+                    content = "Content " + _emailFormTabs;
 
-                    emailFormTabs++;
+                    _emailFormTabs++;
                     break;
 
                 case "Add DataGrid":
-                    header = "Datagrid Tab " + dataGridTabs;
-                    content = "Content " + dataGridTabs;
-                    dataGridTabs++;
+                    header = "Datagrid Tab " + _dataGridTabs;
+                    content = "Content " + _dataGridTabs;
+                    _dataGridTabs++;
                     break;
             }
                 // var mailFormTabViewModel = new MailFormTabViewModel();
