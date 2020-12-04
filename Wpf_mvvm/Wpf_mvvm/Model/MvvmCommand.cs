@@ -59,11 +59,7 @@ namespace Wpf_mvvm.Model
 
         public MvvmCommand(Action<object> execute, Predicate<object> canExecute)
         {
-            if (execute == null)
-            {
-                throw new ArgumentNullException("execute");
-            }
-            _execute = execute;
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
         }
 
@@ -74,23 +70,17 @@ namespace Wpf_mvvm.Model
 
         public void Execute(object parameter)
         {
-            _execute(parameter ?? " ");
+              _execute(parameter);
         }
 
         // Ensures WPF commanding infrastructure asks all RelayCommand objects whether their
         // associated views should be enabled whenever a command is invoked 
         public event EventHandler CanExecuteChanged
         {
-            add
-            {
-                CommandManager.RequerySuggested += value;
-               // CanExecuteChangedInternal += value;
-            }
-            remove
-            {
-                CommandManager.RequerySuggested -= value;
-               // CanExecuteChangedInternal -= value;
-            }
+            add => CommandManager.RequerySuggested += value;
+            // CanExecuteChangedInternal += value;
+            remove => CommandManager.RequerySuggested -= value;
+            // CanExecuteChangedInternal -= value;
         }
 
       //  private event EventHandler CanExecuteChangedInternal;

@@ -14,6 +14,8 @@ namespace Wpf_mvvm.ViewModel
 {
     public class MainTabsViewModel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private static int _dataGridTabs = 1;
         private static int _emailFormTabs = 1;
 
@@ -87,7 +89,7 @@ namespace Wpf_mvvm.ViewModel
             OnPropertyChanged("Tabs");
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        
 
         private void OnPropertyChanged(string propertyName)
         {

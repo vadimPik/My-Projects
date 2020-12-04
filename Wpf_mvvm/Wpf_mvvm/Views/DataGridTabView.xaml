@@ -7,6 +7,78 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Button Content="B" Height="30" Width="100"></Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+
+        <!--<Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>-->
+
+        
+        <Button x:Name="btnLoadStudents"
+                Width="100"
+                Height="20"
+                Margin="10"
+                HorizontalAlignment="Right"
+                Grid.Row="1"
+                Content="Load Students"  
+                Command="{Binding AddDataGridTab}"></Button>
+
+<!--Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=LstStudents, Path=SelectedItem.StudentTz}"></Button>-->
+
+
+        <DataGrid Grid.Row="2" AutoGenerateColumns="true" 
+                  RowHeaderWidth="0"
+                  VerticalContentAlignment="Stretch"
+                  IsReadOnly="True"
+                  ScrollViewer.CanContentScroll="True"
+                  HorizontalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  BorderBrush="#FFA7A7A7" 
+                  HorizontalAlignment="Stretch" 
+                  HorizontalContentAlignment="Stretch" 
+                  ColumnWidth="*" 
+                  ItemsSource="{Binding Students}"/>
+
+        <!--<DataGrid.Columns>
+                <DataGridTextColumn x:Name="ID" Binding="{Binding StudentTz}" Header="StudentTz" Width="137" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="FirstName" Binding="{Binding StudentFirstName}" Header="Student First Name" Width="137" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="LastName" Binding="{Binding StudentLastName}" Header="Student Last Name" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="ClassNumber" Binding="{Binding StudentClassNumber}" Header="StudentClassNumber" Width="*" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>-->
+
+        <!--<Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label x:Name="lblName" Content="Name" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top"></Label>
+            <TextBox x:Name="txtName" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Text="{Binding ElementName=lstPerson, Path=SelectedItem.Name}">
+            </TextBox>
+            <Label x:Name="lblAddress" Content="Address" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"></Label>
+            <TextBox x:Name="txtAddress" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Text="{Binding ElementName=lstPerson   
+           Path=SelectedItem.Address}"></TextBox>
+        </Grid>-->
+
+       
+
+
+
+
+
+<!--SelectionChanged="CustomerGrid_SelectionChanged"/>-->
+
+
     </Grid>
 </UserControl>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Wpf_mvvm"
         xmlns:views = "clr-namespace:Wpf_mvvm.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="My WPF Project" Height="450" Width="800">
     <Grid>
         <views:MainTabsView x:Name = "MainTabsViewControl" Loaded = "MainTabsViewControl_Loaded"/>
     </Grid>

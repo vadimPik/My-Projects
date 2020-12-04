@@ -4,15 +4,15 @@ namespace Wpf_mvvm.Model
 {
     public class SchoolStudent : ModelBase
     {
-        private string _studentTz;
+        private string _studentId;
 
-        public string StudentTz
+        public string StudentId
         {
-            get { return _studentTz; }
+            get => _studentId;
             set
             {
-                _studentTz = value;
-                NotifyPropertyChanged("StudentTz");
+                _studentId = value;
+                NotifyPropertyChanged("StudentID");
             }
         }
 
@@ -20,7 +20,7 @@ namespace Wpf_mvvm.Model
 
         public string StudentFirstName
         {
-            get { return _studentFirstName; }
+            get => _studentFirstName;
             set
             {
                 _studentFirstName = value;
@@ -33,7 +33,7 @@ namespace Wpf_mvvm.Model
 
         public string StudentLastName
         {
-            get { return _studentLastName; }
+            get => _studentLastName;
             set
             {
                 _studentLastName = value;
@@ -42,10 +42,35 @@ namespace Wpf_mvvm.Model
 
         }
 
+        private string _studentAddress;
+
+        public string StudentAddress
+        {
+            get => _studentAddress;
+            set
+            {
+                _studentAddress = value;
+                NotifyPropertyChanged("StudentAdress");
+            }
+
+        }
+
+        private string _studentGpa;
+        public string StudentGpa
+        {
+            get => _studentGpa;
+            set
+            {
+                _studentGpa = value;
+                NotifyPropertyChanged("StudentGpa");
+            }
+
+        }
+
         private string _studentClassNumber;
         public string StudentClassNumber
         {
-            get { return _studentClassNumber; }
+            get => _studentClassNumber;
             set
             {
                 _studentClassNumber = value;
