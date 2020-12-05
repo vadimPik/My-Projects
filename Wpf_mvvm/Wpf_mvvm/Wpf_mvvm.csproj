@@ -85,14 +85,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\EventRaiser.cs" />
+    <Compile Include="Model\ModelBase.cs" />
     <Compile Include="Model\MvvmCommand.cs" />
     <Compile Include="Model\SchoolStudent.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\DataGridTabViewModel.cs" />
+    <Compile Include="ViewModel\IMessageBoxService.cs" />
     <Compile Include="ViewModel\ITabViewModel.cs" />
     <Compile Include="ViewModel\MailFormTabViewModel.cs" />
     <Compile Include="ViewModel\MainTabsViewModel.cs" />
-    <Compile Include="Shared\NotifyPropertyChangedBase.cs" />
+    <Compile Include="ViewModel\MyMessageBoxService .cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="Views\DataGridTabView.xaml.cs">
       <DependentUpon>DataGridTabView.xaml</DependentUpon>
     </Compile>

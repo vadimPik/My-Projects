@@ -1,10 +1,7 @@
 ﻿
-
-using Wpf_mvvm.Shared;
-
 namespace Wpf_mvvm.Model
 {
-    public class SchoolStudent : NotifyPropertyChangedBase
+    public class SchoolStudent : ModelBase
     {
         private string _studentId;
 

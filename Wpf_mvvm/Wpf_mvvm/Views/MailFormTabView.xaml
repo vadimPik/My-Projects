@@ -33,7 +33,7 @@
                  Margin="0,4,0,15"
                  HorizontalAlignment="Left"
                  Width="350"
-                 Text="{Binding StudentId, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Student.StudentId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="2"
                Grid.Column="0"
                HorizontalAlignment="Right"
@@ -43,7 +43,7 @@
                  Margin="0,4,0,15"
                  HorizontalAlignment="Left"
                  Width="350"
-                 Text="{Binding StudentFirstName, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Student.StudentFirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="3"
                Grid.Column="0"
                HorizontalAlignment="Right"
@@ -54,7 +54,7 @@
                  HorizontalAlignment="Left"
                  Margin="0,4,0,15"
                  Width="350"
-                 Text="{Binding StudentLastName, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Student.StudentLastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="4" 
                Grid.Column="0"
                HorizontalAlignment="Right" 
@@ -65,7 +65,7 @@
                  HorizontalAlignment="Left"
                  Margin="0,4,0,15"
                  Width="350"
-                 Text="{Binding StudentAddress, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Student.StudentAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="5" 
                Grid.Column="0"
                HorizontalAlignment="Right" 
@@ -76,7 +76,7 @@
                  HorizontalAlignment="Left"
                  Margin="0,4,0,15"
                  Width="350"
-                 Text="{Binding StudentGpa, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Student.StudentGpa, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="6" 
                Grid.Column="0"
                HorizontalAlignment="Right" 
@@ -87,7 +87,22 @@
                  HorizontalAlignment="Left"
                  Margin="0,4,0,15"
                  Width="350"
-                 Text="{Binding StudentClassNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Student.StudentClassNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+        <TextBox Grid.Row="2" Grid.Column="1" Width="200"  VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="TxtEnterMailToSend" Margin="0,15,50,0"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" IsHitTestVisible="False" Text="Enter Email To Send Here" VerticalAlignment="Center" HorizontalAlignment="right" Margin="0,14,114,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=TxtEnterMailToSend}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
         <Button x:Name="BtnLoadStudents"
                 Grid.Row="3"
@@ -97,7 +112,12 @@
                 Margin="0,15,100,0"
                 HorizontalAlignment="Right"
                 Content="Sent Mail"  
-                Command="{Binding SendMailBtn}"></Button>
+                Command="{Binding SendMailBtn}"
+                CommandParameter="{Binding Text, ElementName=TxtEnterMailToSend}">
+        </Button>
+
+
+
 
         <!--<Button x:Name="BtnLoadStudents"
                 Grid.Row="3"

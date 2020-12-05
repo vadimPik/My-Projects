@@ -9,11 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Wpf_mvvm.Model;
-using Wpf_mvvm.Shared;
 
 namespace Wpf_mvvm.ViewModel
 {
-    public class MainTabsViewModel : NotifyPropertyChangedBase //, INotifyPropertyChanged
+    public class MainTabsViewModel : ViewModelBase //, INotifyPropertyChanged
     {
        // public event PropertyChangedEventHandler PropertyChanged;
 
@@ -33,8 +32,8 @@ namespace Wpf_mvvm.ViewModel
             get => _tabs;
             set
             {
-                _tabs = value;
-                OnPropertyChanged("Tabs");
+                _tabs = value; 
+                NotifyPropertyChanged("Tabs");
             }
         }
 
@@ -48,7 +47,7 @@ namespace Wpf_mvvm.ViewModel
             set
             {
                 _selectedIndex = value;
-                OnPropertyChanged("selectedIndex");
+                NotifyPropertyChanged("selectedIndex");
             }
         }
 
@@ -101,7 +100,7 @@ namespace Wpf_mvvm.ViewModel
 
             Tabs.Add(viewModel);
             _selectedIndex++;
-            OnPropertyChanged("Tabs");
+            NotifyPropertyChanged("Tabs");
         }
 
         

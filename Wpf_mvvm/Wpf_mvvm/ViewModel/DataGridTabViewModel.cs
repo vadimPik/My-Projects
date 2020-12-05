@@ -13,11 +13,10 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using Newtonsoft.Json;
 using Wpf_mvvm.Model;
-using Wpf_mvvm.Shared;
 
 namespace Wpf_mvvm.ViewModel
 {
-    public class DataGridTabViewModel : NotifyPropertyChangedBase, ITabViewModel
+    public class DataGridTabViewModel : ViewModelBase, ITabViewModel
     {
         public string Header { get; set; }
 
@@ -63,7 +62,7 @@ namespace Wpf_mvvm.ViewModel
             set
             {
                 _students = value;
-                OnPropertyChanged("Students");
+                NotifyPropertyChanged("Students");
             }
         }
 
@@ -94,7 +93,7 @@ namespace Wpf_mvvm.ViewModel
 
                 Students = new ObservableCollection<SchoolStudent>(studentJson.OfType<SchoolStudent>());
 
-                OnPropertyChanged("Students");
+                NotifyPropertyChanged("Students");
             }
             catch (Exception ex)
             {
