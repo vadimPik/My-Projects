@@ -5,34 +5,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Wpf_mvvm.Helpers;
 using Wpf_mvvm.Model;
 
 namespace Wpf_mvvm.ViewModel
 {
+    /// <summary>
+    /// Mail form
+    /// </summary>
     public class MailFormTabViewModel : ViewModelBase, ITabViewModel
     {
         public string Header { get; set; }
 
-        //private bool _DialogVisible = false;
-        //public bool DialogVisible
-        //{
-        //    get { return this._DialogVisible; }
-        //    set
-        //    {
-        //        if (this._DialogVisible != value)
-        //        {
-        //            this._DialogVisible = value;
-        //            RaisePropertyChanged(() => this.DialogVisible);
-        //        }
-        //    }
-        //}
         private readonly IMessageBoxService _messageBoxService;
-        public MailFormTabViewModel(IMessageBoxService messageBoxService)
+        private readonly IEmailSend _emailSend;
+        public MailFormTabViewModel(IMessageBoxService messageBoxService, IEmailSend emailSend)
         {
             _messageBoxService = messageBoxService;
+            _emailSend = emailSend;
             Student = new SchoolStudent();
         }
 
+        // Student form
         private SchoolStudent _student;
         public SchoolStudent Student
         {
@@ -44,19 +38,33 @@ namespace Wpf_mvvm.ViewModel
             }
         }
 
-        private ICommand _sentMail;
+        /// <summary>
+        /// Command sendMail
+        /// </summary>
+        private ICommand _sendMail;
 
         public ICommand SendMailBtn
         {
             get
             {
-                return _sentMail ?? (_sentMail = new MvvmCommand(param => SendMail(param)));
+                return _sendMail ?? (_sendMail = new MyCommand(param => SendMail(param)));
             }
         }
 
+        /// <summary>
+        /// Send Mail of New student. get parameter mailTO
+        /// </summary>
+        /// <param name="mailTo"></param>
         private void SendMail(object mailTo)
         {
-            _messageBoxService.ShowMessage(mailTo.ToString(), "SendMail");
+            var emailResult = _emailSend.SendEmail(Student, mailTo.ToString());
+
+            var message = string.Empty;
+
+            message = emailResult ? "Successfully Send Email" : "Failed Send Email";
+
+            // Show messageBox - with success/Failed of mail sent.
+            _messageBoxService.ShowMessage(message, "SendMail");
 
         }
     }

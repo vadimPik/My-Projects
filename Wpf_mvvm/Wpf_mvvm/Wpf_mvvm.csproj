@@ -90,19 +90,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\EmailSend.cs" />
+    <Compile Include="Helpers\IEmailSend.cs" />
     <Compile Include="IocNinject\ServiceLocator.cs" />
     <Compile Include="IocNinject\ServiceModule.cs" />
-    <Compile Include="Model\EventRaiser.cs" />
     <Compile Include="Model\ModelBase.cs" />
-    <Compile Include="Model\MvvmCommand.cs" />
+    <Compile Include="Model\MyCommand.cs" />
     <Compile Include="Model\SchoolStudent.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\DataGridTabViewModel.cs" />
-    <Compile Include="ViewModel\IMessageBoxService.cs" />
+    <Compile Include="Helpers\IMessageBoxService.cs" />
     <Compile Include="ViewModel\ITabViewModel.cs" />
     <Compile Include="ViewModel\MailFormTabViewModel.cs" />
     <Compile Include="ViewModel\MainTabsViewModel.cs" />
-    <Compile Include="ViewModel\MyMessageBoxService .cs" />
+    <Compile Include="Helpers\MyMessageBoxService .cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="Views\DataGridTabView.xaml.cs">
       <DependentUpon>DataGridTabView.xaml</DependentUpon>

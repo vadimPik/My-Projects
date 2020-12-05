@@ -7,6 +7,9 @@ using System.Windows;
 
 namespace Wpf_mvvm.ViewModel
 {
+    /// <summary>
+    ///  Message Box Service to show messageBox.
+    /// </summary>
     public class MyMessageBoxService : IMessageBoxService
     {
         public void ShowMessage(string text, string header)

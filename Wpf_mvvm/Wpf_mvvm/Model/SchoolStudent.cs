@@ -1,6 +1,9 @@
 ﻿
 namespace Wpf_mvvm.Model
 {
+    /// <summary>
+    /// Model of Student
+    /// </summary>
     public class SchoolStudent : ModelBase
     {
         private string _studentId;
@@ -77,7 +80,5 @@ namespace Wpf_mvvm.Model
             }
 
         }
-
-
     }
 }

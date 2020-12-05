@@ -16,6 +16,9 @@ using Wpf_mvvm.Model;
 
 namespace Wpf_mvvm.ViewModel
 {
+    /// <summary>
+    /// DataGrid Window
+    /// </summary>
     public class DataGridTabViewModel : ViewModelBase, ITabViewModel
     {
         public string Header { get; set; }
@@ -54,6 +57,9 @@ namespace Wpf_mvvm.ViewModel
             //};
         }
 
+        /// <summary>
+        /// Student List
+        /// </summary>
         private ObservableCollection<SchoolStudent> _students;
 
         public ObservableCollection<SchoolStudent> Students
@@ -66,13 +72,16 @@ namespace Wpf_mvvm.ViewModel
             }
         }
 
+        /// <summary>
+        /// Command of LoadStudents
+        /// </summary>
         private ICommand _loadStudents;
 
         public ICommand LoadStudentsBtn
         {
             get
             {
-                return _loadStudents ?? (_loadStudents = new MvvmCommand(
+                return _loadStudents ?? (_loadStudents = new MyCommand(
                     x =>
                     {
                         LoadStudents();
@@ -80,6 +89,9 @@ namespace Wpf_mvvm.ViewModel
             }
         }
 
+        /// <summary>
+        /// Load Student from Json file that located in proj bin\Debug
+        /// </summary>
         private void LoadStudents()
         {
             var filePath = string.Empty;
@@ -100,7 +112,5 @@ namespace Wpf_mvvm.ViewModel
                 throw new ApplicationException($"Cannot read Students json file: '{filePath}'.{Environment.NewLine} The Error is: {Environment.NewLine}'{ex.Message}'", ex);
             }
         }
-
-        // public IList<SchoolStudent> Students { get; set; }
     }
 }
