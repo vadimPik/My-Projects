@@ -1,8 +1,10 @@
 ﻿
 
+using Wpf_mvvm.Shared;
+
 namespace Wpf_mvvm.Model
 {
-    public class SchoolStudent : ModelBase
+    public class SchoolStudent : NotifyPropertyChangedBase
     {
         private string _studentId;
 
@@ -12,7 +14,7 @@ namespace Wpf_mvvm.Model
             set
             {
                 _studentId = value;
-                NotifyPropertyChanged("StudentID");
+                OnPropertyChanged("StudentID");
             }
         }
 
@@ -24,7 +26,7 @@ namespace Wpf_mvvm.Model
             set
             {
                 _studentFirstName = value;
-                NotifyPropertyChanged("StudentFirstName");
+                OnPropertyChanged("StudentFirstName");
             }
 
         }
@@ -37,7 +39,7 @@ namespace Wpf_mvvm.Model
             set
             {
                 _studentLastName = value;
-                NotifyPropertyChanged("StudentLastName");
+                OnPropertyChanged("StudentLastName");
             }
 
         }
@@ -50,7 +52,7 @@ namespace Wpf_mvvm.Model
             set
             {
                 _studentAddress = value;
-                NotifyPropertyChanged("StudentAdress");
+                OnPropertyChanged("StudentAdress");
             }
 
         }
@@ -62,7 +64,7 @@ namespace Wpf_mvvm.Model
             set
             {
                 _studentGpa = value;
-                NotifyPropertyChanged("StudentGpa");
+                OnPropertyChanged("StudentGpa");
             }
 
         }
@@ -74,7 +76,7 @@ namespace Wpf_mvvm.Model
             set
             {
                 _studentClassNumber = value;
-                NotifyPropertyChanged("StudentClassNumber");
+                OnPropertyChanged("StudentClassNumber");
             }
 
         }

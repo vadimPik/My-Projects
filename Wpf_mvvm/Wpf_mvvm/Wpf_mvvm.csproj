@@ -87,11 +87,12 @@
     <Compile Include="Model\EventRaiser.cs" />
     <Compile Include="Model\MvvmCommand.cs" />
     <Compile Include="Model\SchoolStudent.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\DataGridTabViewModel.cs" />
     <Compile Include="ViewModel\ITabViewModel.cs" />
     <Compile Include="ViewModel\MailFormTabViewModel.cs" />
     <Compile Include="ViewModel\MainTabsViewModel.cs" />
-    <Compile Include="Model\ModelBase.cs" />
+    <Compile Include="Shared\NotifyPropertyChangedBase.cs" />
     <Compile Include="Views\DataGridTabView.xaml.cs">
       <DependentUpon>DataGridTabView.xaml</DependentUpon>
     </Compile>
@@ -144,6 +145,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Model\Students.Json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

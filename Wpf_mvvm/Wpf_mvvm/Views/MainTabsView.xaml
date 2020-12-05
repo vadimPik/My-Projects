@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Wpf_mvvm.Views"
              xmlns:viewmodel="clr-namespace:Wpf_mvvm.ViewModel"
 
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel>
@@ -42,7 +42,9 @@
             <TabControl
                 TabStripPlacement="Top"
                 ItemsSource="{Binding Tabs, Mode=TwoWay}"
-                Grid.Column="1" Grid.Row="1" Height="406">
+                Grid.Column="1" Grid.Row="1" Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=ActualHeight}"
+                SelectedItem="{Binding SelectedParameterTab}"
+                SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
 
                 <TabControl.Resources>
                     <DataTemplate DataType="{x:Type viewmodel:MailFormTabViewModel}">

@@ -16,16 +16,98 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-           
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Label>TZ:</Label>
-        <TextBox Grid.Column="1" Margin="0,0,0,10" />
-        <Label Grid.Row="1">First Name:</Label>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" />
-        <Label Grid.Row="2">Last Name:</Label>
-        <TextBox Grid.Row="2" Grid.Column="1" AcceptsReturn="True" />
-        <Label Grid.Row="3">Class:</Label>
-        <TextBox Grid.Row="3" Grid.Column="1" AcceptsReturn="True" />
-       
+
+        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,4,0,30" Text="Add New Student" HorizontalAlignment="Center" FontWeight="Bold"/>
+
+        <Label Grid.Row="1"
+               Grid.Column="0"
+               HorizontalAlignment="Right"
+               Content="Student ID:"/>
+        <TextBox Grid.Column="1"
+                 Grid.Row="1"
+                 Margin="0,4,0,15"
+                 HorizontalAlignment="Left"
+                 Width="350"
+                 Text="{Binding StudentId, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="2"
+               Grid.Column="0"
+               HorizontalAlignment="Right"
+               Content="First Name:"/>
+        <TextBox Grid.Row="2"
+                 Grid.Column="1"
+                 Margin="0,4,0,15"
+                 HorizontalAlignment="Left"
+                 Width="350"
+                 Text="{Binding StudentFirstName, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="3"
+               Grid.Column="0"
+               HorizontalAlignment="Right"
+               Content="Last Name:"/>
+        <TextBox Grid.Row="3"
+                 Grid.Column="1"
+                 AcceptsReturn="True"
+                 HorizontalAlignment="Left"
+                 Margin="0,4,0,15"
+                 Width="350"
+                 Text="{Binding StudentLastName, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="4" 
+               Grid.Column="0"
+               HorizontalAlignment="Right" 
+               Content="Student Address:"/>
+        <TextBox Grid.Row="4"
+                 Grid.Column="1"
+                 AcceptsReturn="True"
+                 HorizontalAlignment="Left"
+                 Margin="0,4,0,15"
+                 Width="350"
+                 Text="{Binding StudentAddress, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="5" 
+               Grid.Column="0"
+               HorizontalAlignment="Right" 
+               Content="Student Gpa:"/>
+        <TextBox Grid.Row="5"
+                 Grid.Column="1"
+                 AcceptsReturn="True"
+                 HorizontalAlignment="Left"
+                 Margin="0,4,0,15"
+                 Width="350"
+                 Text="{Binding StudentGpa, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="6" 
+               Grid.Column="0"
+               HorizontalAlignment="Right" 
+               Content="Class Number:"/>
+        <TextBox Grid.Row="6"
+                 Grid.Column="1"
+                 AcceptsReturn="True"
+                 HorizontalAlignment="Left"
+                 Margin="0,4,0,15"
+                 Width="350"
+                 Text="{Binding StudentClassNumber, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Button x:Name="BtnLoadStudents"
+                Grid.Row="3"
+                Grid.Column="1"
+                Width="100"
+                Height="20"
+                Margin="0,15,100,0"
+                HorizontalAlignment="Right"
+                Content="Sent Mail"  
+                Command="{Binding SendMailBtn}"></Button>
+
+        <!--<Button x:Name="BtnLoadStudents"
+                Grid.Row="3"
+                Grid.Column="1"
+                Width="100"
+                Height="20"
+                Margin="0,0,100,10"
+                HorizontalAlignment="Right"
+                Content="Sent Mail"  
+                Command="{Binding SendMailBtn}"></Button>-->
+
     </Grid>
 </UserControl>

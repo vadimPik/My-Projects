@@ -4,45 +4,48 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Wpf_mvvm.Views"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <!--<RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>-->
 
         </Grid.RowDefinitions>
 
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
+        <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>-->
+        </Grid.ColumnDefinitions>
 
         
-        <Button x:Name="btnLoadStudents"
+        <Button x:Name="BtnLoadStudents"
                 Width="100"
                 Height="20"
                 Margin="10"
                 HorizontalAlignment="Right"
-                Grid.Row="1"
+                Grid.Row="0"
                 Content="Load Students"  
-                Command="{Binding AddDataGridTab}"></Button>
-
-<!--Command="{Binding Path=UpdateCommand}" CommandParameter="{Binding ElementName=LstStudents, Path=SelectedItem.StudentTz}"></Button>-->
+                Command="{Binding LoadStudentsBtn}"></Button>
 
 
-        <DataGrid Grid.Row="2" AutoGenerateColumns="true" 
+        <DataGrid Grid.Row="1" AutoGenerateColumns="true" 
                   RowHeaderWidth="0"
                   VerticalContentAlignment="Stretch"
                   IsReadOnly="True"
                   ScrollViewer.CanContentScroll="True"
                   HorizontalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
                   BorderBrush="#FFA7A7A7" 
                   HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Top"
                   HorizontalContentAlignment="Stretch" 
                   ColumnWidth="*" 
+                  MaxHeight="450"
+                  Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=ActualHeight}"
                   ItemsSource="{Binding Students}"/>
 
         <!--<DataGrid.Columns>

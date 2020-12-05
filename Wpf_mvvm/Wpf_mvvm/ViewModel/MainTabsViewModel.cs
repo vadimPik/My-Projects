@@ -9,20 +9,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Wpf_mvvm.Model;
+using Wpf_mvvm.Shared;
 
 namespace Wpf_mvvm.ViewModel
 {
-    public class MainTabsViewModel : INotifyPropertyChanged
+    public class MainTabsViewModel : NotifyPropertyChangedBase //, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+       // public event PropertyChangedEventHandler PropertyChanged;
 
         private static int _dataGridTabs = 1;
         private static int _emailFormTabs = 1;
+        private static int _selectedIndex = 0;
 
         public MainTabsViewModel()
         {
             Tabs = new ObservableCollection<ITabViewModel>();
         }
+
+        private ObservableCollection<ITabViewModel> _tabs;
 
         public ObservableCollection<ITabViewModel> Tabs
         {
@@ -37,7 +41,17 @@ namespace Wpf_mvvm.ViewModel
         private ICommand _addDataGridTab;
         private ICommand _addEmailTab;
 
-        private ObservableCollection<ITabViewModel> _tabs;
+        //   public int SelectedIndex { get; set; }
+        public int SelectedIndex
+        {
+            get => _selectedIndex;
+            set
+            {
+                _selectedIndex = value;
+                OnPropertyChanged("selectedIndex");
+            }
+        }
+
 
         public ICommand AddDataGridTab
         {
@@ -86,23 +100,24 @@ namespace Wpf_mvvm.ViewModel
             }
 
             Tabs.Add(viewModel);
+            _selectedIndex++;
             OnPropertyChanged("Tabs");
         }
 
         
 
-        private void OnPropertyChanged(string propertyName)
-        {
-            VerifyPropertyName(propertyName);
-            var handler = PropertyChanged;
-            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        //private void OnPropertyChanged(string propertyName)
+        //{
+        //    VerifyPropertyName(propertyName);
+        //    var handler = PropertyChanged;
+        //    handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
 
-        [Conditional("DEBUG")]
-        private void VerifyPropertyName(string propertyName)
-        {
-            if (TypeDescriptor.GetProperties(this)[propertyName] == null)
-                throw new ArgumentNullException(GetType().Name + " does not contain property: " + propertyName);
-        }
+        //[Conditional("DEBUG")]
+        //private void VerifyPropertyName(string propertyName)
+        //{
+        //    if (TypeDescriptor.GetProperties(this)[propertyName] == null)
+        //        throw new ArgumentNullException(GetType().Name + " does not contain property: " + propertyName);
+        //}
     }
 }
