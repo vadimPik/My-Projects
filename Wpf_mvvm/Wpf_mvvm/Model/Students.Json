@@ -1,0 +1,114 @@
+[
+  {
+    "StudentId": "307895412",
+    "StudentGpa": "80",
+    "StudentAddress": "3074  Marie Street",
+    "StudentLastName": "Gilbert",
+    "StudentFirstName": "Ottilie ",
+    "StudentClassNumber": "1"
+  },
+  {
+    "StudentId": "259874368",
+    "StudentGpa": "75",
+    "StudentAddress": "1982  Boggess Street",
+    "StudentLastName": "Yoder",
+    "StudentFirstName": "Gerard ",
+    "StudentClassNumber": "2"
+  },
+  {
+    "StudentId": "259874370",
+    "StudentGpa": "85",
+    "StudentAddress": "4460  Little Acres Lane",
+    "StudentLastName": "Figueroa",
+    "StudentFirstName": "Leyton ",
+    "StudentClassNumber": "2"
+  },
+  {
+    "StudentId": "289574368",
+    "StudentGpa": "80",
+    "StudentAddress": "1560  Bates Brothers Road",
+    "StudentLastName": "Greer",
+    "StudentFirstName": "Harriette ",
+    "StudentClassNumber": "6"
+  },
+  {
+    "StudentId": "356874368",
+    "StudentGpa": "95",
+    "StudentAddress": "4795  Hamilton Drive",
+    "StudentLastName": "Wooten",
+    "StudentFirstName": "Che",
+    "StudentClassNumber": "8"
+  },
+  {
+    "StudentId": "257894368",
+    "StudentGpa": "100",
+    "StudentAddress": "1548  Hinkle Deegan Lake Road",
+    "StudentLastName": "Miranda",
+    "StudentFirstName": "Sammy",
+    "StudentClassNumber": "10"
+  },
+  {
+    "StudentId": "259859668",
+    "StudentGpa": "99",
+    "StudentAddress": "1780  Alfred Drive",
+    "StudentLastName": "Gardiner",
+    "StudentFirstName": "Mysha ",
+    "StudentClassNumber": "12"
+  },
+  {
+    "StudentId": "259878412",
+    "StudentGpa": "86",
+    "StudentAddress": "2580  Henery Street",
+    "StudentLastName": "Cotton",
+    "StudentFirstName": "Lesley",
+    "StudentClassNumber": "12"
+  },
+  {
+    "StudentId": "301874368",
+    "StudentGpa": "84",
+    "StudentAddress": "3548  Modoc Alley",
+    "StudentLastName": "Butler",
+    "StudentFirstName": "Clementine",
+    "StudentClassNumber": "1"
+  },
+  {
+    "StudentId": "310874368",
+    "StudentGpa": "74",
+    "StudentAddress": "4321  Haven Lane",
+    "StudentLastName": "Senior",
+    "StudentFirstName": "Rory",
+    "StudentClassNumber": "1"
+  },
+  {
+    "StudentId": "25987898",
+    "StudentGpa": "73",
+    "StudentAddress": "2879  Wildrose Lane",
+    "StudentLastName": "Bond",
+    "StudentFirstName": "Blair ",
+    "StudentClassNumber": "2"
+  },
+  {
+    "StudentId": "333874368",
+    "StudentGpa": "77",
+    "StudentAddress": "4115  Tori Lane",
+    "StudentLastName": "Lee",
+    "StudentFirstName": "Arnas ",
+    "StudentClassNumber": "2"
+  },
+  {
+    "StudentId": "359874368",
+    "StudentGpa": "92",
+    "StudentAddress": "2347  Liberty Street",
+    "StudentLastName": "Macdonald",
+    "StudentFirstName": "Yanis ",
+    "StudentClassNumber": "5"
+  },
+  {
+    "StudentId": "250874368",
+    "StudentGpa": "94",
+    "StudentAddress": "1013  Illinois Avenue",
+    "StudentLastName": "Castaneda",
+    "StudentFirstName": "Ashlea ",
+    "StudentClassNumber": "8"
+  }
+]
