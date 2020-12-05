@@ -24,16 +24,5 @@ namespace Wpf_mvvm
         {
             InitializeComponent();
         }
-
-        private void MainTabsViewControl_Loaded
-
-            (object sender, RoutedEventArgs e)
-        {
-            //Wpf_mvvm.ViewModel.MainTabsViewModel mainTabsViewModelObject =
-            //   new Wpf_mvvm.ViewModel.MainTabsViewModel();
-          
-
-            //StudentViewControl.DataContext = studentViewModelObject;
-        }
     }
 }

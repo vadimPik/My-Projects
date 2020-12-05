@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Wpf_mvvm"
              DispatcherUnhandledException="Application_DispatcherUnhandledException"
+             xmlns:ninject="clr-namespace:Wpf_mvvm.IocNinject"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ninject:ServiceLocator x:Key="ServiceLocator"/>
     </Application.Resources>
 </Application>

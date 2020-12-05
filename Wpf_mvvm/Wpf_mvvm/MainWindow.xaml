@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:Wpf_mvvm"
         xmlns:views = "clr-namespace:Wpf_mvvm.Views"
         mc:Ignorable="d"
+        DataContext="{Binding Path=MainTabsViewModel, Source={StaticResource ServiceLocator}}"
         Title="My WPF Project" Height="450" Width="800">
     <Grid>
-        <views:MainTabsView x:Name = "MainTabsViewControl" Loaded = "MainTabsViewControl_Loaded"/>
+        <views:MainTabsView x:Name = "MainTabsViewControl"/>
     </Grid>
 </Window>

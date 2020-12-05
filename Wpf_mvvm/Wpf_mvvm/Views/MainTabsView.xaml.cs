@@ -25,7 +25,7 @@ namespace Wpf_mvvm.Views
         {
             InitializeComponent();
 
-            this.DataContext = new MainTabsViewModel();
+            //  this.DataContext = new MainTabsViewModel();
         }
     }
 }

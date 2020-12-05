@@ -26,10 +26,10 @@ namespace Wpf_mvvm.ViewModel
         //        }
         //    }
         //}
-        private readonly IMessageBoxService MessageBoxService;
+        private readonly IMessageBoxService _messageBoxService;
         public MailFormTabViewModel(IMessageBoxService messageBoxService)
         {
-            MessageBoxService = messageBoxService;
+            _messageBoxService = messageBoxService;
             Student = new SchoolStudent();
         }
 
@@ -56,12 +56,7 @@ namespace Wpf_mvvm.ViewModel
 
         private void SendMail(object mailTo)
         {
-            //MessageBox.Show(mailTo.ToString());
-            var ShowMessageCommand = new MvvmCommand(
-                x =>
-                {
-                    MessageBoxService.ShowMessage(mailTo.ToString(), "SendMail");
-                });
+            _messageBoxService.ShowMessage(mailTo.ToString(), "SendMail");
 
         }
     }

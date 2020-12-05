@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Ninject;
 using Wpf_mvvm.Model;
 
 namespace Wpf_mvvm.ViewModel
@@ -20,8 +21,15 @@ namespace Wpf_mvvm.ViewModel
         private static int _emailFormTabs = 1;
         private static int _selectedIndex = 0;
 
-        public MainTabsViewModel()
+        private MailFormTabViewModel _mailViewModel;
+        private DataGridTabViewModel _dataGridViewModel;
+        private readonly IMessageBoxService _mailBoxService;
+
+        public MainTabsViewModel(MailFormTabViewModel mailViewModel, DataGridTabViewModel dataGridViewModel, IMessageBoxService messageBoxService)
         {
+            _mailBoxService = messageBoxService;
+            _mailViewModel = mailViewModel;
+            _dataGridViewModel = dataGridViewModel;
             Tabs = new ObservableCollection<ITabViewModel>();
         }
 
@@ -40,7 +48,6 @@ namespace Wpf_mvvm.ViewModel
         private ICommand _addDataGridTab;
         private ICommand _addEmailTab;
 
-        //   public int SelectedIndex { get; set; }
         public int SelectedIndex
         {
             get => _selectedIndex;
@@ -85,16 +92,20 @@ namespace Wpf_mvvm.ViewModel
             {
                 case "Add Email":
                     header = "Email Tab " + _emailFormTabs;
-                    _emailFormTabs++;
-                    viewModel = new MailFormTabViewModel {Header = header};
+                    _emailFormTabs++; 
+                    //_mailViewModel.Header = header;
+                    //viewModel = _mailViewModel;
+                    viewModel = new MailFormTabViewModel(_mailBoxService) {Header = header};
 
                     break;
 
                 case "Add DataGrid":
                     header = "DataGrid Tab " + _dataGridTabs;
                     _dataGridTabs++;
+                   //_dataGridViewModel.Header = header;
+                   // viewModel = _dataGridViewModel;
                     viewModel = new DataGridTabViewModel {Header = header};
-                    
+
                     break;
             }
 
@@ -102,21 +113,5 @@ namespace Wpf_mvvm.ViewModel
             _selectedIndex++;
             NotifyPropertyChanged("Tabs");
         }
-
-        
-
-        //private void OnPropertyChanged(string propertyName)
-        //{
-        //    VerifyPropertyName(propertyName);
-        //    var handler = PropertyChanged;
-        //    handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        //}
-
-        //[Conditional("DEBUG")]
-        //private void VerifyPropertyName(string propertyName)
-        //{
-        //    if (TypeDescriptor.GetProperties(this)[propertyName] == null)
-        //        throw new ArgumentNullException(GetType().Name + " does not contain property: " + propertyName);
-        //}
     }
 }
