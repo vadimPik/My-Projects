@@ -21,6 +21,8 @@ const DUMMY_PRODUCTS = [
 
 
   const Beers = (props) => {
+    const beerItems = useSelector((state) => state.beers.items);
+
       return (
         // <section className={classes.products}>
         
@@ -28,20 +30,19 @@ const DUMMY_PRODUCTS = [
             <ul>
                 <Container>
 
-                <CardDeck>
-                            
-                {DUMMY_PRODUCTS.map((beer) => (
-            
-                    <BeerItem item={beer} key={beer.id} />
-            
-
-                    // id={beer.id}
-                    // title={beer.title}
-                    // price={beer.price}
-                    // description={beer.description}
-            
-                ))}
+                <CardDeck>      
+                    {beerItems.map((beer) => (
                 
+                        <BeerItem item={beer} key={beer.id} />
+                
+
+                        // id={beer.id}
+                        // title={beer.title}
+                        // price={beer.price}
+                        // description={beer.description}
+                
+                    ))}
+
             </CardDeck>
             </Container>
             </ul>
