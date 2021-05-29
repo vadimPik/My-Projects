@@ -23,15 +23,21 @@ const DUMMY_PRODUCTS = [
   const Beers = (props) => {
     const beerItems = useSelector((state) => state.beers.items);
 
+    const styles = {
+        cardeck: {
+            marginleft: '-134px !important'
+        }
+      }
+
       return (
         // <section className={classes.products}>
         
             // <div className="grids">
-            <ul>
+            // <ul>
                 <Container>
-                <Row>
+                <Row style={styles.cardeck}>
                
-                <CardDeck>      
+                <CardDeck >      
                 {/* <div className="grid"> */}
                     {beerItems.map((beer) => (
                 
@@ -50,7 +56,7 @@ const DUMMY_PRODUCTS = [
 
             
             </Container>
-            </ul>
+            // </ul>
        
         // </section>
       );

@@ -32,3 +32,8 @@
 .f {
     margin-left: -134px !important;
 }
+
+.card-deck {
+    margin-left: 0px;
+    margin-right: 0px;
+}
