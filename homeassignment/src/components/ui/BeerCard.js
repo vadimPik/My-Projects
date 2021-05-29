@@ -8,7 +8,18 @@ const BeerCard = (props) => {
         card: {
           backgroundColor: '#B7E0F2',
           borderRadius: 40,
-          padding: '3rem'
+          padding: '3rem',
+
+         // backgroundcolor: '#ffffff',
+         // borderradius: '10px 10px 10px 100x',
+          overflow: 'hidden',
+          webkitboxshadow: '0px 12px 18px -6px rgba(0,0,0,0.3)',
+          boxshadow: '0px 12px 18px -6px rgba(0,0,0,0.3)',
+          margin: '15px',
+         // marginbottom: '10px',
+
+          height: '350px',
+          maxheight: '40vh'
         },
         cardImage: {
           objectFit: 'cover',
@@ -68,7 +79,7 @@ const BeerCard = (props) => {
             
             <Col col-sm-12 col-md-6 offset-md-3 >
               
-                <Card  key={props.item.id} className="m-5 border-0 shadow" style={styles.card}>
+                <Card  key={props.item.id} className="box" style={styles.card}>
                 <Card.Img variant="top" src={props.item.image_url}  style={styles.cardImage}/>
                 <Card.Body>
                     <Card.Title>{props.item.name}</Card.Title>

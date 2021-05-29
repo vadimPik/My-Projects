@@ -27,7 +27,7 @@ const BeerItem = (props) => {
 
   return (
     // <li className={classes.item}>
-    <div className="flex">
+    <div>
       <BeerCard item={props.item} key={props.item.id}>
         {/* <header>
           <h3>{title}</h3>
