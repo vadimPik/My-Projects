@@ -12,14 +12,15 @@ const BeerCard = (props) => {
         },
         cardImage: {
           objectFit: 'cover',
-          borderRadius: 40,
-          height: '20rem',
-          width: '10rem'
+          //borderRadius: 40,
+          height: '12rem',
+          width: '3.5rem'
+        
         //   height: '100',
         //   width: '100'
         },
         cardParent: {
-            height: '30rem',
+            height: '25rem',
             width: '25rem'
         }
       }
@@ -48,15 +49,29 @@ const BeerCard = (props) => {
       </CardGroup>
     </Container> */}
 
-<div style={styles.cardParent }>
-            <Col className="container-fluid content-row">
-                {/* <Card key={props.item.id} className="box" style={styles.card}> */}
-                <Card key={props.item.id} className="m-5 border-0 shadow" style={styles.card}>
-                <Card.Img variant="top" src={props.item.image_url} style={styles.cardImage}/>
+
+
+{/* <div style={styles.cardParent }>
+            
+            <Col col-sm-12 col-md-6 offset-md-3 >
+              
+                <Card  key={props.item.id} className="m-5 border-0 shadow" style={styles.card}>
+                <Card.Img variant="top" src={props.item.image_url}  style={styles.cardImage}/>
                 <Card.Body>
                     <Card.Title>{props.item.name}</Card.Title>
-                    {/* <Card.Text>{props.item.price}</Card.Text> */}
-                    {/* <Button variant="primary">Go somewhere</Button> */}
+                </Card.Body>
+                </Card>
+            </Col>
+            </div> */}
+
+            <div style={styles.cardParent }>
+            
+            <Col col-sm-12 col-md-6 offset-md-3 >
+              
+                <Card  key={props.item.id} className="m-5 border-0 shadow" style={styles.card}>
+                <Card.Img variant="top" src={props.item.image_url}  style={styles.cardImage}/>
+                <Card.Body>
+                    <Card.Title>{props.item.name}</Card.Title>
                 </Card.Body>
                 </Card>
             </Col>
