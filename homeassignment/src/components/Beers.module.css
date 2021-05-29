@@ -1,0 +1,12 @@
+.grids {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media (min-width:34em) {
+    .card-deck > .card
+    {
+        height: calc(100% - 15px);
+        margin-bottom: 15px;
+    }
+}
