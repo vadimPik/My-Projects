@@ -3,24 +3,17 @@ import { createSlice } from '@reduxjs/toolkit';
 const itemSlice = createSlice({
     name: 'items',
     initialState: {
-      items: [],
-      isFavorite: false
+      items: []
     },
     reducers: {
       replaceAllItems(state, action) {
         state.items = action.payload.items;
       },
       addItemToFavorites(state, action) {
-        const newItem = action.payload;
-        const existingItem = state.items.find((item) => item.id === newItem.id);
-        if (!existingItem) {
-          state.items.push({
-            id: newItem.id,
-            price: newItem.price,
-            quantity: 1,
-            totalPrice: newItem.price,
-            name: newItem.title,
-          });
+        const favoriteItemId = action.payload;
+        const existingItem = state.items.find((item) => item.id === favoriteItemId);
+        if (existingItem) {
+          existingItem.isFavorite = true;
         } else {
         }
       },

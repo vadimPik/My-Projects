@@ -1,9 +1,22 @@
 import classes from './BeerCard.module.css';
 // import { Card, Col} from 'react-bootstrap';
 import { Container, CardGroup, Card, Row, Col, Dropdown, DropdownButton } from 'react-bootstrap';
-import { BsStar } from 'react-icons/bs';
+import { BsStar, BsStarFill } from 'react-icons/bs';
+import { MdStar } from 'react-icons/md';
+import { IoStarOutline, IoStar } from  'react-icons/io5'
+import { useDispatch, useSelector } from 'react-redux';
+import { itemsActions } from '../../store/items-slice';
+
 
 const BeerCard = (props) => {
+  const dispatch = useDispatch();
+  //const isFavorite = useSelector(state => state.beers.items.filter(item => item.id === props.item.id).isFavorite);
+  const isFavorite = useSelector(state => state.beers.items.filter(item => item.id === props.item.id)[0].isFavorite);
+
+//  const isFavorite = item.isFavorite;
+  
+  const isLoggedIn = false;
+  let starIcon;
     
     const styles = {
         card: {
@@ -44,6 +57,27 @@ const BeerCard = (props) => {
         //     textalign: 'center'
         // }
       }
+
+      
+      
+    // if (isLoggedIn) {
+    //    starIcon = <IoStarOutline size="1.8em" className= { classes.starIcon }/>;
+    // } else {
+    //   // Clicked
+    //    starIcon = <IoStar color="#FFFF00" size="1.8em" className= { classes.starIcon}/>;
+    // }
+
+    if (isFavorite) {
+      // Clicked
+      starIcon = <IoStar color="#FFFF00" size="1.8em" />;
+   } else {
+    starIcon = <IoStarOutline size="1.8em" />;
+   }
+
+    const toggleFavoriteHandler = () => {
+      dispatch(itemsActions.addItemToFavorites(props.item.id));
+    };
+
 
     return (
         //<div className="grid">
@@ -98,10 +132,22 @@ const BeerCard = (props) => {
                
                 </DropdownButton>
 
-                 <BsStar
-                      // style={ styles.starIcon }
-                      className= { classes.starIcon }/>
                 
+                {/* {!isLoggedIn ? (
+                  <IoStarOutline size="1.8em" className= { classes.starIcon }/>
+                ) : (
+                   <IoStar color="#FFFF00" size="1.8em" className= { classes.starIcon }/>
+                )} */}
+
+                <button className= { classes.starIcon } onClick={toggleFavoriteHandler}>
+                  { starIcon }
+                </button>
+
+                {/* <IoStarOutline size="1.8em" className= { classes.starIcon }/>
+
+                <IoStar color="#FFFF00" size="1.8em" className= { classes.starIcon }/>
+                 */}
+
                 <Card.Img variant="top" src={props.item.image_url}  style={styles.cardImage}/>
                 <Card.Body>
                     <Card.Title>{props.item.name} </Card.Title>

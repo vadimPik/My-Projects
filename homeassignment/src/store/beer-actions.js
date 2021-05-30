@@ -22,7 +22,12 @@ export const getBeerData = () => {
   
       try {
         const allBeerData = await beerData();
-      //  let items = allBeerData.map(item => )
+
+        allBeerData.map(item => {
+              item.isFavorite = false;
+              item.isHaveRank = false;
+            });
+                                                  // item.isHaveRank= "false");
         dispatch(
             itemsActions.replaceAllItems({
             items: allBeerData || [],
