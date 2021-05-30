@@ -43,3 +43,20 @@
   .cardTitle{
     text-align: center
 }
+
+.starIcon {
+
+  /* margin-top: -21rem;
+  margin-left: 15rem; 
+  margin-top: -29rem;*/
+
+  height: 15rem;
+  margin-left: 11rem;
+  margin-top: -2.5rem;
+  margin-bottom: -3rem;
+}
+
+.dropDownList {
+  margin-left: -7rem;
+  height: 0rem;
+}

@@ -1,6 +1,6 @@
 
 import { itemsActions } from './items-slice';
-import axios from 'axios';
+//import axios from 'axios';
 import { notificationActions } from './notification-slice';
 import { API_URL } from '../api.model'
 

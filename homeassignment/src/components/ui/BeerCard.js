@@ -1,6 +1,7 @@
 import classes from './BeerCard.module.css';
 // import { Card, Col} from 'react-bootstrap';
 import { Container, CardGroup, Card, Row, Col, Dropdown, DropdownButton } from 'react-bootstrap';
+import { BsStar } from 'react-icons/bs';
 
 const BeerCard = (props) => {
     
@@ -35,6 +36,10 @@ const BeerCard = (props) => {
             height: '25rem',
             width: '23rem'
         },
+        starIcon: {
+           margintop: '-43rem',
+           marginleft: '15rem'
+        }
         // cardTitle: {
         //     textalign: 'center'
         // }
@@ -85,21 +90,35 @@ const BeerCard = (props) => {
               
                 <Card  key={props.item.id} className="box" style={styles.card}>
 
-                {/* <DropdownButton id="dropdown-basic-button" title="Dropdown button"  size="sm">
+                <DropdownButton id="dropdown-basic-button" className= { classes.dropDownList } title="Dropdown button"  size="sm">
  
                 <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
                
-                </DropdownButton> */}
+                </DropdownButton>
 
+                 <BsStar
+                      // style={ styles.starIcon }
+                      className= { classes.starIcon }/>
+                
                 <Card.Img variant="top" src={props.item.image_url}  style={styles.cardImage}/>
                 <Card.Body>
                     <Card.Title>{props.item.name} </Card.Title>
                     {/* <Card.Title style={styles.cardImage}>{props.item.name} </Card.Title> */}
                 </Card.Body>
+                
+                 {/* <BsStar
+                      // style={ styles.starIcon }
+                      className= { classes.starIcon }/> */}
+
                 </Card>
             </Col>
+            {/* <Col className= { classes.starIcon }>
+                <BsStar
+                  // style={ styles.starIcon }
+                  className= { classes.starIcon }/>
+            </Col> */}
             </div>
 
             {props.children}
