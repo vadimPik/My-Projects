@@ -17,6 +17,7 @@ const BeerCard = (props) => {
   
   const isLoggedIn = false;
   let starIcon;
+  let dropDownRank;
     
     const styles = {
         card: {
@@ -69,13 +70,26 @@ const BeerCard = (props) => {
 
     if (isFavorite) {
       // Clicked
+      dropDownRank = 
+
+      <DropdownButton id="dropdown-basic-button" className= { classes.dropDownList } title="Dropdown button"  size="sm">
+ 
+      <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+      <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+      <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+     
+      </DropdownButton>;
+      
       starIcon = <IoStar color="#FFFF00" size="1.8em" />;
    } else {
-    starIcon = <IoStarOutline size="1.8em" />;
+      // Not Clicked
+
+      dropDownRank = null;
+      starIcon = <IoStarOutline size="1.8em" />;
    }
 
     const toggleFavoriteHandler = () => {
-      dispatch(itemsActions.addItemToFavorites(props.item.id));
+      dispatch(itemsActions.toggleFavorites(props.item.id));
     };
 
 
@@ -124,13 +138,13 @@ const BeerCard = (props) => {
               
                 <Card  key={props.item.id} className="box" style={styles.card}>
 
-                <DropdownButton id="dropdown-basic-button" className= { classes.dropDownList } title="Dropdown button"  size="sm">
+                {/* <DropdownButton id="dropdown-basic-button" className= { classes.dropDownList } title="Dropdown button"  size="sm">
  
                 <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
                
-                </DropdownButton>
+                </DropdownButton> */}
 
                 
                 {/* {!isLoggedIn ? (
@@ -138,6 +152,8 @@ const BeerCard = (props) => {
                 ) : (
                    <IoStar color="#FFFF00" size="1.8em" className= { classes.starIcon }/>
                 )} */}
+
+                { dropDownRank }
 
                 <button className= { classes.starIcon } onClick={toggleFavoriteHandler}>
                   { starIcon }

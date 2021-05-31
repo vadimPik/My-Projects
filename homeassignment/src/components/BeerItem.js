@@ -15,13 +15,13 @@ const BeerItem = (props) => {
     // and then send Http request
     // fetch('firebase-url', { method: 'POST', body: JSON.stringify(newCart) })
 
-    dispatch(
-        itemsActions.addItemToFavorites({
-        id,
-        title,
-        price,
-      })
-    );
+    // dispatch(
+    //     itemsActions.addItemToFavorites({
+    //     id,
+    //     title,
+    //     price,
+    //   })
+    // );
   };
 
 
