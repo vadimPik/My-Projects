@@ -10,8 +10,11 @@ import { itemsActions } from '../../store/items-slice';
 
 const BeerCard = (props) => {
   const dispatch = useDispatch();
+
+  const { name, image_url, id } = props.item;
+
   //const isFavorite = useSelector(state => state.beers.items.filter(item => item.id === props.item.id).isFavorite);
-  const isFavorite = useSelector(state => state.beers.items.filter(item => item.id === props.item.id)[0].isFavorite);
+  const isFavorite = useSelector(state => state.beers.items.filter(item => item.id === id)[0].isFavorite);
 
 //  const isFavorite = item.isFavorite;
   
@@ -68,35 +71,48 @@ const BeerCard = (props) => {
     //    starIcon = <IoStar color="#FFFF00" size="1.8em" className= { classes.starIcon}/>;
     // }
 
-    if (isFavorite) {
-      // Clicked
-      dropDownRank = 
+          
+   if (props.isNeedRank) {
+      dropDownRank =  <DropdownButton id="dropdown-basic-button" className= { classes.dropDownList } title="Dropdown button"  size="sm">
 
-      <DropdownButton id="dropdown-basic-button" className= { classes.dropDownList } title="Dropdown button"  size="sm">
- 
       <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
       <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
       <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-     
-      </DropdownButton>;
       
+      </DropdownButton>;
+   } else {
+      dropDownRank = null;
+   }
+
+
+      // dropDownRank =  <DropdownButton id="dropdown-basic-button" className= { classes.dropDownList } title="Dropdown button"  size="sm">
+
+      // <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+      // <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+      // <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+      
+      // </DropdownButton>;
+
+
+
+    if (isFavorite) {
+      // Clicked
       starIcon = <IoStar color="#FFFF00" size="1.8em" />;
    } else {
       // Not Clicked
-
-      dropDownRank = null;
       starIcon = <IoStarOutline size="1.8em" />;
    }
 
+
     const toggleFavoriteHandler = () => {
-      dispatch(itemsActions.toggleFavorites(props.item.id));
+      dispatch(itemsActions.toggleFavorites(id));
     };
 
 
     return (
         //<div className="grid">
         <section
-            className={`${classes.card} ${props.className ? props.className : ''}`}
+            // className={`${classes.card} ${props.className ? props.className : ''}`}
         >
    {/* <Container fluid>
       <CardGroup className="m-5 d-block">
@@ -136,7 +152,7 @@ const BeerCard = (props) => {
             
             <Col col-sm-12 col-md-6 offset-md-3 >
               
-                <Card  key={props.item.id} className="box" style={styles.card}>
+                <Card  key={id} className="box" style={styles.card}>
 
                 {/* <DropdownButton id="dropdown-basic-button" className= { classes.dropDownList } title="Dropdown button"  size="sm">
  
@@ -153,7 +169,8 @@ const BeerCard = (props) => {
                    <IoStar color="#FFFF00" size="1.8em" className= { classes.starIcon }/>
                 )} */}
 
-                { dropDownRank }
+
+              { dropDownRank }
 
                 <button className= { classes.starIcon } onClick={toggleFavoriteHandler}>
                   { starIcon }
@@ -164,9 +181,9 @@ const BeerCard = (props) => {
                 <IoStar color="#FFFF00" size="1.8em" className= { classes.starIcon }/>
                  */}
 
-                <Card.Img variant="top" src={props.item.image_url}  style={styles.cardImage}/>
+                <Card.Img variant="top" src={image_url}  style={styles.cardImage}/>
                 <Card.Body>
-                    <Card.Title>{props.item.name} </Card.Title>
+                    <Card.Title>{name} </Card.Title>
                     {/* <Card.Title style={styles.cardImage}>{props.item.name} </Card.Title> */}
                 </Card.Body>
                 

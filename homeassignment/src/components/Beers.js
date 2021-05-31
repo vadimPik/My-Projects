@@ -1,4 +1,5 @@
 import BeerItem from './BeerItem';
+import BeerCard from './ui/BeerCard';
 import classes from './Beers.module.css'
 //import CardDeck from 'react-bootstrap/CardDeck';
 import { CardDeck, Container, Row } from 'react-bootstrap';
@@ -26,13 +27,9 @@ import { useSelector } from 'react-redux';
                 {/* <div className="grid"> */}
                     {beerItems.map((beer) => (
                 
-                        <BeerItem item={beer} key={beer.id} />
-                
+                        // <BeerItem item={beer} key={beer.id} />
 
-                        // id={beer.id}
-                        // title={beer.title}
-                        // price={beer.price}
-                        // description={beer.description}
+                        <BeerCard item={beer} key={beer.id} isNeedRank={false} />
                 
                     ))}
             

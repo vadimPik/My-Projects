@@ -26,24 +26,11 @@ const BeerItem = (props) => {
 
 
   return (
-    // <li className={classes.item}>
+  
     <div>
-      <BeerCard item={props.item} key={props.item.id}>
-        {/* <header>
-          <h3>{title}</h3>
-          <div className={classes.price}>${price.toFixed(2)}</div>
-        </header>
-        <p>{description}</p>
-        <div className={classes.actions}>
-          <button onClick={addToCartHandler}>Add to Cart</button>
-        </div> */}
-        
-        {/* <div className={classes.actions}>
-          <button onClick={addToCartHandler}>Add to Cart</button>
-        </div>  */}
-      </BeerCard>
-      </div>
-    // </li>
+      <BeerCard item={props.item} key={props.item.id} />
+    </div>
+
   );
 };
 

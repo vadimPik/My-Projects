@@ -1,7 +1,14 @@
+import FavoriteBeers from '../components/FavoriteBeers'
+import { Fragment, useEffect } from 'react';
 
 function FavoriteBeersPage() {
     return (
-        <div>Favorite Beers</div>
+        <Fragment>
+            <div>Favorite Beers</div>
+
+            <FavoriteBeers/>
+
+        </Fragment>
     );
   }
   
