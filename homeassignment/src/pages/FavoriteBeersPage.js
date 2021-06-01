@@ -43,12 +43,17 @@ const FavoriteBeersPage = (props) => {
                                         </Button> </div> 
             } */}
 
-            <div className={ classes.deleteAllFavorites }>
-                { isFavorite.length > 0 && <Button variant="outline-dark" size="lg" onClick={ deleteAllFavoritetHandler }>
+            
+                { isFavorite.length > 0 ? <div className={ classes.deleteAllFavorites }>
+                                            <Button variant="outline-dark" size="lg" onClick={ deleteAllFavoritetHandler }>
                                                 Delete All
                                             </Button> 
+                                            </div> 
+                                        :
+                                        <div className="font-weight-bold text-center mt-sm-4">No Favorites Beer to display. Click on Favorite icon in Browse page to start adding favorite beers </div>  
+
                 }
-            </div> 
+           
 
  
 
