@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import {Nav, Navbar, Button, Form, FormControl} from 'react-bootstrap';
 
-function Navigation() {
+const Navigation = (props) => {
     return (
         // <header>
         //     <div>Beer Selection</div>

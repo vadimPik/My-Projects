@@ -9,11 +9,33 @@ const itemSlice = createSlice({
       replaceAllItems(state, action) {
         state.items = action.payload.items;
       },
+      removeAllFavoriteItems(state, action) {
+        state.items.map(item => {item.isFavorite = false;
+                                item.Rank = ''});
+      },
+
       toggleFavorites(state, action) {
         const favoriteItemId = action.payload;
         const existingItem = state.items.find((item) => item.id === favoriteItemId);
         if (existingItem) {
           existingItem.isFavorite = !existingItem.isFavorite;
+          existingItem.Rank = '';
+        } else {
+        }
+      },
+      addRankValue(state, action) {
+        const favoriteItemId = action.payload.id;
+        const existingItem = state.items.find((item) => item.id === favoriteItemId);
+        if (existingItem) {
+          existingItem.Rank = action.payload.rankValue;
+        } else {
+        }
+      },
+      changeDetailsWindowVisble(state, action) {
+        const favoriteItemId = action.payload.id;
+        const existingItem = state.items.find((item) => item.id === favoriteItemId);
+        if (existingItem) {
+          existingItem.isDetailsModalVisible = action.payload.isVisible;
         } else {
         }
       },

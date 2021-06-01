@@ -10,7 +10,7 @@ import Notification from './components/ui/Notification/Notification';
 
 function App() {
 
-  const notification = useSelector((state) => state.notification.notification);
+  const notification = useSelector((state) => state.ui.notification);
 
   const dispatch = useDispatch();
 

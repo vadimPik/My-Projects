@@ -1,4 +1,4 @@
-import BeerItem from './BeerItem';
+
 import BeerCard from './ui/BeerCard';
 import classes from './FavoriteBeers.module.css'
 //import CardDeck from 'react-bootstrap/CardDeck';
@@ -16,43 +16,19 @@ import { useSelector } from 'react-redux';
       }
 
       return (
-        // <section className={classes.products}>
-        
-            // <div className="grids">
-            // <ul>
-                <Container>
-                <Row style={styles.cardeck}>
-               
-                <CardDeck >      
-                {/* <div className="grid"> */}
-                    {beerItems.map((beer) => {
-                        
-                        return beer.isFavorite ? 
-                          // <BeerItem item={beer} key={beer.id} isNeedRank={true} />
-                          // <BeerCard item={props.item} key={props.item.id} />
-                          <BeerCard item={beer} key={beer.id} isNeedRank={true} />
-                        :
-                          <div></div>
 
-
-                        
-                
-
-                        // id={beer.id}
-                        // title={beer.title}
-                        // price={beer.price}
-                        // description={beer.description}
-                
-                      })}
+          <Container>
+            <Row style={styles.cardeck}>
             
-            </CardDeck>
+              <CardDeck >      
+                  {beerItems.map((beer) => {
+                      return  (beer.isFavorite) && <BeerCard item={beer} key={beer.id} isNeedRank={true}  />        
+                  })}
+          
+              </CardDeck>
             </Row>
+        </Container>
 
-            
-            </Container>
-            // </ul>
-       
-        // </section>
       );
   }
 

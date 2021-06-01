@@ -2,7 +2,7 @@ import Beers from '../components/Beers'
 import { Fragment, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-function BrowseBeersPage() {
+const BrowseBeersPage = (props) => {
     // const dispatch = useDispatch();
 
     // useEffect(() => {

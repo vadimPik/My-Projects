@@ -1,7 +1,7 @@
 
 import { itemsActions } from './items-slice';
 //import axios from 'axios';
-import { notificationActions } from './notification-slice';
+import { uiActions } from './ui-slice';
 import { API_URL } from '../api.model'
 
 export const getBeerData = () => {
@@ -25,9 +25,10 @@ export const getBeerData = () => {
 
         allBeerData.map(item => {
               item.isFavorite = false;
-              item.isHaveRank = false;
+              item.Rank = '';
+              item.isDetailsModalVisible = false;
             });
-                                                  // item.isHaveRank= "false");
+
         dispatch(
             itemsActions.replaceAllItems({
             items: allBeerData || [],
@@ -36,7 +37,7 @@ export const getBeerData = () => {
         );
 
         dispatch(
-            notificationActions.showNotification({
+            uiActions.showNotification({
             status: 'success',
             title: 'Success!',
             message: 'Beer data Loaded Successfuly!',
@@ -45,7 +46,7 @@ export const getBeerData = () => {
 
       } catch (error) {
         dispatch(
-            notificationActions.showNotification({
+            uiActions.showNotification({
             status: 'error',
             title: 'Error!',
             message: 'Fetching beer data failed!',

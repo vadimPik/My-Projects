@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import itemSlice from './items-slice';
-import notificationSlice from './notification-slice';
+import uiSlice from './ui-slice';
 
 const store = configureStore({
-  reducer: { beers: itemSlice.reducer, notification: notificationSlice.reducer },
+  reducer: { beers: itemSlice.reducer, ui: uiSlice.reducer },
 });
 
 export default store;

@@ -1,4 +1,4 @@
-import BeerItem from './BeerItem';
+
 import BeerCard from './ui/BeerCard';
 import classes from './Beers.module.css'
 //import CardDeck from 'react-bootstrap/CardDeck';
@@ -26,9 +26,7 @@ import { useSelector } from 'react-redux';
                 <CardDeck >      
                 {/* <div className="grid"> */}
                     {beerItems.map((beer) => (
-                
-                        // <BeerItem item={beer} key={beer.id} />
-
+    
                         <BeerCard item={beer} key={beer.id} isNeedRank={false} />
                 
                     ))}
