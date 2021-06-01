@@ -1,6 +1,6 @@
 import classes from './BeerCard.module.css';
 // import { Card, Col} from 'react-bootstrap';
-import { Container, CardGroup, Card, Row, Col, Dropdown, DropdownButton, SplitButton,  ButtonGroup, Form} from 'react-bootstrap';
+import { Container, CardGroup, Card, Row, Col, Dropdown, DropdownButton, SplitButton,  ButtonGroup, Form, ListGroup} from 'react-bootstrap';
 import { BsStar, BsStarFill } from 'react-icons/bs';
 import { MdStar } from 'react-icons/md';
 import { IoStarOutline, IoStar } from  'react-icons/io5'
@@ -15,7 +15,7 @@ import ModalWindow from './ModalWindow';
 const BeerCard = (props) => {
   const dispatch = useDispatch();
 
-  const { name, image_url, id } = props.item;
+  const { name, image_url, id, description, brewers_tips, contributed_by, first_brewed, food_pairing } = props.item;
 
   //const isFavorite = useSelector(state => state.beers.items.filter(item => item.id === props.item.id).isFavorite);
   const isFavorite = useSelector(state => state.beers.items.filter(item => item.id === id)[0].isFavorite);
@@ -75,35 +75,18 @@ const BeerCard = (props) => {
     // }
 
           
-   if (props.isNeedRank) {
-      dropDownRank =  
-      // <Select aria-label="Default select example">
-      //   <option>Open this select menu</option>
-      //   <option value="1">One</option>
-      //   <option value="2">Two</option>
-      //   <option value="3">Three</option>
-      // </Select>;
+  //  if (props.isNeedRank) {
+  //     dropDownRank =  
+  //     <Fragment>
+  //       <span className={ classes.rankTtile }>Rank</span>
 
+  //       <BeerDropDownList id={id} onClick={ dropDownClickHandler } />
 
-      <Fragment>
-        <span className={ classes.rankTtile }>Rank</span>
+  //     </Fragment>;
 
-        <BeerDropDownList id={id} onClick={ dropDownClickHandler } />
-{/* 
-        <DropdownButton id="dropdown-basic-button" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true" onSelect={dropDownValueSelectedHandler} title="" size="lm">
-        
-        <Dropdown.Item>1</Dropdown.Item>
-        <Dropdown.Item>2</Dropdown.Item>
-        <Dropdown.Item>3</Dropdown.Item>
-        <Dropdown.Item>4</Dropdown.Item>
-        <Dropdown.Item>5</Dropdown.Item>
-        
-        </DropdownButton> */}
-      </Fragment>;
-
-   } else {
-      dropDownRank = null;
-   }
+  //  } else {
+  //     dropDownRank = null;
+  //  }
 
 
     if (isFavorite) {
@@ -140,73 +123,69 @@ const BeerCard = (props) => {
       dispatch(itemsActions.changeDetailsWindowVisble({id: id, isVisible: false}));
     };
 
-    const modalBody = "Are you sure you want to remove all your favorites beers?";
+  // const modalBody = "Name:"+  {props.see.name}<br> +  "Age: " +  {props.see.age} <br>;
+
+    const pairingFood = food_pairing.map((data) => <li>{data}</li>);
+ 
+    const modalBody =   <Form.Group column sm="2">
+                          <Form.Label className="font-weight-bold">Desctiption</Form.Label>
+                          <Col>
+                            <Form.Control plaintext readOnly defaultValue={ description } />
+                          </Col>  
+
+                          <Form.Label className="font-weight-bold">Brewers tips</Form.Label>
+                          <Col>
+                            <Form.Control plaintext readOnly defaultValue={ brewers_tips } />
+                          </Col> 
+
+                          <Form.Label className="font-weight-bold">Contributed By</Form.Label>
+                          <Col>
+                            <Form.Control plaintext readOnly defaultValue={ contributed_by } />
+                          </Col> 
+
+                          <Form.Label className="font-weight-bold">First Brewed</Form.Label>
+                          <Col>
+                            <Form.Control plaintext readOnly defaultValue={ first_brewed } />
+                          </Col> 
+
+                          <Form.Label className="font-weight-bold">Food Pairing</Form.Label>
+                          <Col>
+                          <ul>{ pairingFood }</ul>
+                            {/* <Form.Control plaintext readOnly defaultValue={ pairingFood } /> */}
+                          </Col>  
+                        </Form.Group>;
 
 
     return (
             <div style={styles.cardParent }>
             
-            <Col  >
-              
-                {/* <Card  key={id} className="box" style={styles.card}> */}
-
+            <Col>
                 <Card  key={id} className="shadow-lg bg-white"  style={styles.card} onClick={ detailsClickHandler }> 
 
-                 {/* <DropdownButton id="dropdown-basic-button" className= { classes.dropDownList } title="Dropdown button"  size="sm">
- 
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-               
-                </DropdownButton>  */}
-
-                
-                {/* {!isLoggedIn ? (
-                  <IoStarOutline size="1.8em" className= { classes.starIcon }/>
-                ) : (
-                   <IoStar color="#FFFF00" size="1.8em" className= { classes.starIcon }/>
-                )} */}
-
-{/* <Form.Select size="sm">
-    <option>Large select</option>
-  </Form.Select> */}
-                    
-                  { dropDownRank }
+                  { props.isNeedRank  &&   
+                      <Fragment>
+                        <span className={ classes.rankTtile }>Rank</span>
+                        <BeerDropDownList id={id} onClick={ dropDownClickHandler } />
+                      </Fragment> }
                
 
-                <button className= { classes.starIcon } onClick={toggleFavoriteHandler}>
-                  { starIcon }
-                </button>
+                  <button className= { classes.starIcon } onClick={toggleFavoriteHandler}>
+                    { starIcon }
+                  </button>
 
-                {/* <IoStarOutline size="1.8em" className= { classes.starIcon }/>
-
-                <IoStar color="#FFFF00" size="1.8em" className= { classes.starIcon }/>
-                 */}
-
-                <Card.Img variant="top" src={image_url}  style={styles.cardImage}/>
-                <Card.Body className="d-flex mb-2 justify-content-between">
-                    <Card.Title className="mb-0 font-weight-bold text-center">{name} </Card.Title>
-                    {/* <Card.Title style={styles.cardImage}>{props.item.name} </Card.Title> */}
-                </Card.Body>
-                
-                 {/* <BsStar
-                      // style={ styles.starIcon }
-                      className= { classes.starIcon }/> */}
-
+                  <Card.Img variant="top" src={image_url}  style={styles.cardImage}/>
+                  <Card.Body className="d-flex mb-2 justify-content-between">
+                      <Card.Title className="mb-0 font-weight-bold text-center">{name} </Card.Title>
+                  </Card.Body>
                 </Card>
             </Col>
-            {/* <Col className= { classes.starIcon }>
-                <BsStar
-                  // style={ styles.starIcon }
-                  className= { classes.starIcon }/>
-            </Col> */}
+
+
 
             <ModalWindow  isShow={ isShowDetails } title={ name }  body= { modalBody } onCancel={ cancelModalHandler } onConfirm = { confirmModalHandler } 
-                          onHide= { hideHandler}  isShowConfimButton= {false}/>                            
+                          onHide= { hideHandler}  isShowConfimButton= {false} size="xl"/>                            
 
-               
             </div>
-
     );
   };
   
