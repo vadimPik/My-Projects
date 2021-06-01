@@ -1,30 +1,25 @@
 import classes from './BeerCard.module.css';
 // import { Card, Col} from 'react-bootstrap';
 import { Container, CardGroup, Card, Row, Col, Dropdown, DropdownButton, SplitButton,  ButtonGroup, Form, ListGroup} from 'react-bootstrap';
-import { BsStar, BsStarFill } from 'react-icons/bs';
-import { MdStar } from 'react-icons/md';
 import { IoStarOutline, IoStar } from  'react-icons/io5'
 import { useDispatch, useSelector } from 'react-redux';
 import { itemsActions } from '../../store/items-slice';
 import { Fragment } from 'react';
 import BeerDropDownList  from './BeerDropDownList';
-import ModalWindow from './ModalWindow';
+import BeerModal from '../BeerModal';
 
 
 
 const BeerCard = (props) => {
   const dispatch = useDispatch();
 
-  const { name, image_url, id, description, brewers_tips, contributed_by, first_brewed, food_pairing } = props.item;
+  const { name, image_url, id } = props.item;
 
-  //const isFavorite = useSelector(state => state.beers.items.filter(item => item.id === props.item.id).isFavorite);
-  const isFavorite = useSelector(state => state.beers.items.filter(item => item.id === id)[0].isFavorite);
-  const isShowDetails = useSelector(state => state.beers.items.filter(item => item.id === id)[0].isDetailsModalVisible);
+  const isFavorite = useSelector(state => state.beers.items.find(item => item.id === id).isFavorite);
 
 
   let starIcon;
-  let dropDownRank;
-    
+
     const styles = {
         card: {
           backgroundColor: '#B7E0F2',
@@ -60,46 +55,19 @@ const BeerCard = (props) => {
            margintop: '-43rem',
            marginleft: '15rem'
         }
-        // cardTitle: {
-        //     textalign: 'center'
-        // }
       }
-
-      
-      
-    // if (isLoggedIn) {
-    //    starIcon = <IoStarOutline size="1.8em" className= { classes.starIcon }/>;
-    // } else {
-    //   // Clicked
-    //    starIcon = <IoStar color="#FFFF00" size="1.8em" className= { classes.starIcon}/>;
-    // }
-
-          
-  //  if (props.isNeedRank) {
-  //     dropDownRank =  
-  //     <Fragment>
-  //       <span className={ classes.rankTtile }>Rank</span>
-
-  //       <BeerDropDownList id={id} onClick={ dropDownClickHandler } />
-
-  //     </Fragment>;
-
-  //  } else {
-  //     dropDownRank = null;
-  //  }
-
 
     if (isFavorite) {
       // Clicked
       starIcon = <IoStar color="#FFFF00" size="1.8em" />;
-   } else {
-      // Not Clicked
-      starIcon = <IoStarOutline size="1.8em" />;
-   }
+    } else {
+        // Not Clicked
+        starIcon = <IoStarOutline size="1.8em" />;
+    }
 
-   const dropDownClickHandler = (event) => {
-      event.stopPropagation();
-   };
+    const dropDownClickHandler = (event) => {
+        event.stopPropagation();
+    };
 
 
     const toggleFavoriteHandler = (event) => {
@@ -110,51 +78,6 @@ const BeerCard = (props) => {
     const detailsClickHandler = () => {
       dispatch(itemsActions.changeDetailsWindowVisble({id: id, isVisible: true}));
     };
-
-    const confirmModalHandler = () => {
-
-    };
-
-    const cancelModalHandler = () => {
-      dispatch(itemsActions.changeDetailsWindowVisble({id: id, isVisible: false}));
-    };
-
-    const hideHandler = () => {
-      dispatch(itemsActions.changeDetailsWindowVisble({id: id, isVisible: false}));
-    };
-
-  // const modalBody = "Name:"+  {props.see.name}<br> +  "Age: " +  {props.see.age} <br>;
-
-    const pairingFood = food_pairing.map((data) => <li>{data}</li>);
- 
-    const modalBody =   <Form.Group column sm="2">
-                          <Form.Label className="font-weight-bold">Desctiption</Form.Label>
-                          <Col>
-                            <Form.Control plaintext readOnly defaultValue={ description } />
-                          </Col>  
-
-                          <Form.Label className="font-weight-bold">Brewers tips</Form.Label>
-                          <Col>
-                            <Form.Control plaintext readOnly defaultValue={ brewers_tips } />
-                          </Col> 
-
-                          <Form.Label className="font-weight-bold">Contributed By</Form.Label>
-                          <Col>
-                            <Form.Control plaintext readOnly defaultValue={ contributed_by } />
-                          </Col> 
-
-                          <Form.Label className="font-weight-bold">First Brewed</Form.Label>
-                          <Col>
-                            <Form.Control plaintext readOnly defaultValue={ first_brewed } />
-                          </Col> 
-
-                          <Form.Label className="font-weight-bold">Food Pairing</Form.Label>
-                          <Col>
-                          <ul>{ pairingFood }</ul>
-                            {/* <Form.Control plaintext readOnly defaultValue={ pairingFood } /> */}
-                          </Col>  
-                        </Form.Group>;
-
 
     return (
             <div style={styles.cardParent }>
@@ -180,10 +103,7 @@ const BeerCard = (props) => {
                 </Card>
             </Col>
 
-
-
-            <ModalWindow  isShow={ isShowDetails } title={ name }  body= { modalBody } onCancel={ cancelModalHandler } onConfirm = { confirmModalHandler } 
-                          onHide= { hideHandler}  isShowConfimButton= {false} size="xl"/>                            
+            <BeerModal item={props.item}/>                       
 
             </div>
     );
