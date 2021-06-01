@@ -16,9 +16,11 @@ const BeerCard = (props) => {
   const { name, image_url, id } = props.item;
 
   const isFavorite = useSelector(state => state.beers.items.find(item => item.id === id).isFavorite);
+  const isHover = useSelector(state => state.beers.items.find(item => item.id === id).isHover);
 
 
   let starIcon;
+  let cardStyle;
 
     const styles = {
         card: {
@@ -65,6 +67,12 @@ const BeerCard = (props) => {
         starIcon = <IoStarOutline size="1.8em" />;
     }
 
+    if (isHover) {
+      cardStyle = "shadow-lg bg-white";
+    } else {
+      cardStyle = "bg-white"
+    }
+
     const dropDownClickHandler = (event) => {
         event.stopPropagation();
     };
@@ -79,11 +87,19 @@ const BeerCard = (props) => {
       dispatch(itemsActions.changeDetailsWindowVisble({id: id, isVisible: true}));
     };
 
+    const mouseOverHandler = () => {
+      dispatch(itemsActions.toggleHover(id));
+    };
+
+    const mouseOutHandler = () => {
+      dispatch(itemsActions.toggleHover(id));
+    };
+
     return (
             <div style={styles.cardParent }>
             
             <Col>
-                <Card  key={id} className="shadow-lg bg-white"  style={styles.card} onClick={ detailsClickHandler }> 
+                <Card  key={id} className={ cardStyle }   style={styles.card} onClick={ detailsClickHandler } onMouseOver={ mouseOverHandler } onMouseOut={ mouseOutHandler } > 
 
                   { props.isNeedRank  &&   
                       <Fragment>

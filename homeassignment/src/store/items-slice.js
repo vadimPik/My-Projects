@@ -11,7 +11,8 @@ const itemSlice = createSlice({
       },
       removeAllFavoriteItems(state, action) {
         state.items.map(item => {item.isFavorite = false;
-                                item.Rank = ''});
+                                item.Rank = ''
+                                item.isHover = false; });
       },
 
       toggleFavorites(state, action) {
@@ -20,6 +21,7 @@ const itemSlice = createSlice({
         if (existingItem) {
           existingItem.isFavorite = !existingItem.isFavorite;
           existingItem.Rank = '';
+          existingItem.isHover = !existingItem.isHover;
         } else {
         }
       },
@@ -36,6 +38,14 @@ const itemSlice = createSlice({
         const existingItem = state.items.find((item) => item.id === favoriteItemId);
         if (existingItem) {
           existingItem.isDetailsModalVisible = action.payload.isVisible;
+        } else {
+        }
+      },
+      toggleHover(state, action) {
+        const favoriteItemId = action.payload;
+        const existingItem = state.items.find((item) => item.id === favoriteItemId);
+        if (existingItem) {
+          existingItem.isHover = !existingItem.isHover;
         } else {
         }
       },

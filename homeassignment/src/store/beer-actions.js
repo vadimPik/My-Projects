@@ -27,6 +27,7 @@ export const getBeerData = () => {
               item.isFavorite = false;
               item.Rank = '';
               item.isDetailsModalVisible = false;
+              item.isHover = false;
             });
 
         dispatch(
