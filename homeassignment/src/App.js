@@ -31,7 +31,7 @@ function App() {
           message={notification.message}
         />
       )}
-
+      
       <Switch>
         <Route path='/' exact>
           <BrowseBeersPage />
