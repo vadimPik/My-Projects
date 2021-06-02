@@ -1,11 +1,12 @@
 import { Fragment, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Router, Switch } from 'react-router-dom';
 import BrowseBeersPage from './pages/BrowseBeersPage';
 import FavoriteBeersPage from './pages/FavoriteBeersPage';
 import Navigation from './components/layout/Navigation';
 import { useSelector, useDispatch } from 'react-redux';
 import { getBeerData } from './store/beer-actions';
 import Notification from './components/ui/Notification/Notification';
+import History from './components/History';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         />
       )}
       
+      {/* <Router history={History}> */}
       <Switch>
         <Route path='/' exact>
           <BrowseBeersPage />
@@ -43,6 +45,8 @@ function App() {
           <FavoriteBeersPage />
         </Route>
       </Switch>
+      {/* </Router> */}
+
 
       </Fragment>
   

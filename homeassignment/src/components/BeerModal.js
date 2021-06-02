@@ -22,9 +22,9 @@ const BeerModal = (props) => {
     };
 
 
-    const pairingFood = food_pairing.map((data) => <li>{data}</li>);
+    const pairingFood = food_pairing.map((data) => <li key={data}>{data}</li>);
  
-    const modalBody =   <Form.Group column sm="2">
+    const modalBody =   <Form.Group>
                           <Form.Label className="font-weight-bold">Desctiption</Form.Label>
                           <Col>
                             <Form.Control plaintext readOnly defaultValue={ description } />
@@ -53,7 +53,7 @@ const BeerModal = (props) => {
 
     return (
         <ModalWindow  isShow={ isShowDetails } title={ name }  body= { modalBody } onCancel={ cancelModalHandler } 
-                      onHide= { hideHandler}  isShowConfimButton= {false} size="xl"/>  
+                      onHide= { hideHandler}  isShowConfimButton= {false} size="xl" key={id}/>  
     );
 
 };

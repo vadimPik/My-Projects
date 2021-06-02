@@ -77,6 +77,8 @@ export const getBeerData = () => {
       const beerData = async () => {
         // const response = await fetch(API_URL.getBeerData);
 
+        const test = 'https://api.punkapi.com/v2/beers?food=' + searchParam;
+
         const response = await fetch('https://api.punkapi.com/v2/beers?food=' + searchParam);
           // 'https://api.punkapi.com/v2/beers',
           // {

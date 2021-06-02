@@ -58,7 +58,7 @@ const FavoriteBeersPage = (props) => {
  
 
             <ModalWindow  isShow={ deleteAllFavoriteVisible } title={ modalTitle } body= { modalBody } onCancel={ cancelModalHandler } onConfirm = { confirmModalHandler } 
-                          onHide= { hideHandler}  isShowConfimButton= "true"/>                                
+                          onHide= { hideHandler}  isShowConfimButton= {true}/>                                
 
             <FavoriteBeers/>
             

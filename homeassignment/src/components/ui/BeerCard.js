@@ -119,7 +119,7 @@ const BeerCard = (props) => {
                 </Card>
             </Col>
 
-            <BeerModal item={props.item}/>                       
+            <BeerModal item={props.item} key={props.item.id}/>                       
 
             </div>
     );
