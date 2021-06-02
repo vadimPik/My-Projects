@@ -14,7 +14,7 @@ let searchParam;
 const BrowseBeersPage = (props) => {
      const dispatch = useDispatch();
 
-     const needExecuteSearch = useSelector((state) => state.ui.needExecuteSearch);
+     const searchValue = useSelector((state) => state.ui.searchValue);
      const isSearchEmptyModalVisible = useSelector((state) => state.ui.isSearchEmptyModalVisible);
 
     // useEffect(() => {
@@ -28,9 +28,14 @@ const BrowseBeersPage = (props) => {
     useEffect(() => {
         searchParam = new URLSearchParams(location.search).get('search');
         
-        if (searchParam ){
-            dispatch(uiActions.changSearchState(true));
+        if (searchParam && searchParam !== '' ){
+            if (searchParam !== searchValue) {
+                dispatch(uiActions.changSearchValue(searchParam));
+            }
+        }else {
+            dispatch(uiActions.changSearchValue(''));
         }
+
         //eslint-disable-next-line
     }, []);
 
@@ -53,10 +58,13 @@ const BrowseBeersPage = (props) => {
         searchParam = beerSearchInputRef.current.value;
         history.push('/browse?search=' + searchParam);
 
-        if (searchParam) {
-            dispatch(uiActions.changSearchState(true));
+        if (searchParam && searchParam !== '' ) {
+            if (searchParam !== searchValue ) {
+                dispatch(uiActions.changSearchValue(searchParam));
+            }
         } else {
             dispatch(uiActions.changeSearchEmptyWindowVisble(true));
+            dispatch(uiActions.changSearchValue(''));
         }
     };
 
@@ -85,8 +93,11 @@ const BrowseBeersPage = (props) => {
             <ModalWindow  isShow={ isSearchEmptyModalVisible } title={ modalTitle } body= { modalBody } onCancel={ cancelModalHandler } 
                 onHide= { hideHandler}  isShowConfimButton= {false}/>   
 
-          { needExecuteSearch ? <SearchBeer searchParam={ searchParam } location={ location }/>
-                              :  <Beers />  }
+            { searchValue !== '' && <SearchBeer searchParam={ searchParam } location={ location }/>}
+
+            <Beers />
+          {/* { searchValue ? <SearchBeer searchParam={ searchParam } location={ location }/>
+                              :  <Beers />  } */}
       </Fragment>
     );
 }

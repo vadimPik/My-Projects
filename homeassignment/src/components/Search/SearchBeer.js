@@ -11,10 +11,8 @@ const SearchBeer = (props) => {
     
 
     useEffect(() => {
-        dispatch(uiActions.changSearchState(false));
-        
         dispatch(getSearchedBeerData(props.searchParam));
-       }, [dispatch]);
+       }, [props.searchParam]);
      
 
     return (

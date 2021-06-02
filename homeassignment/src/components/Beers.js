@@ -16,29 +16,17 @@ import { useSelector } from 'react-redux';
       }
 
       return (
-        // <section className={classes.products}>
-        
-            // <div className="grids">
-            // <ul>
-                <Container>
-                <Row style={styles.cardeck}>
-               
-                <CardDeck >      
-                {/* <div className="grid"> */}
-                    {beerItems.map((beer) => (
-    
-                        <BeerCard item={beer} key={beer.id} isNeedRank={false} />
-                
-                    ))}
-            
-            </CardDeck>
-            </Row>
 
-            
+            <Container>
+              <Row style={styles.cardeck}>
+                <CardDeck >      
+                        {beerItems.map((beer) => (
+                            <BeerCard item={beer} key={beer.id} isNeedRank={false} />
+                        ))}
+                </CardDeck>
+              </Row>
             </Container>
-            // </ul>
-       
-        // </section>
+
       );
   }
 
