@@ -1,5 +1,5 @@
-import ModalWindow from './ui/ModalWindow';
-import { itemsActions } from '../store/items-slice';
+import ModalWindow from '../ui/modalWindow/ModalWindow';
+import { itemsActions } from '../../store/items-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Col, Form} from 'react-bootstrap';
 

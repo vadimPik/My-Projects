@@ -1,7 +1,7 @@
 import classes from './ModalWindow.module.css';
 import { Container, CardGroup, Card, Row, Col, Dropdown, DropdownButton, SplitButton,  ButtonGroup, Form, Button} from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { itemsActions } from '../../store/items-slice';
+import { itemsActions } from '../../../store/items-slice';
 import Modal from 'react-bootstrap/Modal';
 import { Fragment } from 'react';
 

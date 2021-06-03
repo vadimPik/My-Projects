@@ -1,7 +1,7 @@
 import classes from './BeerDropDownList.module.css';
 import { Dropdown, DropdownButton} from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { itemsActions } from '../../store/items-slice';
+import { itemsActions } from '../../../store/items-slice';
 
 const BeerDropDownList = (props) => {
     const itemRank = useSelector(state => state.beers.items.find(item => item.id === props.id).Rank);

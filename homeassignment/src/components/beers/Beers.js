@@ -1,10 +1,10 @@
 
-import BeerCard from './ui/BeerCard';
+import BeerCard from '../ui/beerCard/BeerCard';
 import { CardDeck, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRef, useCallback } from 'react';
-import useBeerFatch from '../hooks/useBeerFatch';
-import { paginationActions } from '../store/pagination-slice';
+import useBeerFatch from '../../hooks/useBeerFatch';
+import { paginationActions } from '../../store/pagination-slice';
 
 
   const Beers = (props) => {

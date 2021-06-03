@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import FavoriteBeers from '../components/FavoriteBeers'
+import FavoriteBeers from '../../components/favoriteBeers/FavoriteBeers'
 import { Fragment } from 'react';
 import { Button } from 'react-bootstrap';
-import { itemsActions } from '../store/items-slice';
+import { itemsActions } from '../../store/items-slice';
 import classes from './FavoriteBeersPage.module.css'
-import ModalWindow from '../components/ui//ModalWindow';
-import { uiActions } from '../store/ui-slice';
+import ModalWindow from '../../components/ui/modalWindow/ModalWindow';
+import { uiActions } from '../../store/ui-slice';
 
 const modalTitle = "Confirm Delete";
 const modalBody = "Are you sure you want to remove all your favorites beers?";

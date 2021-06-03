@@ -1,11 +1,11 @@
-import Beers from '../components/Beers'
+import Beers from '../../components/beers/Beers'
 import { Fragment, useEffect, useRef } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { InputGroup, FormControl, Form, Row, Col, Button } from 'react-bootstrap';
-import SearchBeer from '../components/Search/SearchBeer'
-import { uiActions } from '../store/ui-slice';
-import ModalWindow from '../components/ui/ModalWindow'
+import SearchBeer from '../../components/ui/search/SearchBeer'
+import { uiActions } from '../../store/ui-slice';
+import ModalWindow from '../../components/ui/modalWindow/ModalWindow'
 import classes from './BrowseBeersPage.module.css';
 
 

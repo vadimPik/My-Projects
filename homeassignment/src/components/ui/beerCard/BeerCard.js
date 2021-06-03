@@ -2,11 +2,11 @@ import classes from './BeerCard.module.css';
 import { Card, Col} from 'react-bootstrap';
 import { IoStarOutline, IoStar } from  'react-icons/io5'
 import { useDispatch, useSelector } from 'react-redux';
-import { itemsActions } from '../../store/items-slice';
+import { itemsActions } from '../../../store/items-slice';
 import { Fragment } from 'react';
-import BeerDropDownList  from './BeerDropDownList';
-import BeerModal from '../BeerModal';
-import { uiActions } from '../../store/ui-slice'
+import BeerDropDownList  from '../beerDropDownList/BeerDropDownList';
+import BeerModal from '../../beerModal/BeerModal';
+import { uiActions } from '../../../store/ui-slice'
 
 
 

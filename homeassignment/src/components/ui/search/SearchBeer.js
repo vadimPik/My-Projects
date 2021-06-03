@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { getSearchedBeerData } from '../../store/beer-actions';
+import { getSearchedBeerData } from '../../../store/beer-actions';
 import { useEffect } from 'react';
 
 
