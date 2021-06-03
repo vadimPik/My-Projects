@@ -1,4 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { showNotification } from './reducers/showNotification';
+import { changeDeleteAllModal } from './reducers/changeDeleteAllModal';
+import { changSearchValue } from './reducers/changSearchValue';
+import { changeSearchEmptyWindowVisble } from './reducers/changeSearchEmptyWindowVisble';
+ 
+// In this project i used "redux-toolkit"- it is a redux package for react that wrap the state and give a ability to write "normal" - without the ability to change the state wrongly.
+//Documentation: https://redux-toolkit.js.org/introduction/getting-started
 
 const uiSlice = createSlice({
   name: 'ui',
@@ -9,22 +16,10 @@ const uiSlice = createSlice({
     isSearchEmptyModalVisible: false
   },
   reducers: {
-    showNotification(state, action) {
-      state.notification = {
-        status: action.payload.status,
-        title: action.payload.title,
-        message: action.payload.message,
-      };
-    },
-    changeDeleteAllModal(state, action) {
-      state.deleteAllFavoriteVisible = action.payload;
-    },
-    changSearchValue(state, action) {
-      state.searchValue = action.payload;
-    },
-    changeSearchEmptyWindowVisble(state, action) {
-      state.isSearchEmptyModalVisible = action.payload;
-    }
+    showNotification,
+    changeDeleteAllModal,
+    changSearchValue,
+    changeSearchEmptyWindowVisble
   },
 });
 
