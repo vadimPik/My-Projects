@@ -1,9 +1,9 @@
 import { Fragment } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import BrowseBeersPage from './pages/BrowseBeersPage';
-import FavoriteBeersPage from './pages/FavoriteBeersPage';
-import Navigation from './components/layout/Navigation';
+import BrowseBeersPage from './pages/browseBeersPage/BrowseBeersPage';
+import FavoriteBeersPage from './pages/favoriteBeersPage/FavoriteBeersPage';
+import Navigation from './components/layout/navigation/Navigation';
 import { useSelector, useDispatch } from 'react-redux';
 import Notification from './components/ui/Notification/Notification';
 
