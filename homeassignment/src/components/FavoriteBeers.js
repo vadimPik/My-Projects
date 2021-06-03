@@ -1,7 +1,5 @@
 
 import BeerCard from './ui/BeerCard';
-import classes from './FavoriteBeers.module.css'
-//import CardDeck from 'react-bootstrap/CardDeck';
 import { CardDeck, Container, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 

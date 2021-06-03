@@ -1,42 +1,30 @@
-import { Fragment, useEffect } from 'react';
-import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
-import { render } from "react-dom";
+import { Fragment } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+
 import BrowseBeersPage from './pages/BrowseBeersPage';
 import FavoriteBeersPage from './pages/FavoriteBeersPage';
 import Navigation from './components/layout/Navigation';
 import { useSelector, useDispatch } from 'react-redux';
-import { getBeerData } from './store/beer-actions';
 import Notification from './components/ui/Notification/Notification';
-
-import useBeerFatch from './hooks/useBeerFatch';
 
 
 function App() {
 
   const notification = useSelector((state) => state.ui.notification);
 
-  const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //     dispatch(getBeerData());
-  //   }, [dispatch]);
-
-  //useBeerFatch(pageNumber);
-
-
   return (
     <div> 
      <Navigation/>
 
-     <Fragment>
-      {notification && (
-        <Notification
-          status={notification.status}
-          title={notification.title}
-          message={notification.message}
-        />
-      )}
-      <Router>
+    <Fragment>
+    {notification && (
+      <Notification
+        status={notification.status}
+        title={notification.title}
+        message={notification.message}
+      />
+    )}
+
       <Switch>
         <Route path='/' exact render={() => {
                                         return (
@@ -51,9 +39,7 @@ function App() {
           <FavoriteBeersPage />
         </Route>
       </Switch>
-      </Router>
-
-
+ 
       </Fragment>
   
     </div>

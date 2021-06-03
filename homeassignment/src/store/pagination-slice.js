@@ -6,7 +6,6 @@ const paginationSlice = createSlice({
     initialState: {
       pageNumber: 1,
       loading: false,
-     // error: false,
       hasMore: false
     },
     reducers: {

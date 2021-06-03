@@ -11,17 +11,14 @@ import classes from './BrowseBeersPage.module.css';
 
 
 let searchParam;
-
+const modalTitle = "Input empty";
+const modalBody = "Please Enter food for start searching beer";
 
 const BrowseBeersPage = (props) => {
      const dispatch = useDispatch();
 
      const searchValue = useSelector((state) => state.ui.searchValue);
      const isSearchEmptyModalVisible = useSelector((state) => state.ui.isSearchEmptyModalVisible);
-
-    // useEffect(() => {
-    //     dispatch(fetchCartData());
-    //   }, [dispatch]);
     
     const history = useHistory();
     const location = useLocation();
@@ -48,13 +45,6 @@ const BrowseBeersPage = (props) => {
     const hideHandler = () => {
         dispatch(uiActions.changeSearchEmptyWindowVisble(false));
     };
-
-
-   // const isLocationParam = searchParam.get('search')
-
-   // { searchParam && dispatch(uiActions.changSearchState(true)) };
-   const modalTitle = "Input empty";
-   const modalBody = "Please Enter food for start searching beer";
 
     const searchClickHandle = () => {
         searchParam = beerSearchInputRef.current.value;
@@ -84,7 +74,6 @@ const BrowseBeersPage = (props) => {
                             />
                         </Col>
                         <Col xs="auto">
-                            {/* <Button variant="outline-dark" size="nm" type="submit" className="mb-2" onClick={ searchClickHandle }> */}
                             <Button variant="outline-dark" size="nm" className="mb-2" onClick={ searchClickHandle } >
                                 Submit
                             </Button>
@@ -99,8 +88,6 @@ const BrowseBeersPage = (props) => {
 
                 <Beers />
             </div>
-          {/* { searchValue ? <SearchBeer searchParam={ searchParam } location={ location }/>
-                              :  <Beers />  } */}
       </Fragment>
     );
 }

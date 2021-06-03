@@ -26,10 +26,6 @@ export default function useBeerFatch(pageNumber) {
             method: 'GET',
             url: 'https://api.punkapi.com/v2/beers',
             params: { page: pageNumber, per_page: 12},
-            // cancelToken: new CancelToken(function executor(c) {
-            //     // An executor function receives a cancel function as a parameter
-            //     cancel = c;
-            //   })
             cancelToken: new axios.CancelToken(c => cancel = c)
         }).then(res => {
         

@@ -1,5 +1,5 @@
 import classes from './BeerDropDownList.module.css';
-import { Container, CardGroup, Card, Row, Col, Dropdown, DropdownButton, SplitButton,  ButtonGroup, Form} from 'react-bootstrap';
+import { Dropdown, DropdownButton} from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { itemsActions } from '../../store/items-slice';
 
@@ -7,14 +7,11 @@ const BeerDropDownList = (props) => {
     const itemRank = useSelector(state => state.beers.items.find(item => item.id === props.id).Rank);
     const dispatch = useDispatch();
 
-
-
 const dropDownValueSelectedHandler = (event) => {
     dispatch(itemsActions.addRankValue({id: props.id, rankValue: event}));
 };
 
-
-      return (
+    return (
         <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true" onSelect={dropDownValueSelectedHandler} title={ itemRank } onClick={ props.onClick }  >
         
         <Dropdown.Item eventKey="1">1</Dropdown.Item>
@@ -26,7 +23,7 @@ const dropDownValueSelectedHandler = (event) => {
         
         </DropdownButton>
 
-      );
+    );
 };
 
   export default BeerDropDownList;

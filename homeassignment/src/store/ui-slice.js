@@ -5,7 +5,6 @@ const uiSlice = createSlice({
   initialState: { 
     notification: null,
     deleteAllFavoriteVisible: false,
-   // needExecuteSearch: false,
     searchValue: '',
     isSearchEmptyModalVisible: false
   },
@@ -20,8 +19,6 @@ const uiSlice = createSlice({
     changeDeleteAllModal(state, action) {
       state.deleteAllFavoriteVisible = action.payload;
     },
-    //changSearchState(state, action) {
-      //state.needExecuteSearch = action.payload;
     changSearchValue(state, action) {
       state.searchValue = action.payload;
     },

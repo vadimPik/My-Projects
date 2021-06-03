@@ -1,7 +1,5 @@
 
 import BeerCard from './ui/BeerCard';
-import classes from './Beers.module.css'
-//import CardDeck from 'react-bootstrap/CardDeck';
 import { CardDeck, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRef, useCallback } from 'react';
@@ -44,14 +42,13 @@ import { paginationActions } from '../store/pagination-slice';
             <Container>
               <Row style={styles.cardeck}>
                 <CardDeck >      
-                        {beerItems.map((beer, index) => {
-                            if (beerItems.length === index + 1) {
-                              return <div ref={lastBeerElementRef} key={beer.id}><BeerCard  item={beer} key={beer.id} isNeedRank={false} /> </div>
-                              //  return <BeerCard ref={lastBeerElementRef} item={beer} key={beer.id} isNeedRank={false} />
-                            } else {
-                              return <BeerCard item={beer} key={beer.id} isNeedRank={false} />
-                            }
-                          })}
+                    {beerItems.map((beer, index) => {
+                        if (beerItems.length === index + 1) {
+                          return <div ref={lastBeerElementRef} key={beer.id}><BeerCard  item={beer} key={beer.id} isNeedRank={false} /> </div>
+                        } else {
+                          return <BeerCard item={beer} key={beer.id} isNeedRank={false} />
+                        }
+                      })}
                 </CardDeck>
               </Row>
             </Container>

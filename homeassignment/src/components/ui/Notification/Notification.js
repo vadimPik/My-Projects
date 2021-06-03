@@ -1,20 +1,24 @@
 import classes from './Notification.module.css';
 
+let specialClasses = '';
+
+const getStypePerStatus = (status) => {
+    if (status === 'error') {
+      return classes.error;
+    }
+    if (status === 'success') {
+      return classes.success;
+    }
+    if (status === 'loading') {
+      return classes.loading;
+    }
+};
+
+const cssClasses = `${classes.notification} ${specialClasses} ${classes.sticky}`;
+
 const Notification = (props) => {
-  let specialClasses = '';
 
-  if (props.status === 'error') {
-    specialClasses = classes.error;
-  }
-  if (props.status === 'success') {
-    specialClasses = classes.success;
-  }
-  if (props.status === 'loading') {
-    specialClasses = classes.loading;
-  }
-
-
-  const cssClasses = `${classes.notification} ${specialClasses} ${classes.sticky}`;
+ specialClasses = getStypePerStatus(props.status);
 
   return (
     <section className={cssClasses}>

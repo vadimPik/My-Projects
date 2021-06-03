@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// In this project i used "redux-toolkit"- it is a redux package for react that wrap the state and give a ability to write "normal" - without the ability to change the state wrongly.
+//Documentation: https://redux-toolkit.js.org/introduction/getting-started
+
 const itemSlice = createSlice({
     name: 'items',
     initialState: {
@@ -11,12 +14,8 @@ const itemSlice = createSlice({
       },
       addItems(state, action) {
         state.items = state.items.concat(action.payload.items);
-       // state.items = [...state.items, action.payload.items];
       },
       removeAllFavoriteItems(state, action) {
-        // state.items = state.items.filter(item => {item.isFavorite = false;
-        //                                          item.Rank = ''
-        //                                          item.isHover = false; });
         state.items.map(item => {item.isFavorite = false;
                                 item.Rank = ''
                                 item.isHover = false; });
@@ -55,16 +54,7 @@ const itemSlice = createSlice({
           existingItem.isHover = !existingItem.isHover;
         } else {
         }
-      },
-      // removeItemFromFavorites(state, action) {
-      //   const id = action.payload;
-      //   const existingItem = state.items.find((item) => item.id === id);
-      //   if (existingItem.quantity === 1) {
-      //     state.items = state.items.filter((item) => item.id !== id);
-      //   } else {
-
-      //   }
-      // },
+      }
     },
   });
   

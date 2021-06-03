@@ -7,9 +7,13 @@ import classes from './FavoriteBeersPage.module.css'
 import ModalWindow from '../components/ui//ModalWindow';
 import { uiActions } from '../store/ui-slice';
 
+const modalTitle = "Confirm Delete";
+const modalBody = "Are you sure you want to remove all your favorites beers?";
+
 
 const FavoriteBeersPage = (props) => {
     const dispatch = useDispatch();
+
     const deleteAllFavoriteVisible = useSelector((state) => state.ui.deleteAllFavoriteVisible);
     const isFavorite = useSelector(state => state.beers.items.filter(item => item.isFavorite === true));
 
@@ -26,22 +30,12 @@ const FavoriteBeersPage = (props) => {
         dispatch(uiActions.changeDeleteAllModal(false));
     };
 
-
     const hideHandler = () => {
         dispatch(uiActions.changeDeleteAllModal(false));
     }
 
-    const modalTitle = "Confirm Delete";
-    const modalBody = "Are you sure you want to remove all your favorites beers?";
-
     return (
         <Fragment>
-
-            {/* { isFavorite.length > 0 && <div className={ classes.deleteAllFavorites }>
-                                        <Button variant="outline-dark" size="lg" onClick={ deleteAllFavoritetHandler }>
-                                            Delete All
-                                        </Button> </div> 
-            } */}
 
             <div className={ classes.favoritesCards}>
             
@@ -55,9 +49,6 @@ const FavoriteBeersPage = (props) => {
 
                 }
            
-
- 
-
                 <ModalWindow  isShow={ deleteAllFavoriteVisible } title={ modalTitle } body= { modalBody } onCancel={ cancelModalHandler } onConfirm = { confirmModalHandler } 
                             onHide= { hideHandler}  isShowConfimButton= {true}/>                                
 
