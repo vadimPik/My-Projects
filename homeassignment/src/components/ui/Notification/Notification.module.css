@@ -3,8 +3,9 @@
     height: 3rem;
     background-color: #1a8ed1;
     display: flex;
+    top: 56px;
     justify-content: space-between;
-    padding: 0.5rem 10%;
+    margin-top: 3rem;
     align-items: center;
     color: white;
   }
@@ -12,7 +13,7 @@
   .notification h2,
   .notification p {
     font-size: 1rem;
-    margin: 0;
+    margin: 3rem;
   }
   
   .error {
@@ -21,4 +22,15 @@
   
   .success {
     background-color: #1ad1b9;
+  }
+
+  .loading {
+    background-color: #F0FF33
+  }
+
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 5;
   }

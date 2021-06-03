@@ -7,6 +7,7 @@ import { itemsActions } from '../../store/items-slice';
 import { Fragment } from 'react';
 import BeerDropDownList  from './BeerDropDownList';
 import BeerModal from '../BeerModal';
+import { uiActions } from '../../store/ui-slice'
 
 
 
@@ -81,6 +82,13 @@ const BeerCard = (props) => {
     const toggleFavoriteHandler = (event) => {
       event.stopPropagation();
       dispatch(itemsActions.toggleFavorites(id));
+
+      dispatch(
+        uiActions.showNotification({
+        status: 'success',
+        title: 'Success!',
+        message: 'Beer added to favorites',
+      }));
     };
 
     const detailsClickHandler = () => {

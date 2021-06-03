@@ -9,8 +9,12 @@ const Notification = (props) => {
   if (props.status === 'success') {
     specialClasses = classes.success;
   }
+  if (props.status === 'loading') {
+    specialClasses = classes.loading;
+  }
 
-  const cssClasses = `${classes.notification} ${specialClasses}`;
+
+  const cssClasses = `${classes.notification} ${specialClasses} ${classes.sticky}`;
 
   return (
     <section className={cssClasses}>

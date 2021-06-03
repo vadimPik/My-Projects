@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import {Nav, Navbar, Button, Form, FormControl} from 'react-bootstrap';
+import classes from './Navigation.module.css';
+
 
 const Navigation = (props) => {
     return (
@@ -16,7 +18,7 @@ const Navigation = (props) => {
         //         </ul>
         //     </nav>
         // </header>
-
+    <div className={classes.sticky}>
     <Navbar bg="dark" variant="dark">
         <Navbar.Brand as={Link} to='/browse'>Beer Selection</Navbar.Brand>
             <Nav className="mr-auto">
@@ -28,6 +30,7 @@ const Navigation = (props) => {
                 <Button variant="outline-success">Submit</Button>
             </Form> */}
     </Navbar>
+    </div>
 
     );
 }

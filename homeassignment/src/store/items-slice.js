@@ -9,7 +9,14 @@ const itemSlice = createSlice({
       replaceAllItems(state, action) {
         state.items = action.payload.items;
       },
+      addItems(state, action) {
+        state.items = state.items.concat(action.payload.items);
+       // state.items = [...state.items, action.payload.items];
+      },
       removeAllFavoriteItems(state, action) {
+        // state.items = state.items.filter(item => {item.isFavorite = false;
+        //                                          item.Rank = ''
+        //                                          item.isHover = false; });
         state.items.map(item => {item.isFavorite = false;
                                 item.Rank = ''
                                 item.isHover = false; });

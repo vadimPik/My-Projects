@@ -43,6 +43,7 @@ const FavoriteBeersPage = (props) => {
                                         </Button> </div> 
             } */}
 
+            <div className={ classes.favoritesCards}>
             
                 { isFavorite.length > 0 ? <div className={ classes.deleteAllFavorites }>
                                             <Button variant="outline-dark" className="mt-sm-4" size="nm" onClick={ deleteAllFavoritetHandler }>
@@ -57,11 +58,11 @@ const FavoriteBeersPage = (props) => {
 
  
 
-            <ModalWindow  isShow={ deleteAllFavoriteVisible } title={ modalTitle } body= { modalBody } onCancel={ cancelModalHandler } onConfirm = { confirmModalHandler } 
-                          onHide= { hideHandler}  isShowConfimButton= {true}/>                                
+                <ModalWindow  isShow={ deleteAllFavoriteVisible } title={ modalTitle } body= { modalBody } onCancel={ cancelModalHandler } onConfirm = { confirmModalHandler } 
+                            onHide= { hideHandler}  isShowConfimButton= {true}/>                                
 
-            <FavoriteBeers/>
-            
+                <FavoriteBeers/>
+            </div>
 
         </Fragment>
     );

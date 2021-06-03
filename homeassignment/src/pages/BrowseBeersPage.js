@@ -6,6 +6,8 @@ import { InputGroup, FormControl, Form, Row, Col, Button } from 'react-bootstrap
 import SearchBeer from '../components/Search/SearchBeer'
 import { uiActions } from '../store/ui-slice';
 import ModalWindow from '../components/ui/ModalWindow'
+import classes from './BrowseBeersPage.module.css';
+
 
 
 let searchParam;
@@ -70,32 +72,33 @@ const BrowseBeersPage = (props) => {
 
     return (
         <Fragment>
+            <div className={classes.browseCards}>
+                <Form className="mt-sm-4 pl-sm-5">
+                    <Row className="align-items-center ">
+                        <Col xs="auto">
+                            <Form.Control
+                                className="mb-2"
+                                id="inlineFormInput"
+                                placeholder="Food Pairing"
+                                ref = { beerSearchInputRef }
+                            />
+                        </Col>
+                        <Col xs="auto">
+                            {/* <Button variant="outline-dark" size="nm" type="submit" className="mb-2" onClick={ searchClickHandle }> */}
+                            <Button variant="outline-dark" size="nm" className="mb-2" onClick={ searchClickHandle } >
+                                Submit
+                            </Button>
+                        </Col>
+                    </Row>
+                </Form>
 
-            <Form className="mt-sm-4 pl-sm-5">
-                <Row className="align-items-center ">
-                    <Col xs="auto">
-                        <Form.Control
-                            className="mb-2"
-                            id="inlineFormInput"
-                            placeholder="Food Pairing"
-                            ref = { beerSearchInputRef }
-                        />
-                    </Col>
-                    <Col xs="auto">
-                        {/* <Button variant="outline-dark" size="nm" type="submit" className="mb-2" onClick={ searchClickHandle }> */}
-                        <Button variant="outline-dark" size="nm" className="mb-2" onClick={ searchClickHandle } >
-                            Submit
-                        </Button>
-                    </Col>
-                </Row>
-            </Form>
+                <ModalWindow  isShow={ isSearchEmptyModalVisible } title={ modalTitle } body= { modalBody } onCancel={ cancelModalHandler } 
+                    onHide= { hideHandler}  isShowConfimButton= {false}/>   
 
-            <ModalWindow  isShow={ isSearchEmptyModalVisible } title={ modalTitle } body= { modalBody } onCancel={ cancelModalHandler } 
-                onHide= { hideHandler}  isShowConfimButton= {false}/>   
+                { searchValue !== '' && <SearchBeer searchParam={ searchParam } location={ location }/>}
 
-            { searchValue !== '' && <SearchBeer searchParam={ searchParam } location={ location }/>}
-
-            <Beers />
+                <Beers />
+            </div>
           {/* { searchValue ? <SearchBeer searchParam={ searchParam } location={ location }/>
                               :  <Beers />  } */}
       </Fragment>
