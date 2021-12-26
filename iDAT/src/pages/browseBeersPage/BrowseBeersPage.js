@@ -119,9 +119,36 @@ const BrowseBeersPage = () => {
 
     const [rowData, setRowData] = useState(null);
 
-    const onGridReady = (params) => {
+    /* const onGridReady = (params) => {
             
         const updateData = (data) => params.api.setRowData(data);
+    
+        fetch('messages_grid.json')
+          .then((resp) => resp.json())
+          .then((data) => updateData(data));
+      }; */
+
+      const onGridReady = (params) => {
+        //setGridApi(params.api);
+        //setGridColumnApi(params.columnApi);
+    
+        const updateData = (data) => {
+          var dataSource = {
+            rowCount: null,
+            getRows: function (params) {
+              console.log('asking for ' + params.startRow + ' to ' + params.endRow);
+              setTimeout(function () {
+                var rowsThisPage = data.slice(params.startRow, params.endRow);
+                var lastRow = -1;
+                if (data.length <= params.endRow) {
+                  lastRow = data.length;
+                }
+                params.successCallback(rowsThisPage, lastRow);
+              }, 500);
+            },
+          };
+          params.api.setDatasource(dataSource);
+        };
     
         fetch('messages_grid.json')
           .then((resp) => resp.json())
@@ -154,8 +181,29 @@ const BrowseBeersPage = () => {
    return (
        <div className="ag-theme-alpine" style={{height: 1200, width: 1000}}>
            <AgGridReact
-                onGridReady={onGridReady}
-               rowData={rowData}>
+                defaultColDef={{
+                    flex: 1,
+                    resizable: true,
+                    minWidth: 100,
+                  }}
+                  components={{
+                    loadingRenderer: function (params) {
+                      if (params.value !== undefined) {
+                        return params.value;
+                      } else {
+                        return '<img src="https://www.ag-grid.com/example-assets/loading.gif">';
+                      }
+                    },
+                  }}
+                  rowBuffer={0}
+                  rowSelection={'multiple'}
+                  rowModelType={'infinite'}
+                  cacheBlockSize={20}
+                  cacheOverflowSize={2}
+                  maxConcurrentDatasourceRequests={1}
+                  infiniteInitialRowCount={1000}
+                  maxBlocksInCache={10}
+                  onGridReady={onGridReady}>
                <AgGridColumn field="ArchMessageID" filter="agNumberColumnFilter"></AgGridColumn>
                <AgGridColumn field="BTSInterchangeID" filter="agNumberColumnFilter"></AgGridColumn>
                <AgGridColumn field="ArchTime"  filter="agDateColumnFilter"></AgGridColumn>
