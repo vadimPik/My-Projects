@@ -93,7 +93,7 @@
 // }
 
 
-import React from 'react';
+import React, { useState } from 'react';
 import {AgGridColumn, AgGridReact} from 'ag-grid-react';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -106,25 +106,60 @@ import { useEffect } from 'react';
 
 const BrowseBeersPage = () => {
     const dispatch = useDispatch();
-    useEffect(() => {
+    /* useEffect(() => {
         dispatch(getMessagesData());
-       }, []);
+       }, []); */
 
-    const rowData =  useSelector((state) => state.beers.items);
-//    const rowData = [
-//        {make: "Toyota", model: "Celica", price: 35000},
-//        {make: "Ford", model: "Mondeo", price: 32000},
-//        {make: "Porsche", model: "Boxter", price: 72000}
-//    ];
+    //const rowData =  useSelector((state) => state.beers.items);
+    /* const rowData = [
+        {ArchMessageID: "Toyota", BTSInterchangeID: "Celica", ArchTime: 35000},
+        {ArchMessageID: "Toyota", BTSInterchangeID: "Celica", ArchTime: 35000},
+        {ArchMessageID: "Toyota", BTSInterchangeID: "Celica", ArchTime: 35000}
+    ]; */
+
+    const [rowData, setRowData] = useState(null);
+
+    const onGridReady = (params) => {
+            
+        const updateData = (data) => params.api.setRowData(data);
+    
+        fetch('messages_grid.json')
+          .then((resp) => resp.json())
+          .then((data) => updateData(data));
+      };
+
+      var filterParams = {
+        comparator: function (filterLocalDateAtMidnight, cellValue) {
+          var dateAsString = cellValue;
+          if (dateAsString == null) return -1;
+          var dateParts = dateAsString.split('/');
+          var cellDate = new Date(
+            Number(dateParts[2]),
+            Number(dateParts[1]) - 1,
+            Number(dateParts[0])
+          );
+          if (filterLocalDateAtMidnight.getTime() === cellDate.getTime()) {
+            return 0;
+          }
+          if (cellDate < filterLocalDateAtMidnight) {
+            return -1;
+          }
+          if (cellDate > filterLocalDateAtMidnight) {
+            return 1;
+          }
+        },
+        browserDatePicker: true,
+      };
 
    return (
        <div className="ag-theme-alpine" style={{height: 1200, width: 1000}}>
            <AgGridReact
+                onGridReady={onGridReady}
                rowData={rowData}>
-               <AgGridColumn field="ArchMessageID"></AgGridColumn>
-               <AgGridColumn field="BTSInterchangeID"></AgGridColumn>
-               <AgGridColumn field="ArchTime"></AgGridColumn>
-               <AgGridColumn field="MRN"></AgGridColumn>
+               <AgGridColumn field="ArchMessageID" filter="agNumberColumnFilter"></AgGridColumn>
+               <AgGridColumn field="BTSInterchangeID" filter="agNumberColumnFilter"></AgGridColumn>
+               <AgGridColumn field="ArchTime"  filter="agDateColumnFilter"></AgGridColumn>
+               <AgGridColumn field="MRN" filter="agTextColumnFilter"></AgGridColumn>
                <AgGridColumn field="MRN_SystemName"></AgGridColumn>
                <AgGridColumn field="MessageControlID"></AgGridColumn>
                <AgGridColumn field="MessageSourceSystem"></AgGridColumn>
@@ -140,4 +175,6 @@ const BrowseBeersPage = () => {
        </div>
    );
 };
+
+
 export default BrowseBeersPage;
