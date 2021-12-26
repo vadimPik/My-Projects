@@ -102,20 +102,32 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { useDispatch, useSelector} from 'react-redux';
 import { getMessagesData } from '../../store/beer-actions';
 import { useEffect } from 'react';
+import { uiActions } from '../../store/ui-slice';
+import ModalWindow from '../../components/ui/modalWindow/ModalWindow'
+import classes from './BrowseBeersPage.module.css';
+
+const modalTitle = "Input empty";
+const modalBody = "Please Enter food for start searching beer";
 
 
 const BrowseBeersPage = () => {
-    const dispatch = useDispatch();
-    /* useEffect(() => {
-        dispatch(getMessagesData());
-       }, []); */
 
-    //const rowData =  useSelector((state) => state.beers.items);
-    /* const rowData = [
-        {ArchMessageID: "Toyota", BTSInterchangeID: "Celica", ArchTime: 35000},
-        {ArchMessageID: "Toyota", BTSInterchangeID: "Celica", ArchTime: 35000},
-        {ArchMessageID: "Toyota", BTSInterchangeID: "Celica", ArchTime: 35000}
-    ]; */
+    const isSearchEmptyModalVisible = useSelector((state) => state.ui.isSearchEmptyModalVisible);
+
+    const cancelModalHandler = () => {
+        dispatch(uiActions.changeSearchEmptyWindowVisble(false));
+    };
+
+    const hideHandler = () => {
+        dispatch(uiActions.changeSearchEmptyWindowVisble(false));
+    };
+
+    const dispatch = useDispatch();
+     useEffect(() => {
+        dispatch(getMessagesData());
+       }, []); 
+
+   // const rowData =  useSelector((state) => state.beers.items);
 
     const [rowData, setRowData] = useState(null);
 
@@ -149,11 +161,17 @@ const BrowseBeersPage = () => {
           };
           params.api.setDatasource(dataSource);
         };
-    
+
         fetch('messages_grid.json')
           .then((resp) => resp.json())
           .then((data) => updateData(data));
       };
+
+      const onCellDoubleClicked = (params) => {
+        dispatch(uiActions.changeSearchEmptyWindowVisble(true));
+        console.log(params.data);
+      };
+
 
       var filterParams = {
         comparator: function (filterLocalDateAtMidnight, cellValue) {
@@ -180,6 +198,10 @@ const BrowseBeersPage = () => {
 
    return (
        <div className="ag-theme-alpine" style={{height: 1200, width: 1000}}>
+
+      <ModalWindow  isShow={ isSearchEmptyModalVisible } title={ modalTitle } body= { modalBody } onCancel={ cancelModalHandler } 
+                          onHide= { hideHandler}  isShowConfimButton= {false}/>  
+
            <AgGridReact
                 defaultColDef={{
                     flex: 1,
@@ -203,7 +225,8 @@ const BrowseBeersPage = () => {
                   maxConcurrentDatasourceRequests={1}
                   infiniteInitialRowCount={1000}
                   maxBlocksInCache={10}
-                  onGridReady={onGridReady}>
+                  onGridReady={onGridReady}
+                  onCellDoubleClicked={onCellDoubleClicked}>
                <AgGridColumn field="ArchMessageID" filter="agNumberColumnFilter"></AgGridColumn>
                <AgGridColumn field="BTSInterchangeID" filter="agNumberColumnFilter"></AgGridColumn>
                <AgGridColumn field="ArchTime"  filter="agDateColumnFilter"></AgGridColumn>

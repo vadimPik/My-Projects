@@ -58,20 +58,65 @@ import { uiActions } from './ui-slice';
     };
   };
 
-  export const getMessagesData = (searchParam) => {
-    fetch('messages_grid.json'
-    ,{
-      headers : { 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-       }
-    }
-    )
-      .then(function(response){
-        console.log(response);
-        return response.json();
-      })
-      .then(function(myJson) {
-        console.log(myJson);
-      });
+
+  export const getMessagesData = () => {
+
+    return async (dispatch) => {
+      const messageData = async () => {
+
+        const response = await fetch('messages_grid.json'
+        ,{
+          headers : { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+           }
+        }
+        );
+
+        if (!response.ok) {
+          throw new Error('Could not fetch beer data!');
+        }
+  
+        const data = await response.json();
+  
+        return data;
+      };
+  
+      try {
+        const allMessagesData = await messageData();
+
+        // allMessagesData.map(item => {
+        //       item.isFavorite = false;
+        //       item.Rank = '';
+        //       item.isDetailsModalVisible = false;
+        //       item.isHover = false;
+        //     });
+
+        dispatch(
+          itemsActions.addItems({
+            items: allMessagesData || [],
+          })
+        
+        );
+
+        // dispatch(
+        //     uiActions.showNotification({
+        //     status: 'success',
+        //     title: 'Success!',
+        //     message: 'Beer data Loaded Successfuly!',
+        //   })
+        // );
+
+      } catch (error) {
+        // dispatch(
+        //     uiActions.showNotification({
+        //     status: 'error',
+        //     title: 'Error!',
+        //     message: 'Fetching beer data failed!',
+        //   })
+        // );
+      }
+    };
   };
+
+  
