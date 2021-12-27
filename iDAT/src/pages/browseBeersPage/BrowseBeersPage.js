@@ -47,7 +47,7 @@ const BrowseBeersPage = () => {
      setGridColumnApi(params.columnApi);
  
      const updateData = (data) => {
-       //document.querySelector('#everyone').checked = true;
+       document.querySelector('#All').checked = true;
        setRowData(data);
      };
  
@@ -99,8 +99,8 @@ function asDate(dateAsString) {
          return node.data.age >= 25 && node.data.age <= 50;
        case 'above50':
          return node.data.age > 50;*/
-         case 'MessageType':
-            return node.data.MessageType =='ORU';
+         case 'notReplaced':
+            return node.data.ArchMessageID ==50230;
          case 'dateAfter2020':
         //console.log('node.data.ArchTime' + node.data.ArchTime + 'compare:' |+ asDate(node.data.ArchTime) > new Date(2020, 1, 1));
          return asDate(node.data.ArchTime) > new Date(2020, 1, 1);
@@ -216,13 +216,13 @@ function asDate(dateAsString) {
             All
           </label>
           <label>
-            <input
-              type="input"
+          <input
+              type="radio"
               name="filter"
-              id="MessageType"
-              onChange={() => externalFilterChanged('All')}
+              id="notReplaced"
+              onChange={() => externalFilterChanged('notReplaced')}
             />
-            Message Type
+            Filter out replaced message
           </label>
           <label>
             <input
@@ -231,7 +231,7 @@ function asDate(dateAsString) {
               id="dateAfter2020"
               onChange={() => externalFilterChanged('dateAfter2020')}
             />
-            After 01/01/2020
+            Last Year
           </label>
         </div>
            <AgGridReact
