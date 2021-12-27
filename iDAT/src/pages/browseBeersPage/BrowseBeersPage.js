@@ -105,12 +105,16 @@ import { useEffect } from 'react';
 import { uiActions } from '../../store/ui-slice';
 import ModalWindow from '../../components/ui/modalWindow/ModalWindow'
 import classes from './BrowseBeersPage.module.css';
+import { itemsActions } from '../../store/items-slice';
+import BeerModal from '../../components/beerModal/BeerModal';
 
 const modalTitle = "Input empty";
 const modalBody = "Please Enter food for start searching beer";
 
 
 const BrowseBeersPage = () => {
+
+   // const { ArchMessageID, BTSInterchangeID, ArchTime, MRN, MRN_SystemName, MessageControlID, MessageSourceSystem, MessageTriggerEvent, MessageType, MessageCreationTime, LastLoadingState, LastLoadingStateDate, ErrorID, BTSReceiveLocationName, DED } = props.item;
 
     const isSearchEmptyModalVisible = useSelector((state) => state.ui.isSearchEmptyModalVisible);
 
@@ -130,6 +134,7 @@ const BrowseBeersPage = () => {
    // const rowData =  useSelector((state) => state.beers.items);
 
     const [rowData, setRowData] = useState(null);
+    const [gridApi, setGridApi] = useState(null);
 
     /* const onGridReady = (params) => {
             
@@ -141,7 +146,7 @@ const BrowseBeersPage = () => {
       }; */
 
       const onGridReady = (params) => {
-        //setGridApi(params.api);
+        setGridApi(params.api);
         //setGridColumnApi(params.columnApi);
     
         const updateData = (data) => {
@@ -169,7 +174,19 @@ const BrowseBeersPage = () => {
 
       const onCellDoubleClicked = (params) => {
         dispatch(uiActions.changeSearchEmptyWindowVisble(true));
+      //  dispatch(itemsActions.changeDetailsWindowVisble({id: params.data.ArchMessageID, isVisible: true}));
         console.log(params.data);
+        console.log('params.data.ArchMessageID: ' + params.data.ArchMessageID);
+
+        modalTitle = params.data.ArchMessageID;
+      };
+
+      const mouseOverHandler = () => {
+        dispatch(itemsActions.toggleHover(50231));
+      };
+    
+      const mouseOutHandler = () => {
+        dispatch(itemsActions.toggleHover(50231));
       };
 
 
@@ -196,17 +213,38 @@ const BrowseBeersPage = () => {
         browserDatePicker: true,
       };
 
-   return (
-       <div className="ag-theme-alpine" style={{height: 1200, width: 1000}}>
+      const navigateToNextCell = (params) => {
+        var suggestedNextCell = params.nextCellPosition;
+        var KEY_UP = 38;
+        var KEY_DOWN = 40;
+        var noUpOrDownKeyPressed = params.key !== KEY_DOWN && params.key !== KEY_UP;
+        if (noUpOrDownKeyPressed) {
+          return suggestedNextCell;
+        }
+        gridApi.forEachNode(function (node) {
+          if (node.rowIndex === suggestedNextCell.rowIndex) {
+            node.setSelected(true);
+          }
+        });
+        return suggestedNextCell;
+      };
 
-      <ModalWindow  isShow={ isSearchEmptyModalVisible } title={ modalTitle } body= { modalBody } onCancel={ cancelModalHandler } 
-                          onHide= { hideHandler}  isShowConfimButton= {false}/>  
+   return (
+       <div className="ag-theme-alpine" style={{height: 1200, width: 1400}}>
+
+      {/* <ModalWindow  isShow={ isSearchEmptyModalVisible } title={ modalTitle } body= { modalBody } onCancel={ cancelModalHandler } 
+                          onHide= { hideHandler}  isShowConfimButton= {false}/>   */}
+        // to show different data for each row - need to pass each row data
+        {/* <BeerModal item={props.item} key={ArchMessageID}/> */}
+
+          <BeerModal isShow={ isSearchEmptyModalVisible }/>
 
            <AgGridReact
                 defaultColDef={{
                     flex: 1,
                     resizable: true,
                     minWidth: 100,
+
                   }}
                   components={{
                     loadingRenderer: function (params) {
@@ -226,22 +264,29 @@ const BrowseBeersPage = () => {
                   infiniteInitialRowCount={1000}
                   maxBlocksInCache={10}
                   onGridReady={onGridReady}
-                  onCellDoubleClicked={onCellDoubleClicked}>
-               <AgGridColumn field="ArchMessageID" filter="agNumberColumnFilter"></AgGridColumn>
-               <AgGridColumn field="BTSInterchangeID" filter="agNumberColumnFilter"></AgGridColumn>
-               <AgGridColumn field="ArchTime"  filter="agDateColumnFilter"></AgGridColumn>
-               <AgGridColumn field="MRN" filter="agTextColumnFilter"></AgGridColumn>
-               <AgGridColumn field="MRN_SystemName"></AgGridColumn>
-               <AgGridColumn field="MessageControlID"></AgGridColumn>
-               <AgGridColumn field="MessageSourceSystem"></AgGridColumn>
-               <AgGridColumn field="MessageTriggerEvent"></AgGridColumn>
-               <AgGridColumn field="MessageType"></AgGridColumn>
-               <AgGridColumn field="MessageCreationTime"></AgGridColumn>
-               <AgGridColumn field="LastLoadingState"></AgGridColumn>
-               <AgGridColumn field="LastLoadingStateDate"></AgGridColumn>
-               <AgGridColumn field="ErrorID"></AgGridColumn>
-               <AgGridColumn field="BTSReceiveLocationName"></AgGridColumn>
-               <AgGridColumn field="DED"></AgGridColumn>
+                  onCellDoubleClicked={onCellDoubleClicked}
+                  onCellMouseOut={mouseOutHandler}
+                  onCellMouseOver={mouseOverHandler}
+                  //rowMultiSelectWithClick={true}
+                  suppressRowClickSelection={true}
+                  rowSelection={'multiple'}
+                  navigateToNextCell={navigateToNextCell}
+                 >
+               <AgGridColumn field="ArchMessageID" filter="agNumberColumnFilter" checkboxSelection={true} headerCheckboxSelection={true}  headerCheckboxSelectionFilteredOnly={true} minWidth={160}></AgGridColumn>
+               <AgGridColumn field="BTSInterchangeID" filter="agNumberColumnFilter" minWidth={180}></AgGridColumn>
+               <AgGridColumn field="ArchTime"  filter="agDateColumnFilter" minWidth={200}></AgGridColumn>
+               <AgGridColumn field="MRN" filter="agTextColumnFilter" minWidth={180}></AgGridColumn>
+               <AgGridColumn field="MRN_SystemName" minWidth={180}></AgGridColumn>
+               <AgGridColumn field="MessageControlID" minWidth={180}></AgGridColumn>
+               <AgGridColumn field="MessageSourceSystem" minWidth={180}></AgGridColumn>
+               <AgGridColumn field="MessageTriggerEvent" minWidth={180}></AgGridColumn>
+               <AgGridColumn field="MessageType" minWidth={180}></AgGridColumn>
+               <AgGridColumn field="MessageCreationTime" minWidth={180}></AgGridColumn>
+               <AgGridColumn field="LastLoadingState" minWidth={180}></AgGridColumn>
+               <AgGridColumn field="LastLoadingStateDate" minWidth={180}></AgGridColumn>
+               <AgGridColumn field="ErrorID" minWidth={180}></AgGridColumn>
+               <AgGridColumn field="BTSReceiveLocationName" minWidth={180}></AgGridColumn>
+               <AgGridColumn field="DED" minWidth={10}></AgGridColumn>
            </AgGridReact>
        </div>
    );
