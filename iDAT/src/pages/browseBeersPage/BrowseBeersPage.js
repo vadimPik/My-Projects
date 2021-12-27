@@ -197,7 +197,7 @@ function asDate(dateAsString) {
       };
 
    return (
-       <div style={{height: 1200, width: 1400}}>
+       <div style={{height: 850, width: 1400}}>
 
       {/* <ModalWindow  isShow={ isSearchEmptyModalVisible } title={ modalTitle } body= { modalBody } onCancel={ cancelModalHandler } 
                           onHide= { hideHandler}  isShowConfimButton= {false}/>   */}
@@ -291,21 +291,21 @@ function asDate(dateAsString) {
                   rowData={rowData}
                   
                  >
-               <AgGridColumn field="ArchMessageID" filter="agNumberColumnFilter" checkboxSelection={true} headerCheckboxSelection={true}  headerCheckboxSelectionFilteredOnly={true} minWidth={160}></AgGridColumn>
-               <AgGridColumn field="BTSInterchangeID" filter="agNumberColumnFilter" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="ArchTime"  filter="agDateColumnFilter" filterParams={dateFilterParams} minWidth={200}></AgGridColumn>
-               <AgGridColumn field="MRN" filter="agTextColumnFilter" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="MRN_SystemName" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="MessageControlID" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="MessageSourceSystem" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="MessageTriggerEvent" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="MessageType" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="MessageCreationTime" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="LastLoadingState" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="LastLoadingStateDate" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="ErrorID" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="BTSReceiveLocationName" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="DED" minWidth={10}></AgGridColumn>
+               <AgGridColumn field="ArchMessageID" filter="agNumberColumnFilter" checkboxSelection={true} headerCheckboxSelection={true}  headerCheckboxSelectionFilteredOnly={true} minWidth={160} sortable="true"></AgGridColumn>
+               <AgGridColumn field="BTSInterchangeID" filter="agNumberColumnFilter" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="ArchTime"  filter="agDateColumnFilter" filterParams={dateFilterParams} minWidth={200} sortable="true"></AgGridColumn>
+               <AgGridColumn field="MRN" filter="agTextColumnFilter" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="MRN_SystemName" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="MessageControlID" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="MessageSourceSystem" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="MessageTriggerEvent" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="MessageType" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="MessageCreationTime" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="LastLoadingState" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="LastLoadingStateDate" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="ErrorID" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="BTSReceiveLocationName" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="DED" minWidth={10} sortable="true"></AgGridColumn>
            </AgGridReact>
            </div>
        </div>
