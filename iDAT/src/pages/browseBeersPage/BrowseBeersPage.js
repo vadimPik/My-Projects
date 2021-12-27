@@ -234,7 +234,9 @@ const BrowseBeersPage = () => {
 
       {/* <ModalWindow  isShow={ isSearchEmptyModalVisible } title={ modalTitle } body= { modalBody } onCancel={ cancelModalHandler } 
                           onHide= { hideHandler}  isShowConfimButton= {false}/>   */}
-        // to show different data for each row - need to pass each row data
+
+
+        {/* TODO: to show different data for each row - need to pass each row data */}
         {/* <BeerModal item={props.item} key={ArchMessageID}/> */}
 
           <BeerModal isShow={ isSearchEmptyModalVisible }/>
