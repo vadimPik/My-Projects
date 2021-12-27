@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {AgGridColumn, AgGridReact} from 'ag-grid-react';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 
 import { useDispatch, useSelector} from 'react-redux';
 import { getMessagesData } from '../../store/beer-actions';
@@ -12,6 +12,8 @@ import ModalWindow from '../../components/ui/modalWindow/ModalWindow'
 import classes from './BrowseBeersPage.module.css';
 import { itemsActions } from '../../store/items-slice';
 import BeerModal from '../../components/beerModal/BeerModal';
+
+import { Dropdown, DropdownButton} from 'react-bootstrap';
 
 const modalTitle = "Input empty";
 const modalBody = "Please Enter food for start searching beer";
@@ -71,7 +73,7 @@ const BrowseBeersPage = () => {
     },
   };
 
-   var ageType = 'everyone';
+   var ageType = 'All';
 function asDate(dateAsString) {
   //var splitFields = dateAsString.split('/');
   //console.log('asDate:' + new Date(dateAsString));
@@ -86,7 +88,7 @@ function asDate(dateAsString) {
    };
  
    const isExternalFilterPresent = () => {
-     return ageType !== 'everyone';
+     return ageType !== 'All';
    };
  
    const doesExternalFilterPass = (node) => {
@@ -103,7 +105,7 @@ function asDate(dateAsString) {
             return node.data.ArchMessageID ==50230;
          case 'dateAfter2020':
         //console.log('node.data.ArchTime' + node.data.ArchTime + 'compare:' |+ asDate(node.data.ArchTime) > new Date(2020, 1, 1));
-         return asDate(node.data.ArchTime) > new Date(2020, 1, 1);
+         return asDate(node.data.ArchTime) > new Date(2020, 12, 1);
        default:
          return true;
      }
@@ -195,7 +197,7 @@ function asDate(dateAsString) {
       };
 
    return (
-       <div className="ag-theme-alpine" style={{height: 1200, width: 1400}}>
+       <div style={{height: 1200, width: 1400}}>
 
       {/* <ModalWindow  isShow={ isSearchEmptyModalVisible } title={ modalTitle } body= { modalBody } onCancel={ cancelModalHandler } 
                           onHide= { hideHandler}  isShowConfimButton= {false}/>   */}
@@ -205,7 +207,16 @@ function asDate(dateAsString) {
         {/* <BeerModal item={props.item} key={ArchMessageID}/> */}
 
           <BeerModal isShow={ isSearchEmptyModalVisible }/>
-          <div className="test-header">
+          <div className={ classes.testcontainer }>
+        
+            <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="UPMC"   >
+                <Dropdown.Item eventKey="1">UPMC</Dropdown.Item>
+                <Dropdown.Item eventKey="2">HCA</Dropdown.Item>
+                <Dropdown.Divider />
+            </DropdownButton>
+           
+          <div className= { classes.testheader }>
+          
           <label>
             <input
               type="radio"
@@ -234,6 +245,14 @@ function asDate(dateAsString) {
             Last Year
           </label>
         </div>
+        <div
+          id="myGrid"
+          style={{
+            height: '100%',
+            width: '100%',
+          }}
+          className="ag-theme-alpine-dark"
+        >
            <AgGridReact
                 defaultColDef={{
                     flex: 1,
@@ -270,6 +289,7 @@ function asDate(dateAsString) {
                   doesExternalFilterPass={doesExternalFilterPass}
                   onGridReady={onGridReady}
                   rowData={rowData}
+                  
                  >
                <AgGridColumn field="ArchMessageID" filter="agNumberColumnFilter" checkboxSelection={true} headerCheckboxSelection={true}  headerCheckboxSelectionFilteredOnly={true} minWidth={160}></AgGridColumn>
                <AgGridColumn field="BTSInterchangeID" filter="agNumberColumnFilter" minWidth={180}></AgGridColumn>
@@ -287,7 +307,9 @@ function asDate(dateAsString) {
                <AgGridColumn field="BTSReceiveLocationName" minWidth={180}></AgGridColumn>
                <AgGridColumn field="DED" minWidth={10}></AgGridColumn>
            </AgGridReact>
+           </div>
        </div>
+         </div>
    );
 };
 
