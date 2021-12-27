@@ -1,98 +1,3 @@
-// import Beers from '../../components/beers/Beers'
-// import { Fragment, useEffect, useRef } from 'react';
-// import { useHistory, useLocation } from 'react-router-dom';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { InputGroup, FormControl, Form, Row, Col, Button } from 'react-bootstrap';
-// import SearchBeer from '../../components/ui/search/SearchBeer'
-// import { uiActions } from '../../store/ui-slice';
-// import ModalWindow from '../../components/ui/modalWindow/ModalWindow'
-// import classes from './BrowseBeersPage.module.css';
-
-
-
-// let searchParam;
-// const modalTitle = "Input empty";
-// const modalBody = "Please Enter food for start searching beer";
-
-// const BrowseBeersPage = (props) => {
-//      const dispatch = useDispatch();
-
-//      const searchValue = useSelector((state) => state.ui.searchValue);
-//      const isSearchEmptyModalVisible = useSelector((state) => state.ui.isSearchEmptyModalVisible);
-    
-//     const history = useHistory();
-//     const location = useLocation();
-//     const beerSearchInputRef = useRef();
-
-//     useEffect(() => {
-//         searchParam = new URLSearchParams(location.search).get('search');
-        
-//         if (searchParam && searchParam !== '' ){
-//             if (searchParam !== searchValue) {
-//                 dispatch(uiActions.changSearchValue(searchParam));
-//             }
-//         }else {
-//             dispatch(uiActions.changSearchValue(''));
-//         }
-
-//         //eslint-disable-next-line
-//     }, []);
-
-//     const cancelModalHandler = () => {
-//         dispatch(uiActions.changeSearchEmptyWindowVisble(false));
-//     };
-
-//     const hideHandler = () => {
-//         dispatch(uiActions.changeSearchEmptyWindowVisble(false));
-//     };
-
-//     const searchClickHandle = () => {
-//         searchParam = beerSearchInputRef.current.value;
-//         history.push('/browse?search=' + searchParam);
-
-//         if (searchParam && searchParam !== '' ) {
-//             if (searchParam !== searchValue ) {
-//                 dispatch(uiActions.changSearchValue(searchParam));
-//             }
-//         } else {
-//             dispatch(uiActions.changeSearchEmptyWindowVisble(true));
-//             dispatch(uiActions.changSearchValue(''));
-//         }
-//     };
-
-//     return (
-//         <Fragment>
-//             <div className={classes.browseCards}>
-//                 <Form className="mt-sm-4 pl-sm-5">
-//                     <Row className="align-items-center ">
-//                         <Col xs="auto">
-//                             <Form.Control
-//                                 className="mb-2"
-//                                 id="inlineFormInput"
-//                                 placeholder="Food Pairing"
-//                                 ref = { beerSearchInputRef }
-//                             />
-//                         </Col>
-//                         <Col xs="auto">
-//                             <Button variant="outline-dark" size="nm" className="mb-2" onClick={ searchClickHandle } >
-//                                 Submit
-//                             </Button>
-//                         </Col>
-//                     </Row>
-//                 </Form>
-
-//                 <ModalWindow  isShow={ isSearchEmptyModalVisible } title={ modalTitle } body= { modalBody } onCancel={ cancelModalHandler } 
-//                     onHide= { hideHandler}  isShowConfimButton= {false}/>   
-
-//                 { searchValue !== '' && <SearchBeer searchParam={ searchParam } location={ location }/>}
-
-//                 <Beers />
-//             </div>
-//       </Fragment>
-//     );
-// }
-
-
 import React, { useState } from 'react';
 import {AgGridColumn, AgGridReact} from 'ag-grid-react';
 
@@ -133,19 +38,79 @@ const BrowseBeersPage = () => {
 
    // const rowData =  useSelector((state) => state.beers.items);
 
-    const [rowData, setRowData] = useState(null);
-    const [gridApi, setGridApi] = useState(null);
+   const [gridApi, setGridApi] = useState(null);
+   const [gridColumnApi, setGridColumnApi] = useState(null);
+   const [rowData, setRowData] = useState(null);
+ 
+   const onGridReady = (params) => {
+     setGridApi(params.api);
+     setGridColumnApi(params.columnApi);
+ 
+     const updateData = (data) => {
+       //document.querySelector('#everyone').checked = true;
+       setRowData(data);
+     };
+ 
+     fetch('messages_grid.json')
+       .then((resp) => resp.json())
+       .then((data) => updateData(data));
+   };
 
-    /* const onGridReady = (params) => {
-            
-        const updateData = (data) => params.api.setRowData(data);
-    
-        fetch('messages_grid.json')
-          .then((resp) => resp.json())
-          .then((data) => updateData(data));
-      }; */
+   var dateFilterParams = {
+    comparator: function (filterLocalDateAtMidnight, cellValue) {
+      var cellDate = asDate(cellValue);
+      if (filterLocalDateAtMidnight.getTime() === cellDate.getTime()) {
+        return 0;
+      }
+      if (cellDate < filterLocalDateAtMidnight) {
+        return -1;
+      }
+      if (cellDate > filterLocalDateAtMidnight) {
+        return 1;
+      }
+    },
+  };
 
-      const onGridReady = (params) => {
+   var ageType = 'everyone';
+function asDate(dateAsString) {
+  //var splitFields = dateAsString.split('/');
+  //console.log('asDate:' + new Date(dateAsString));
+  return new Date(dateAsString);
+}
+ 
+
+   const externalFilterChanged = (newValue) => {
+     ageType = newValue;
+     console.log('externalFilterChanged');
+     gridApi.onFilterChanged();
+   };
+ 
+   const isExternalFilterPresent = () => {
+     return ageType !== 'everyone';
+   };
+ 
+   const doesExternalFilterPass = (node) => {
+
+    console.log('doesExternalFilterPass');
+     switch (ageType) {
+       /*case 'below25':
+         return node.data.age < 25;
+       case 'between25and50':
+         return node.data.age >= 25 && node.data.age <= 50;
+       case 'above50':
+         return node.data.age > 50;*/
+         case 'MessageType':
+            return node.data.MessageType =='ORU';
+         case 'dateAfter2020':
+        //console.log('node.data.ArchTime' + node.data.ArchTime + 'compare:' |+ asDate(node.data.ArchTime) > new Date(2020, 1, 1));
+         return asDate(node.data.ArchTime) > new Date(2020, 1, 1);
+       default:
+         return true;
+     }
+   };
+ 
+
+      /*const onGridReady = (params) => {
         setGridApi(params.api);
         //setGridColumnApi(params.columnApi);
     
@@ -170,7 +135,7 @@ const BrowseBeersPage = () => {
         fetch('messages_grid.json')
           .then((resp) => resp.json())
           .then((data) => updateData(data));
-      };
+      };*/
 
       const onCellDoubleClicked = (params) => {
         dispatch(uiActions.changeSearchEmptyWindowVisble(true));
@@ -240,7 +205,35 @@ const BrowseBeersPage = () => {
         {/* <BeerModal item={props.item} key={ArchMessageID}/> */}
 
           <BeerModal isShow={ isSearchEmptyModalVisible }/>
-
+          <div className="test-header">
+          <label>
+            <input
+              type="radio"
+              name="filter"
+              id="All"
+              onChange={() => externalFilterChanged('All')}
+            />
+            All
+          </label>
+          <label>
+            <input
+              type="input"
+              name="filter"
+              id="MessageType"
+              onChange={() => externalFilterChanged('All')}
+            />
+            Message Type
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="filter"
+              id="dateAfter2020"
+              onChange={() => externalFilterChanged('dateAfter2020')}
+            />
+            After 01/01/2020
+          </label>
+        </div>
            <AgGridReact
                 defaultColDef={{
                     flex: 1,
@@ -259,7 +252,7 @@ const BrowseBeersPage = () => {
                   }}
                   rowBuffer={0}
                   rowSelection={'multiple'}
-                  rowModelType={'infinite'}
+                  //rowModelType={'infinite'}
                   cacheBlockSize={20}
                   cacheOverflowSize={2}
                   maxConcurrentDatasourceRequests={1}
@@ -273,10 +266,14 @@ const BrowseBeersPage = () => {
                   suppressRowClickSelection={true}
                   rowSelection={'multiple'}
                   navigateToNextCell={navigateToNextCell}
+                  isExternalFilterPresent={isExternalFilterPresent}
+                  doesExternalFilterPass={doesExternalFilterPass}
+                  onGridReady={onGridReady}
+                  rowData={rowData}
                  >
                <AgGridColumn field="ArchMessageID" filter="agNumberColumnFilter" checkboxSelection={true} headerCheckboxSelection={true}  headerCheckboxSelectionFilteredOnly={true} minWidth={160}></AgGridColumn>
                <AgGridColumn field="BTSInterchangeID" filter="agNumberColumnFilter" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="ArchTime"  filter="agDateColumnFilter" minWidth={200}></AgGridColumn>
+               <AgGridColumn field="ArchTime"  filter="agDateColumnFilter" filterParams={dateFilterParams} minWidth={200}></AgGridColumn>
                <AgGridColumn field="MRN" filter="agTextColumnFilter" minWidth={180}></AgGridColumn>
                <AgGridColumn field="MRN_SystemName" minWidth={180}></AgGridColumn>
                <AgGridColumn field="MessageControlID" minWidth={180}></AgGridColumn>
