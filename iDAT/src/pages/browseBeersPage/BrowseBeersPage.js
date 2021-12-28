@@ -95,6 +95,7 @@
 
 import React, { useState } from 'react';
 import {AgGridColumn, AgGridReact} from 'ag-grid-react';
+import'ag-grid-enterprise'; 
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
@@ -107,12 +108,35 @@ import ModalWindow from '../../components/ui/modalWindow/ModalWindow'
 import classes from './BrowseBeersPage.module.css';
 import { itemsActions } from '../../store/items-slice';
 import BeerModal from '../../components/beerModal/BeerModal';
+import axios from 'axios';
 
 const modalTitle = "Input empty";
 const modalBody = "Please Enter food for start searching beer";
 
 
 const BrowseBeersPage = () => {
+
+  const [HDMresult, setHDMResult] = useState(null)
+  const [CDRresult, setCDRResult] = useState(null)
+  const [HL7result, setHL7Result] = useState(null)
+
+  useEffect(() => {
+    axios.get('HDM_example.xml', {"Content-Type": "application/xml; charset=utf-8"})
+    .then(res => {
+      setHDMResult(res.data)
+    });
+
+    axios.get('labsVPO.xml', {"Content-Type": "application/xml; charset=utf-8"})
+    .then(res => {
+      setCDRResult(res.data)
+    });
+
+    axios.get('HL7_example.txt')
+    .then(res => {
+      setHL7Result(res.data);
+    });
+
+  }, [])
 
    // const { ArchMessageID, BTSInterchangeID, ArchTime, MRN, MRN_SystemName, MessageControlID, MessageSourceSystem, MessageTriggerEvent, MessageType, MessageCreationTime, LastLoadingState, LastLoadingStateDate, ErrorID, BTSReceiveLocationName, DED } = props.item;
 
@@ -178,8 +202,17 @@ const BrowseBeersPage = () => {
         console.log(params.data);
         console.log('params.data.ArchMessageID: ' + params.data.ArchMessageID);
 
-        modalTitle = params.data.ArchMessageID;
+       // modalTitle = params.data.ArchMessageID;
       };
+
+      // const onRowClicked = (params) => {
+      //   console.log('params: ' + params)
+      //   if (params.type === 'click') {
+      //     console.log('Left click');
+      //   } else if (params.type === 'contextmenu') {
+      //     console.log('Right click');
+      //   }
+      // }
 
       const mouseOverHandler = () => {
         dispatch(itemsActions.toggleHover(50231));
@@ -188,6 +221,178 @@ const BrowseBeersPage = () => {
       const mouseOutHandler = () => {
         dispatch(itemsActions.toggleHover(50231));
       };
+
+      const getContextMenuItems = (params) => {
+        var result = [
+          {
+            name: 'Undo',
+            // shortcut: 'Alt + M',
+            action: function () {
+              console.log('Undo Selected');
+            },
+            // icon:
+            //   '<img src="https://www.ag-grid.com/example-assets/skills/mac.png"/>',
+          },
+          // 'separator',
+          {
+            name: 'Replay',
+            // shortcut: 'Alt + M',
+            action: function () {
+              console.log('Replay Selected');
+            },
+            // icon:
+            //   '<img src="https://www.ag-grid.com/example-assets/skills/mac.png"/>',
+          },
+          // 'separator',
+          {
+            name: 'Delete',
+            // shortcut: 'Alt + M',
+            action: function () {
+              console.log('Delete Selected');
+            },
+            // icon:
+            //   '<img src="https://www.ag-grid.com/example-assets/skills/mac.png"/>',
+          },
+        ];
+        return result;
+      };
+
+
+      // const getContextMenuItems = (params) => {
+      //   var result = [
+      //     {
+      //       name: 'Alert ' + params.value,
+      //       action: function () {
+      //         window.alert('Alerting about ' + params.value);
+      //       },
+      //       cssClasses: ['redFont', 'bold'],
+      //     },
+      //     {
+      //       name: 'Always Disabled',
+      //       disabled: true,
+      //       tooltip:
+      //         'Very long tooltip, did I mention that I am very long, well I am! Long!  Very Long!',
+      //     },
+      //     {
+      //       name: 'Country',
+      //       subMenu: [
+      //         {
+      //           name: 'Ireland',
+      //           action: function () {
+      //             console.log('Ireland was pressed');
+      //           },
+      //          // icon: createFlagImg('ie'),
+      //         },
+      //         {
+      //           name: 'UK',
+      //           action: function () {
+      //             console.log('UK was pressed');
+      //           },
+      //         //  icon: createFlagImg('gb'),
+      //         },
+      //         {
+      //           name: 'France',
+      //           action: function () {
+      //             console.log('France was pressed');
+      //           },
+      //           //icon: createFlagImg('fr'),
+      //         },
+      //       ],
+      //     },
+      //     {
+      //       name: 'Person',
+      //       subMenu: [
+      //         {
+      //           name: 'Niall',
+      //           action: function () {
+      //             console.log('Niall was pressed');
+      //           },
+      //         },
+      //         {
+      //           name: 'Sean',
+      //           action: function () {
+      //             console.log('Sean was pressed');
+      //           },
+      //         },
+      //         {
+      //           name: 'John',
+      //           action: function () {
+      //             console.log('John was pressed');
+      //           },
+      //         },
+      //         {
+      //           name: 'Alberto',
+      //           action: function () {
+      //             console.log('Alberto was pressed');
+      //           },
+      //         },
+      //         {
+      //           name: 'Tony',
+      //           action: function () {
+      //             console.log('Tony was pressed');
+      //           },
+      //         },
+      //         {
+      //           name: 'Andrew',
+      //           action: function () {
+      //             console.log('Andrew was pressed');
+      //           },
+      //         },
+      //         {
+      //           name: 'Kev',
+      //           action: function () {
+      //             console.log('Kev was pressed');
+      //           },
+      //         },
+      //         {
+      //           name: 'Will',
+      //           action: function () {
+      //             console.log('Will was pressed');
+      //           },
+      //         },
+      //         {
+      //           name: 'Armaan',
+      //           action: function () {
+      //             console.log('Armaan was pressed');
+      //           },
+      //         },
+      //       ],
+      //     },
+      //     'separator',
+      //     {
+      //       name: 'Windows',
+      //       shortcut: 'Alt + W',
+      //       action: function () {
+      //         console.log('Windows Item Selected');
+      //       },
+      //       icon:
+      //         '<img src="https://www.ag-grid.com/example-assets/skills/windows.png" />',
+      //     },
+      //     {
+      //       name: 'Mac',
+      //       shortcut: 'Alt + M',
+      //       action: function () {
+      //         console.log('Mac Item Selected');
+      //       },
+      //       icon:
+      //         '<img src="https://www.ag-grid.com/example-assets/skills/mac.png"/>',
+      //     },
+      //     'separator',
+      //     {
+      //       name: 'Checked',
+      //       checked: true,
+      //       action: function () {
+      //         console.log('Checked Selected');
+      //       },
+      //       icon:
+      //         '<img src="https://www.ag-grid.com/example-assets/skills/mac.png"/>',
+      //     },
+      //     'copy',
+      //     'separator',
+      //     'chartRange',
+      //   ];
+      //   return result;
+      // };
 
 
       var filterParams = {
@@ -235,11 +440,14 @@ const BrowseBeersPage = () => {
       {/* <ModalWindow  isShow={ isSearchEmptyModalVisible } title={ modalTitle } body= { modalBody } onCancel={ cancelModalHandler } 
                           onHide= { hideHandler}  isShowConfimButton= {false}/>   */}
 
+      <ModalWindow  isShowTabs={true} isShow={ isSearchEmptyModalVisible } onCancel={ cancelModalHandler } 
+                                onHide= { hideHandler}  isShowConfimButton= {false} size="xl" HDMresult={HDMresult} CDRresult={CDRresult} HL7result={HL7result}/>  
+
 
         {/* TODO: to show different data for each row - need to pass each row data */}
         {/* <BeerModal item={props.item} key={ArchMessageID}/> */}
 
-          <BeerModal isShow={ isSearchEmptyModalVisible }/>
+          {/* <BeerModal isShow={ isSearchEmptyModalVisible }/> */}
 
            <AgGridReact
                 defaultColDef={{
@@ -267,8 +475,12 @@ const BrowseBeersPage = () => {
                   maxBlocksInCache={10}
                   onGridReady={onGridReady}
                   onCellDoubleClicked={onCellDoubleClicked}
+                //  onRowClicked ={onRowClicked }
                   onCellMouseOut={mouseOutHandler}
                   onCellMouseOver={mouseOverHandler}
+                  suppressContextMenu={false}
+                  allowContextMenuWithControlKey={true}
+                  getContextMenuItems={getContextMenuItems}
                   //rowMultiSelectWithClick={true}
                   suppressRowClickSelection={true}
                   rowSelection={'multiple'}
@@ -291,6 +503,8 @@ const BrowseBeersPage = () => {
                <AgGridColumn field="DED" minWidth={10}></AgGridColumn>
            </AgGridReact>
        </div>
+
+       
    );
 };
 

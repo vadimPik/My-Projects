@@ -1,0 +1,638 @@
+<q1>
+	<Message creationTime="201009291155" controlActEffectiveTime="20101009020302">
+		<elementLoadPolicy>Insert</elementLoadPolicy>
+		<MessageId SystemName="DemoEMPI" root="Message_Id" extension="RBT_5212bfe8-b20a-48e6"/>
+		<versionCode SystemName="DemoEMPI" code="2.3.1" codeSystem="HL7StandardVersionCode" domainCode="HL7StandardVersionCode"/>
+		<typeId SystemName="DemoEMPI" root="Type_Id" extension="ADT"/>
+		<interactionId SystemName="DemoEMPI" root="Interaction_Id" extension="A01"/>
+		<controlActId SystemName="Baseline" root="dbMotionGUID" extension="RBT_67cedefd-edc7-4e0b"/>
+		<controlActCode SystemName="DemoEMPI" code="01" codeSystem="HL7TriggerEventCode" domainCode="HL7TriggerEventCode"/>
+		<AdmissionCode SystemName="DemoEMPI" code="EMER" codeSystem="ActEncounterCode" domainCode="ActEncounterCode"/>
+		<QueryId root="DIL" extension="1f550162-9bc4-45b1"/>
+		<SenderDevice name="DemoEMPI">
+			<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+			<id SystemName="DemoEMPI" root="Device_Id" extension="DemoEMPI"/>
+		</SenderDevice>
+		<PerformerDevice name="DemoEMPI">
+			<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+			<id SystemName="DemoEMPI" root="Device_Id" extension="DemoEMPI"/>
+		</PerformerDevice>
+		<SenderOrganization Name="DemoEMPI">
+			<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+			<code SystemName="Baseline" code="HOSP" codeSystem="dbMOrganizationEntityType" domainCode="OrganizationEntityType"/>
+			<orgPartCode SystemName="Baseline" code="INS" codeSystem="dbMOrganizationPartCodes" domainCode="OrganizationPartRoleType"/>
+			<id SystemName="DemoEMPI" root="Organization_Id" extension="DemoEMPI"/>
+		</SenderOrganization>
+		<dbmNode name="Node_Name">
+			<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+			<id SystemName="RHIO OIDs" root="RHIO Nodes" extension="Node_Id_extension"/>
+		</dbmNode>
+	</Message>
+	<PatientRecord BirthTime="19800921" DeceasedInd="false">
+		<elementLoadPolicy>Override</elementLoadPolicy>
+		<AdministrativeGenderCode SystemName="DemoEMPI" code="M" codeSystem="AdministrativeGender" domainCode="AdministrativeGender"/>
+		<MaritalStatusCode SystemName="DemoEMPI" code="WIDOWED" codeSystem="MaritalStatus" domainCode="MaritalStatus"/>
+		<ReligiousAffiliationCode SystemName="DemoEMPI" code="JEHOVAHS WITNESS" codeSystem="ReligiousAffiliation" domainCode="ReligiousAffiliation"/>
+		<VeryImportantPersonCode SystemName="DemoEMPI" code="VP" codeSystem="PatientImportance" domainCode="PatientImportance"/>
+		<BirthCountryCode SystemName="DemoEMPI" code="ISRAEL" codeSystem="CountryEntityType" domainCode="CountryEntityType"/>
+		<PreferredLanguageCode SystemName="DemoEMPI" code="ENGLISH" codeSystem="HumanLanguage" domainCode="HumanLanguage"/>
+		<PatientIdentifier SystemName="DemoEMPI" root="Patient_Id" extension="DilPatient_CAG_Change_Patient_Patient#2" assigningAuthorityName="assigningAuthorityName" displayable="displayable" isPrimary="IsPrimary">
+			<IdentifierType SystemName="Baseline" code="identifierType" codeSystem="dbmIdentifierType" domainCode="IdentifierType"/>
+		</PatientIdentifier>
+		<PatientTelecom Value="052-6678222">
+			<scheme SystemName="Baseline" code="TEL" codeSystem="URLScheme" domainCode="URLScheme"/>
+			<use SystemName="Baseline" code="H" codeSystem="PostalAddressUse" domainCode="TelecommunicationAddressUse"/>
+		</PatientTelecom>
+		<PatientName>
+			<nameUse SystemName="Baseline" code="L" codeSystem="PersonNameUse" domainCode="PersonNameUse"/>
+			<PatientNamePart Value="Full">
+				<partType SystemName="Baseline" code="FAM" codeSystem="EntityNamePartType" domainCode="EntityNamePartType"/>
+			</PatientNamePart>
+			<PatientNamePart Value="Data">
+				<partType SystemName="Baseline" code="GIV" codeSystem="EntityNamePartType" domainCode="EntityNamePartType"/>
+			</PatientNamePart>
+			<PatientNamePart>
+				<partType SystemName="Baseline" code="MMN" codeSystem="dbmEntityNamePartType" domainCode="EntityNamePartType"/>
+			</PatientNamePart>
+		</PatientName>
+		<PostalAddress>
+			<use SystemName="baseline" code="H" codeSystem="PostalAddressUse" domainCode="PostalAddressUse"/>
+			<AddressPart Value="Giora Yoseftal 1">
+				<partType SystemName="baseline" code="SAL" codeSystem="AddressPartType" domainCode="AddressPartType"/>
+			</AddressPart>
+			<AddressPart Value="Beer Sheva">
+				<partType SystemName="baseline" code="CTY " codeSystem="AddressPartType" domainCode="AddressPartType"/>
+			</AddressPart>
+			<AddressPart>
+				<partType SystemName="baseline" code="STA" codeSystem="AddressPartType" domainCode="AddressPartType"/>
+				<valueCode SystemName="DemoEMPI" code="IL" codeSystem="States_AddressValue" domainCode="AddressValue"/>
+			</AddressPart>
+			<AddressPart Value="01602">
+				<partType SystemName="baseline" code="ZIP" codeSystem="AddressPartType" domainCode="AddressPartType"/>
+			</AddressPart>
+		</PostalAddress>
+		<AllLoadPolicyParams ElementChild="PrimaryCareProvider" LoadPolicy="DeleteAll"/>
+		<PrimaryCareProvider>
+			<elementLoadPolicy>Override</elementLoadPolicy>
+			<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_a4fefbbf-7417-43cc"/>
+			<code SystemName="Baseline" code="GPCP" codeSystem="dbMHealthcareProviderRoletype" domainCode="HealthcareProviderRoleType"/>
+			<MedicalStaff Name="Konn Guy Dr.">
+				<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+				<MedicalStaffIdentifier SystemName="DemoEMPI" root="MedicalStaff_Id_UI" extension="42SST1_DilExt_CAG_ChangePatient_FullData_19" assigningAuthorityName="assigningAuthorityName" displayable="displayable" isPrimary="IsPrimary">
+					<IdentifierType SystemName="Baseline" code="identifierType" codeSystem="dbmIdentifierType" domainCode="IdentifierType"/>
+				</MedicalStaffIdentifier>
+			</MedicalStaff>
+		</PrimaryCareProvider>
+		<Encounter ActClassId="Encounter" EffectiveTime_Start="201010090203" EffectiveTime_End="201010100203" LengthOfStayQuantity_Value="333">
+			<elementLoadPolicy>Override</elementLoadPolicy>
+			<AllLoadPolicyParams ElementChild="AttenderPracticioner" LoadPolicy="TypeDeleteAll" SystemName="Baseline" EntityName="ParticipationType" Value="ADM"/>
+			<AllLoadPolicyParams ElementChild="AttenderPracticioner" LoadPolicy="TypeDeleteAll" SystemName="Baseline" EntityName="ParticipationType" Value="ATND"/>
+			<AllLoadPolicyParams ElementChild="AttenderPracticioner" LoadPolicy="TypeDeleteAll" SystemName="Baseline" EntityName="ParticipationType" Value="REF"/>
+			<AllLoadPolicyParams ElementChild="AttenderPracticioner" LoadPolicy="TypeDeleteAll" SystemName="Baseline" EntityName="ParticipationType" Value="CON"/>
+			<AllLoadPolicyParams ElementChild="CoveredParty" LoadPolicy="DeleteAll"/>
+			<AllLoadPolicyParams ElementChild="ChiefComplaint" LoadPolicy="DeleteAll"/>
+			<id SystemName="DemoEMPI" root="Encounter_Id" extension="Encounter_DilExt_CAG_ChangePatient_FullData_19_21"/>
+			<code SystemName="DemoEMPI" code="EMER" codeSystem="ActEncounterCode" domainCode="ActEncounterCode"/>
+			<priorityCode SystemName="DemoEMPI" code="N" codeSystem="ActPriority" domainCode="ActPriority"/>
+			<lengthOfStayQuantity_Unit SystemName="Baseline" code="D" codeSystem="UnitsOfMeasure" domainCode="UnitsOfMeasureCaseInsensitive"/>
+			<dischargeDispositionCode SystemName="DemoEMPI" code="01" codeSystem="EncounterDischargeDisposition" domainCode="EncounterDischargeDisposition"/>
+			<admissionReferralSourceCode SystemName="DemoEMPI" code="3" codeSystem="EncounterAdmissionSource" domainCode="EncounterAdmissionSource"/>
+			<assignedOrganization Name="RR">
+				<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+				<orgPartCode SystemName="Baseline" code="INS" codeSystem="dbMOrganizationEntityType" domainCode="OrganizationPartRoleType"/>
+				<id SystemName="DemoEMPI" root="Organization_Id" extension="assignedOrganization_DilExt_CAG_ChangePatient_FullData_19_21"/>
+			</assignedOrganization>
+			<referrerOrganization Name="NONE">
+				<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+				<orgPartCode SystemName="Baseline" code="INS" codeSystem="dbMOrganizationEntityType" domainCode="OrganizationPartRoleType"/>
+				<id SystemName="HH" root="Referrer_Organization_Id" extension="assignedOrganization_DilExt_CAG_ChangePatient_FullData_19_21"/>
+			</referrerOrganization>
+			<ServiceProviderUnit Time_Start="20101009020302" Time_End="20111009020302" Bed="AAAA ''1" Room="2-5">
+				<elementLoadPolicy>Override</elementLoadPolicy>
+				<id SystemName="DemoEMPI" root="Location_Id" extension="ServiceProviderUnit_DilExt_CAG_ChangePatient_FullData_19_21_1"/>
+				<ServiceProviderUnit Name="CIN3">
+					<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+					<orgPartCode SystemName="Baseline" code="UNT" codeSystem="dbMOrganizationPartCodes" domainCode="OrganizationPartRoleType"/>
+					<id SystemName="DemoEMPI" root="Organization_Id" extension="ServiceProviderUnitOrg_DilExt_CAG_ChangePatient_FullData_19_CIN3"/>
+					<parentOrganization_ref SystemName="DemoEMPI" root="Organization_Id"/>
+				</ServiceProviderUnit>
+			</ServiceProviderUnit>
+			<ServiceProviderUnit Time_Start="20101009020302">
+				<elementLoadPolicy>Override</elementLoadPolicy>
+				<id SystemName="DemoEMPI" root="Service_Id" extension="ServiceProviderUnit_DilExt_CAG_ChangePatient_FullData_19_21_2"/>
+				<Code SystemName="DemoEMPI" code="SUR" codeSystem="ServiceDeliveryLocationRoleType" domainCode="ServiceDeliveryLocationRoleType"/>
+			</ServiceProviderUnit>
+			<AttenderPracticioner>
+				<elementLoadPolicy>Override</elementLoadPolicy>
+				<id SystemName="DemoEMPI" root="AttenderPractitioner_Id" extension="AttenderPractitioner_DilExt_CAG_ChangePatient_FullData_19_21_ADM"/>
+				<typeCode SystemName="Baseline" code="ADM" codeSystem="ParticipationType" domainCode="ParticipationType"/>
+				<MedicalStaff Name="QT NONASSIGNED PHYSICIAN W. Wer">
+					<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+					<MedicalStaffIdentifier SystemName="DemoEMPI" root="MedicalStaff_Id_UI" extension="DilExt_CAG_ChangePatient_FullData_19_999999" assigningAuthorityName="assigningAuthorityName" displayable="displayable" isPrimary="IsPrimary">
+						<IdentifierType SystemName="Baseline" code="identifierType" codeSystem="dbmIdentifierType" domainCode="IdentifierType"/>
+					</MedicalStaffIdentifier>
+				</MedicalStaff>
+			</AttenderPracticioner>
+			<AttenderPracticioner>
+				<elementLoadPolicy>Override</elementLoadPolicy>
+				<id SystemName="DemoEMPI" root="AttenderPractitioner_Id" extension="DilExt_CAG_ChangePatient_FullData_19_21_42SST2_ATND"/>
+				<typeCode SystemName="Baseline" code="ATND" codeSystem="ParticipationType" domainCode="ParticipationType"/>
+				<MedicalStaff Name="Kon Guy Dr.">
+					<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+					<MedicalStaffIdentifier SystemName="DemoEMPI" root="MedicalStaff_Id_UI" extension="DilExt_CAG_ChangePatient_FullData_19_42SST2" assigningAuthorityName="assigningAuthorityName" displayable="displayable" isPrimary="IsPrimary">
+						<IdentifierType SystemName="Baseline" code="identifierType" codeSystem="dbmIdentifierType" domainCode="IdentifierType"/>
+					</MedicalStaffIdentifier>
+				</MedicalStaff>
+			</AttenderPracticioner>
+			<AttenderPracticioner>
+				<elementLoadPolicy>Override</elementLoadPolicy>
+				<id SystemName="DemoEMPI" root="AttenderPractitioner_Id" extension="DilExt_CAG_ChangePatient_FullData_19_21_758_REF"/>
+				<typeCode SystemName="Baseline" code="REF" codeSystem="ParticipationType" domainCode="ParticipationType"/>
+				<MedicalStaff Name="MD HESLOP PAULINE B">
+					<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+					<MedicalStaffIdentifier SystemName="DemoEMPI" root="MedicalStaff_Id_UI" extension="DilExt_CAG_ChangePatient_FullData_19_758" assigningAuthorityName="assigningAuthorityName" displayable="displayable" isPrimary="IsPrimary">
+						<IdentifierType SystemName="Baseline" code="identifierType" codeSystem="dbmIdentifierType" domainCode="IdentifierType"/>
+					</MedicalStaffIdentifier>
+				</MedicalStaff>
+			</AttenderPracticioner>
+			<AttenderPracticioner>
+				<elementLoadPolicy>Override</elementLoadPolicy>
+				<id SystemName="DemoEMPI" root="AttenderPractitioner_Id" extension="DilExt_CAG_ChangePatient_FullData_19_21_014236_CON"/>
+				<typeCode SystemName="Baseline" code="CON" codeSystem="ParticipationType" domainCode="ParticipationType"/>
+				<MedicalStaff Name="Re II BASS THOMAS S. T">
+					<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+					<MedicalStaffIdentifier SystemName="DemoEMPI" root="MedicalStaff_Id_UI" extension="DilExt_CAG_ChangePatient_FullData_19_014236" assigningAuthorityName="assigningAuthorityName" displayable="displayable" isPrimary="IsPrimary">
+						<IdentifierType SystemName="Baseline" code="identifierType" codeSystem="dbmIdentifierType" domainCode="IdentifierType"/>
+					</MedicalStaffIdentifier>
+				</MedicalStaff>
+			</AttenderPracticioner>
+			<Condition_ref loadPolicy="Reference" ContextControlInd="3" PriorityNumber="0" Role="Target" ActClassId="ChiefComplaint">
+				<TypeCode SystemName="Baseline" code="RSON" codeSystem="ActRelationshipType" displayName="has reason" domainCode="ActRelationshipType"/>
+				<Act_ref SystemName="Baseline" root="dbMotionGUID" extension="RBT_bfdcdb2f-bb2f-43f9"/>
+			</Condition_ref>
+		</Encounter>
+		<LaboratoryRequest ActClassId="LaboratoryRequest" effectiveTime="20121104050200" Text="[LabRequest Comments here]">
+			<elementLoadPolicy>Override</elementLoadPolicy>
+			<id SystemName="DemoEMPI" root="LaboratoryRequest_Id" extension="LabReq_Reg_DilExt_CAG_ChangePatient_FullData_19"/>
+			<referrer Name="hospital C">
+				<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+				<orgPartCode SystemName="Baseline" code="INS" codeSystem="dbMOrganizationPartCodes" domainCode="OrganizationPartRoleType"/>
+				<id SystemName="DemoEMPI" root="Organization_Id" extension="hospital C"/>
+			</referrer>
+			<performer Name="DOCTOR ALEXANDR">
+				<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+				<MedicalStaffIdentifier SystemName="DemoEMPI" root="MedicalStaff_Id_UI" extension="995581" assigningAuthorityName="assigningAuthorityName" displayable="displayable" isPrimary="IsPrimary">
+					<IdentifierType SystemName="Baseline" code="identifierType" codeSystem="dbmIdentifierType" domainCode="IdentifierType"/>
+				</MedicalStaffIdentifier>
+			</performer>
+			<LaboratoryRequestConfidentiality code="V" codeSystem="2.16.840.1.113883.5.25" domainCode="confidentiality"/>
+			<LabEvent_ref loadPolicy="OverrideAll" ContextControlInd="3" Role="Target" ActClassId="LaboratoryEvent">
+				<Act_ref SystemName="DemoEMPI" root="LaboratoryEvent_Id" extension="LabEvn_Reg_DilExt_CAG_ChangePatient_FullData_19"/>
+			</LabEvent_ref>
+			<Encounter_ref loadPolicy="UniqueReference" ContextControlInd="2" Role="Source" ActClassId="Encounter">
+				<Act_ref SystemName="DemoEMPI" root="Encounter_Id" extension="Encounter_DilExt_CAG_ChangePatient_FullData_19_21"/>
+			</Encounter_ref>
+		</LaboratoryRequest>
+		<LaboratoryEvent ActClassId="LaboratoryEvent" effectiveTime="20170216" Text="Lab Results History Details Dialog Window - Lab Comments section[free text]">
+			<elementLoadPolicy>Override</elementLoadPolicy>
+			<AllLoadPolicyParams ElementChild="LaboratoryResult" LoadPolicy="DeleteAll"/>
+			<id SystemName="DemoEMPI" root="LaboratoryEvent_Id" extension="LabEvn_Reg_DilExt_CAG_ChangePatient_FullData_19"/>
+			<clusterCode SystemName="Baseline" code="SEROLOGY" codeSystem="LOINC" domainCode="ClusterType"/>
+			<Code SystemName="Baseline" code="1015-7" codeSystem="LOINC" displayName="Lab test" domainCode="BatteryType"/>
+			<statusCode SystemName="PRO_CIA" code="Active" codeSystem="ActStatus_Lab" domainCode="ActStatus"/>
+			<priorityCode SystemName="PRO_CIA" code="R" codeSystem="ActPriority_Lab" domainCode="ActPriority"/>
+			<LaboratoryEventConfidentiality code="V" codeSystem="2.16.840.1.113883.5.25" domainCode="confidentiality"/>
+			<SubjectSpecimen>
+				<elementLoadPolicy>OverrideAll</elementLoadPolicy>
+				<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_829f6c26-ce82-461b"/>
+				<SpecimenCode SystemName="PRO_CIA" code="BLD" codeSystem="SpecimenEntityType" displayName="Whole blood" domainCode="SpecimenEntityType"/>
+			</SubjectSpecimen>
+			<performerOrg Name="Mercy Hospital">
+				<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+				<orgPartCode SystemName="Baseline" code="INS" codeSystem="dbMOrganizationPartCodes" domainCode="OrganizationPartRoleType"/>
+				<id SystemName="DemoEMPI" root="Organization_Id" extension="Mercy Hospital"/>
+			</performerOrg>
+			<Encounter_ref loadPolicy="UniqueReference" ContextControlInd="2" Role="Source" ActClassId="Encounter">
+				<Act_ref SystemName="DemoEMPI" root="Encounter_Id" extension="Encounter_DilExt_CAG_ChangePatient_FullData_19_21"/>
+			</Encounter_ref>
+			<LaboratoryResult ActClassId="LaboratoryResult" EffectiveTime="20170218" Value_conversion="46.03" Value="46.03" ReferenceRange_conversion="-01.03-201.03" ReferenceRange_Low="-1.03" ReferenceRange_High="201.03">
+				<elementLoadPolicy>Override</elementLoadPolicy>
+				<AllLoadPolicyParams ElementChild="MicrobiologyFinding" LoadPolicy="DeleteAll"/>
+				<id SystemName="PRO_CIA" root="LaboratoryResult_Id" extension="LabResult_Reg_DilExt_CAG_ChangePatient_FullData_19_1"/>
+				<StatusCode SystemName="PRO_CIA" code="Active" codeSystem="ActStatus_LabResults" domainCode="ActStatus"/>
+				<MethodCode SystemName="PRO_CIA" code="0005" codeSystem="ObservationMethod" domainCode="ObservationMethod"/>
+				<LaboratoryResultConfidentiality code="V" codeSystem="2.16.840.1.113883.5.25" domainCode="confidentiality"/>
+				<Value_Unit SystemName="Baseline" code="mg/dL" codeSystem="UCUM" displayName="mg/dL" domainCode="UnitsOfMeasureCaseInsensitive"/>
+				<code SystemName="Baseline" code="16914-4" codeSystem="LOINC" displayName="Glucose, post XXX challenge" domainCode="TestType"/> 
+  ‏ 
+ <LaboratoryResultInterpretarion code="R" codeSystem="2.16.840.1.113883.5.83" displayName="Resistent" domainCode="ObservationInterpretation"/>
+				<LabResultText Content="CV Lab Results screen Remarks[max 200 chars to inline remarks, 201+ will open a dialog with the content]">
+					<mediaType SystemName="Baseline" code="text/plain" codeSystem="MediaType" displayName="text/plain" domainCode="MediaType"/>
+				</LabResultText>
+				<performerOrganization Name="Murray Insurance Agency">
+					<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+					<orgPartCode SystemName="Baseline" code="INS" codeSystem="dbMOrganizationPartCodes" domainCode="OrganizationPartRoleType"/>
+					<id SystemName="DemoEMPI" root="Organization_Id" extension="Murray Insurance Agency"/>
+				</performerOrganization>
+			</LaboratoryResult>
+			<LaboratoryResult ActClassId="LaboratoryResult" EffectiveTime="20170218" Value_conversion="132.03" Value="132.03" ReferenceRange_conversion="-01.03-201.03" ReferenceRange_Low="-1.03" ReferenceRange_High="201.03">
+				<elementLoadPolicy>Override</elementLoadPolicy>
+				<AllLoadPolicyParams ElementChild="MicrobiologyFinding" LoadPolicy="DeleteAll"/>
+				<id SystemName="PRO_CIA" root="LaboratoryResult_Id" extension="LabResult_Reg_DilExt_CAG_ChangePatient_FullData_19_2"/>
+				<StatusCode SystemName="PRO_CIA" code="Active" codeSystem="ActStatus_LabResults" domainCode="ActStatus"/>
+				<MethodCode SystemName="PRO_CIA" code="0005" codeSystem="ObservationMethod" domainCode="ObservationMethod"/>
+				<LaboratoryResultConfidentiality code="V" codeSystem="2.16.840.1.113883.5.25" domainCode="confidentiality"/>
+				<Value_Unit SystemName="Baseline" code="mg/dL" codeSystem="UCUM" displayName="mg/dL" domainCode="UnitsOfMeasureCaseInsensitive"/>
+				<code SystemName="Baseline" code="16914-4" codeSystem="LOINC" displayName="Glucose, post XXX challenge" domainCode="TestType"/> 
+  ‏ 
+ <LaboratoryResultInterpretarion code="N" codeSystem="2.16.840.1.113883.5.83" displayName="Normal" domainCode="ObservationInterpretation"/>
+				<LabResultText Content="CV Lab Results screen Remarks[max 200 chars to inline remarks, 201+ will open a dialog with the content]">
+					<mediaType SystemName="Baseline" code="text/plain" codeSystem="MediaType" displayName="text/plain" domainCode="MediaType"/>
+				</LabResultText>
+				<performerOrganization Name="Murray Insurance Agency">
+					<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+					<orgPartCode SystemName="Baseline" code="INS" codeSystem="dbMOrganizationPartCodes" domainCode="OrganizationPartRoleType"/>
+					<id SystemName="DemoEMPI" root="Organization_Id" extension="Murray Insurance Agency"/>
+				</performerOrganization>
+			</LaboratoryResult>
+			<LaboratoryResult ActClassId="LaboratoryResult" EffectiveTime="20170219" Value_conversion="101.03" Value="101.03" ReferenceRange_conversion="-01.03-201.03" ReferenceRange_Low="-1.03" ReferenceRange_High="201.03">
+				<elementLoadPolicy>Override</elementLoadPolicy>
+				<AllLoadPolicyParams ElementChild="MicrobiologyFinding" LoadPolicy="DeleteAll"/>
+				<id SystemName="PRO_CIA" root="LaboratoryResult_Id" extension="LabResult_Reg_DilExt_CAG_ChangePatient_FullData_19_3"/>
+				<StatusCode SystemName="PRO_CIA" code="Active" codeSystem="ActStatus_LabResults" domainCode="ActStatus"/>
+				<MethodCode SystemName="PRO_CIA" code="0005" codeSystem="ObservationMethod" domainCode="ObservationMethod"/>
+				<LaboratoryResultConfidentiality code="V" codeSystem="2.16.840.1.113883.5.25" domainCode="confidentiality"/>
+				<Value_Unit SystemName="Baseline" code="mg/dL" codeSystem="UCUM" displayName="mg/dL" domainCode="UnitsOfMeasureCaseInsensitive"/>
+				<code SystemName="Baseline" code="16914-4" codeSystem="LOINC" displayName="Glucose, post XXX challenge" domainCode="TestType"/> 
+  ‏ 
+ <LaboratoryResultInterpretarion code="N" codeSystem="2.16.840.1.113883.5.83" displayName="Normal" domainCode="ObservationInterpretation"/>
+				<LabResultText Content="CV Lab Results screen Remarks[max 200 chars to inline remarks, 201+ will open a dialog with the content]">
+					<mediaType SystemName="Baseline" code="text/plain" codeSystem="MediaType" displayName="text/plain" domainCode="MediaType"/>
+				</LabResultText>
+				<performerOrganization Name="Murray Insurance Agency">
+					<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+					<orgPartCode SystemName="Baseline" code="INS" codeSystem="dbMOrganizationPartCodes" domainCode="OrganizationPartRoleType"/>
+					<id SystemName="DemoEMPI" root="Organization_Id" extension="Murray Insurance Agency"/>
+				</performerOrganization>
+			</LaboratoryResult>
+		</LaboratoryEvent>
+		<LaboratoryRequest ActClassId="LaboratoryRequest">
+			<elementLoadPolicy>Override</elementLoadPolicy>
+			<id SystemName="DemoEMPI" root="LaboratoryRequest_Id" extension="LabReq_MB_DilExt_CAG_ChangePatient_FullData_19"/>
+			<performer Name="LANGROUDI ANDREW">
+				<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+				<MedicalStaffIdentifier SystemName="DemoEMPI" root="MedicalStaff_Id_UI" extension="MedicalStaffIdentifier_DilExt_CAG_ChangePatient_FullData_19_LANG" assigningAuthorityName="assigningAuthorityName" displayable="displayable" isPrimary="IsPrimary">
+					<IdentifierType SystemName="Baseline" code="identifierType" codeSystem="dbmIdentifierType" domainCode="IdentifierType"/>
+				</MedicalStaffIdentifier>
+			</performer>
+			<LabEvent_ref loadPolicy="OverrideAll" ContextControlInd="3" Role="Target" ActClassId="LaboratoryEvent">
+				<Act_ref SystemName="DemoEMPI" root="LaboratoryEvent_Id" extension="LabEvn_MB_DilExt_CAG_ChangePatient_FullData_19"/>
+			</LabEvent_ref>
+			<Encounter_ref loadPolicy="UniqueReference" ContextControlInd="2" Role="Source" ActClassId="Encounter">
+				<Act_ref SystemName="DemoEMPI" root="Encounter_Id" extension="Encounter_DilExt_CAG_ChangePatient_FullData_19_21"/>
+			</Encounter_ref>
+		</LaboratoryRequest>
+		<LaboratoryEvent ActClassId="LaboratoryEvent" effectiveTime="201209151427" Text="111Q UANTIT Y OF GROWTH111 LIGHT GROWTH QUANTITY OF GROWTH LIGHT GROWTH">
+			<elementLoadPolicy>Override</elementLoadPolicy>
+			<AllLoadPolicyParams ElementChild="LaboratoryResult" LoadPolicy="DeleteAll"/>
+			<id SystemName="DemoEMPI" root="LaboratoryEvent_Id" extension="LabEvn_MB_DilExt_CAG_ChangePatient_FullData_19"/>
+			<clusterCode SystemName="DemoEMPI" code="MB" codeSystem="ClusterType" domainCode="ClusterType"/>
+			<Code SystemName="DemoEMPI" code="ROUTC" codeSystem="BatteryType_L" displayName="ROUTINE CULTURE" domainCode="BatteryType"/>
+			<statusCode SystemName="DemoEMPI" code="P" codeSystem="ActStatus_Lab" domainCode="ActStatus"/>
+			<priorityCode SystemName="DemoEMPI" code="R" codeSystem="ActPriority_Lab" domainCode="ActPriority"/>
+			<SubjectSpecimen>
+				<elementLoadPolicy>OverrideAll</elementLoadPolicy>
+				<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_7b4ea5b5-9414-4ccc"/>
+				<SpecimenCode SystemName="DemoEMPI" code="SWAB" codeSystem="SpecimenEntityType" domainCode="SpecimenEntityType">
+					<CDQualifier SystemName="DemoEMPI" code="FOOT" codeSystem="SpecimenEntityType_Site" DomainCode="SpecimenEntityType"/>
+				</SpecimenCode>
+			</SubjectSpecimen>
+			<performerOrg Name="PCL">
+				<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+				<code SystemName="Baseline" code="HOSP" codeSystem="dbMOrganizationEntityType" domainCode="OrganizationEntityType"/>
+				<orgPartCode SystemName="Baseline" code="INS" codeSystem="dbMOrganizationPartCodes" domainCode="OrganizationPartRoleType"/>
+				<id SystemName="DemoEMPI" root="Organization_Id" extension="DilExt_CAG_ChangePatient_FullData_19_PCL"/>
+			</performerOrg>
+			<Encounter_ref loadPolicy="UniqueReference" ContextControlInd="2" Role="Source" ActClassId="Encounter">
+				<Act_ref SystemName="DemoEMPI" root="Encounter_Id" extension="Encounter_DilExt_CAG_ChangePatient_FullData_19_21"/>
+			</Encounter_ref>
+			<LaboratoryResult ActClassId="LaboratoryResult" EffectiveTime="201203070815" Value_conversion="Result Prompts: EPITHELIAL CELLS FEW, Abnormal Indication: N GRAM NEGATIVE BACILLUS FEW, Abnormal Indication: N GRAM NEGATIVE DIPLOCOCCI FEW, Abnormal Indication: N GRAM POSITIVE BACILLUS FEW, Abnormal Indication: N GRAM POSITIVE COCCI FEW, Abnormal Indication: N GRAM STAIN 1+ GRAM NEGATIVE BACILLI, Abnormal Indication: N WHITE BLOOD CELLS FEW, Abnormal Indication: N" Value="">
+				<elementLoadPolicy>Override</elementLoadPolicy>
+				<AllLoadPolicyParams ElementChild="MicrobiologyFinding" LoadPolicy="DeleteAll"/>
+				<id SystemName="MT_COCNB" root="LaboratoryResult_Id" extension="LabResult_MB_DilExt_CAG_ChangePatient_FullData_19_1"/>
+				<StatusCode SystemName="HCA_General" code="F " codeSystem="ActStatus_LabResults" domainCode="ActStatus"/>
+				<code SystemName="MT_COCNB" code="GRAMST" codeSystem="TestType" displayName="GRAM STAIN" domainCode="TestType"/>
+				<LaboratoryResultInterpretarion SystemName="HCA_General" code="N" codeSystem="ObservationInterpretation" displayName="N" domainCode="ObservationInterpretation"/>
+				<performerOrganization Name="QA1 MAIN LAB 2545 Park Plaza Building 3, 1 West Nashville TN 37203 ">
+					<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+					<orgPartCode SystemName="Baseline" code="INS" codeSystem="dbMOrganizationPartCodes" domainCode="OrganizationPartRoleType"/>
+					<id SystemName="MT_COCNB" root="Organization_Id" extension="MLTT"/>
+				</performerOrganization>
+			</LaboratoryResult>
+			<LaboratoryResult ActClassId="LaboratoryResult" EffectiveTime="201203070815" Value_conversion="Interpretations: This is a copy of CMS 6308B1 Canned comment for result GROUP additional comment on interp screen ********************************************************** As of 03/07/12 0813: Positive culture for BRANHAMELLA CATARRHALIS and patient is not on any antibiotic therapy. ********************************************************** ********************************************************** As of 03/07/12 0813: Positive culture for STAPHYLOCOCCUS.AUREUS and patient is not on any antibiotic therapy. **********************************************************" Value="">
+				<elementLoadPolicy>Override</elementLoadPolicy>
+				<AllLoadPolicyParams ElementChild="MicrobiologyFinding" LoadPolicy="DeleteAll"/>
+				<id SystemName="MT_COCNB" root="LaboratoryResult_Id" extension="LabResult_MB_DilExt_CAG_ChangePatient_FullData_19_2"/>
+				<StatusCode SystemName="HCA_General" code="F " codeSystem="ActStatus_LabResults" domainCode="ActStatus"/>
+				<code SystemName="MT_COCNB" code="ABSCESSC" codeSystem="TestType" displayName="ABSCESS CULTURE" domainCode="TestType"/>
+			</LaboratoryResult>
+			<LaboratoryResult ActClassId="LaboratoryResult" EffectiveTime="201203070815" Value_conversion="Result Line: Result comment Result Prompts: CATALASE NEGATIVE CATALASE TEST, kg, Reference Range: 1-5, Abnormal Indication: N CMS7999 NEGATIVE, cm, Reference Range: 4-9, Abnormal Indication: N DTS7259 NEGATIVE, Abnormal Indication: N">
+				<elementLoadPolicy>Override</elementLoadPolicy>
+				<AllLoadPolicyParams ElementChild="MicrobiologyFinding" LoadPolicy="DeleteAll"/>
+				<id SystemName="MT_COCNB" root="LaboratoryResult_Id" extension="LabResult_MB_DilExt_CAG_ChangePatient_FullData_19_3"/>
+				<StatusCode SystemName="HCA_General" code="F " codeSystem="ActStatus_LabResults" domainCode="ActStatus"/>
+				<code SystemName="MT_COCNB" code="ABSCESSC" codeSystem="TestType" displayName="ABSCESS CULTURE" domainCode="TestType"/>
+				<LaboratoryResultInterpretarion SystemName="HCA_General" code="N" codeSystem="ObservationInterpretation" displayName="N" domainCode="ObservationInterpretation"/>
+				<performerOrganization Name="QA1 MAIN LAB 2545 Park Plaza Building 3, 1 West Nashville TN 37203 ">
+					<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+					<orgPartCode SystemName="Baseline" code="INS" codeSystem="dbMOrganizationPartCodes" domainCode="OrganizationPartRoleType"/>
+					<id SystemName="MT_COCNB" root="Organization_Id" extension="MLT"/>
+				</performerOrganization>
+				<MicrobiologyFinding ActClassId="MicrobiologyFinding" text="Organism Prompts1: QUANTITATION 1+, Abnormal Flag:N Organism Prompts2: MRSA NO METHICILLIN RESISTANT STAPH AUREUS PRESENT, Abnormal Flag:N Organism Prompts3: WHITE BLOOD CELLS FEW, Abnormal Flag:N Comments: Interpretations of micro sensitivities: +,++,+++,S=susceptible MS=moderately susceptible I=intermediate R=resistant N/R=not reported BLAC=Beta Lactamase positive MIC=mcg/mL(mg/L) BLANK=data not available, or drug not advisable/tested. Monitoring of patients during/after therapy is recommended. ------------------------------------------------------------ * Interpretations based on approximate adult attainable systemic/urine levels, except drugs with 3 dilutions which print NCCLS dose guidelines; Consideration should be given to weight and renal/hepatic function. Urine interpretations for lower UTI only. ** INTERPRETATIONS BASED ON NCCLS M7-2A. ">
+					<elementLoadPolicy>Override</elementLoadPolicy>
+					<AllLoadPolicyParams ElementChild="MicrobiologyFindingsusceptibility " LoadPolicy="DeleteAll"/>
+					<id SystemName="MT_COCNB" root="MicrobiologyFinding_Id" extension="MicrobiologyFinding_DilExt_CAG_ChangePatient_FullData_19_3"/>
+					<SubjectMicroorganism desc="STAPHYLOCOCCUS.AUREUS">
+						<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+						<id SystemName="MT_COCNB" root="MicroOrganism_Id" extension="SubjectMicroorganism_DilExt_CAG_ChangePatient_FullData_19_STAPHYLOCOCCUS.AUREUS"/>
+						<code SystemName="MT_COCNB" code="STAAUR" codeSystem="OrganismEntityCode" displayName="STAPHYLOCOCCUS.AUREUS" domainCode="EntityCode"/>
+					</SubjectMicroorganism>
+					<interpretationCode SystemName="MT_COCNB" code="FIN_interpritation" codeSystem="ObservationInterpretation" domainCode="ObservationInterpretation"/>
+					<MicrobiologyFindingSusceptibility value="=1" text="text1123CAG Susceptibility ">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_f58e764c-7ba8-4d96"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="AMIKACIN">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="AK_AMIKACIN"/>
+							<code SystemName="MT_COCNB" code="AK" codeSystem="AdditiveMaterialEntityClassType" displayName="AMIKACIN" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+					<MicrobiologyFindingSusceptibility value="=1">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_b6b5db35-a96a-483d"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="AMPICILLIN">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="AM_AMPICILLIN"/>
+							<code SystemName="MT_COCNB" code="AM" codeSystem="AdditiveMaterialEntityClassType" displayName="AMPICILLIN" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+					<MicrobiologyFindingSusceptibility value="=1/0.5">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_00043df2-b415-4a0e"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="A/S">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="A/S_A/S"/>
+							<code SystemName="MT_COCNB" code="A/S" codeSystem="AdditiveMaterialEntityClassType" displayName="A/S" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+					<MicrobiologyFindingSusceptibility value="=1">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_f91aacdd-ace9-493c"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="AZTREONAM">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="AZT_AZTREONAM"/>
+							<code SystemName="MT_COCNB" code="AZT" codeSystem="AdditiveMaterialEntityClassType" displayName="AZTREONAM" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+					<MicrobiologyFindingSusceptibility value="=2">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_c4b05f1c-f9eb-4eff"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="CEFAZOLIN">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="CFZ_CEFAZOLIN"/>
+							<code SystemName="MT_COCNB" code="CFZ" codeSystem="AdditiveMaterialEntityClassType" displayName="CEFAZOLIN" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+					<MicrobiologyFindingSusceptibility value="=4">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_bff0df2c-395d-4c37"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="CEFOPERAZONE">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="CFP_CEFOPERAZONE"/>
+							<code SystemName="MT_COCNB" code="CFP" codeSystem="AdditiveMaterialEntityClassType" displayName="CEFOPERAZONE" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+					<MicrobiologyFindingSusceptibility value="=2">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_bff0df2c-395d-4c3781f6-f56beef42972"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="CEFOTAXIME">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="CFT_CEFOTAXIME"/>
+							<code SystemName="MT_COCNB" code="CFT" codeSystem="AdditiveMaterialEntityClassType" displayName="CEFOTAXIME" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+					<MicrobiologyFindingSusceptibility value="=2">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_bff0df2c-395d-4c37_2722c2b4-fb32-4041-a0"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="CEFOXITIN">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="CFX_CEFOXITIN"/>
+							<code SystemName="MT_COCNB" code="CFX" codeSystem="AdditiveMaterialEntityClassType" displayName="CEFOXITIN" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+					<MicrobiologyFindingSusceptibility value="=1">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_bff0df2c-395d-4c37_e68cc3"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="CEFTAZIDIME">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="CAZ_CEFTAZIDIME"/>
+							<code SystemName="MT_COCNB" code="CAZ" codeSystem="AdditiveMaterialEntityClassType" displayName="CEFTAZIDIME" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+					<MicrobiologyFindingSusceptibility value="=2">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_bff0df2c-395d-4c37_09c1812"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="CEFUROXIME">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="CRM_CEFUROXIME"/>
+							<code SystemName="MT_COCNB" code="CRM" codeSystem="AdditiveMaterialEntityClassType" displayName="CEFUROXIME" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+					<MicrobiologyFindingSusceptibility value="=0.25">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_bff0df2c-395d-4c37_4636-bcb0-c69940e3ed52"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="CIPROFLOXACIN">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="CP_CIPROFLOXACIN"/>
+							<code SystemName="MT_COCNB" code="CP" codeSystem="AdditiveMaterialEntityClassType" displayName="CIPROFLOXACIN" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+					<MicrobiologyFindingSusceptibility value="=0.25">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_bff0df2c-395d-4c37_d-c488640c5d62"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="GENTAMICIN">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="GM_GENTAMICIN"/>
+							<code SystemName="MT_COCNB" code="GM" codeSystem="AdditiveMaterialEntityClassType" displayName="GENTAMICIN" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+					<MicrobiologyFindingSusceptibility value="=0.5">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_bff0df2c-395d-4c37_8a36dfbd83"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="IMIPENEM">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="IMP_IMIPENEM"/>
+							<code SystemName="MT_COCNB" code="IMP" codeSystem="AdditiveMaterialEntityClassType" displayName="IMIPENEM" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+					<MicrobiologyFindingSusceptibility value="=0.25">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_bff0df2c-395d-4c37_473f-b666-4a5ca3f4ff83"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="OXACILLIN">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="OX_OXACILLIN"/>
+							<code SystemName="MT_COCNB" code="OX" codeSystem="AdditiveMaterialEntityClassType" displayName="OXACILLIN" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+					<MicrobiologyFindingSusceptibility value="=8">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_bff0df2c-395d-4c37_15d76634-f3aa-4635-9075"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="PIPERACILLIN">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="PI_PIPERACILLIN"/>
+							<code SystemName="MT_COCNB" code="PI" codeSystem="AdditiveMaterialEntityClassType" displayName="PIPERACILLIN" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+					<MicrobiologyFindingSusceptibility value="=0.5">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_01434c84-8c6c-40a8"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="TOBRAMYCIN">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="TO_TOBRAMYCIN"/>
+							<code SystemName="MT_COCNB" code="TO" codeSystem="AdditiveMaterialEntityClassType" displayName="TOBRAMYCIN" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+					<MicrobiologyFindingSusceptibility value="=0.5/9.5">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_d9c6cbd3-5150-43b7"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="TRIMETH/SULFA">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="T/S_TRIMETH/SULFA"/>
+							<code SystemName="MT_COCNB" code="T/S" codeSystem="AdditiveMaterialEntityClassType" displayName="TRIMETH/SULFA" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+					<MicrobiologyFindingSusceptibility value="=8">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_abbfb9af-3eff-4d09"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="TICARCILLIN">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="TI_TICARCILLIN"/>
+							<code SystemName="MT_COCNB" code="TI" codeSystem="AdditiveMaterialEntityClassType" displayName="TICARCILLIN" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+				</MicrobiologyFinding>
+				<MicrobiologyFinding ActClassId="MicrobiologyFinding" text="Comments: Interpretations of micro sensitivities: +,++,+++,S=susceptible MS=moderately susceptible I=intermediate R=resistant N/R=not reported BLAC=Beta Lactamase positive MIC=mcg/mL(mg/L) BLANK=data not available, or drug not advisable/tested. Monitoring of patients during/after therapy is recommended. ------------------------------------------------------------ * Interpretations based on approximate adult attainable systemic/urine levels, except drugs with 3 dilutions which print NCCLS dose guidelines; Consideration should be given to weight and renal/hepatic function. Urine interpretations for lower UTI only. ** INTERPRETATIONS BASED ON NCCLS M7-2A. Interpretations of micro sensitivities: +,++,+++,S=susceptible MS=moderately susceptible I=intermediate R=resistant N/R=not reported BLAC=Beta Lactamase positive MIC=mcg/mL(mg/L) BLANK=data not available, or drug not advisable/tested. Monitoring of patients during/after therapy is recommended. ------------------------------------------------------------ * Interpretations based on approximate adult attainable systemic/urine levels, except drugs with 3 dilutions which print NCCLS dose guidelines; Consideration should be given to weight and renal/hepatic function. Urine interpretations for lower UTI only. ** INTERPRETATIONS BASED ON NCCLS M7-2A. ">
+					<elementLoadPolicy>Override</elementLoadPolicy>
+					<AllLoadPolicyParams ElementChild="MicrobiologyFindingsusceptibility " LoadPolicy="DeleteAll"/>
+					<id SystemName="MT_COCNB" root="MicrobiologyFinding_Id" extension="MicrobiologyFindingSusceptibility_DilExt_CAG_ChangePatient_FullData_9_2"/>
+					<SubjectMicroorganism desc="BRANHAMELLA CATARRHALIS">
+						<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+						<id SystemName="MT_COCNB" root="MicroOrganism_Id" extension="BRACAT_BRANHAMELLA CATARRHALIS"/>
+						<code SystemName="MT_COCNB" code="BRACAT" codeSystem="OrganismEntityCode" displayName="BRANHAMELLA CATARRHALIS" domainCode="EntityCode"/>
+					</SubjectMicroorganism>
+					<MicrobiologyFindingSusceptibility value="=1">
+						<elementLoadPolicy>Override</elementLoadPolicy>
+						<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_146d6705-c3d4-479b"/>
+						<methodCode SystemName="MT_COCNB" code="MNC1" codeSystem="ObservationMethod" displayName="NEGATIVE COMBO 1" domainCode="ObservationMethod"/>
+						<additiveMaterial name="AMIKACIN">
+							<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+							<Id SystemName="MT_COCNB" root="AdditiveMaterial_Id" extension="AK_AMIKACIN"/>
+							<code SystemName="MT_COCNB" code="AK" codeSystem="AdditiveMaterialEntityClassType" displayName="AMIKACIN" domainCode="MaterialEntityClassType"/>
+						</additiveMaterial>
+						<interpretationCode SystemName="MT_COCNB" code="S" codeSystem="ObservationInterpretationSusceptibility" domainCode="ObservationInterpretationSusceptibility"/>
+					</MicrobiologyFindingSusceptibility>
+				</MicrobiologyFinding>
+			</LaboratoryResult>
+			<LaboratoryResult ActClassId="LaboratoryResult" EffectiveTime="201203070815" Value_conversion="Interpretations: ********************************************************** As of 03/07/12 0813: Positive culture for BRANHAMELLA CATARRHALIS and patient is not on any antibiotic therapy. ********************************************************** ********************************************************** As of 03/07/12 0815: Positive culture for STAPHYLOCOCCUS HOMINIS and patient is not on any antibiotic therapy. **********************************************************">
+				<elementLoadPolicy>Override</elementLoadPolicy>
+				<AllLoadPolicyParams ElementChild="MicrobiologyFinding" LoadPolicy="DeleteAll"/>
+				<id SystemName="MT_COCNB" root="LaboratoryResult_Id" extension="LabResult_MB_DilExt_CAG_ChangePatient_FullData_19_4"/>
+				<StatusCode SystemName="HCA_General" code="F " codeSystem="ActStatus_LabResults" domainCode="ActStatus"/>
+				<code SystemName="MT_COCNB" code="WOUNDC" codeSystem="TestType" displayName="WOUND CULTURE" domainCode="TestType"/>
+			</LaboratoryResult>
+			<LaboratoryResult ActClassId="LaboratoryResult" EffectiveTime="20170219" Value_conversion="400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 40000000000000000000000000000000000000000000" Value="" ReferenceRange_conversion="-01.03-201.03" ReferenceRange_Low="-1.03" ReferenceRange_High="201.03">
+				<elementLoadPolicy>Override</elementLoadPolicy>
+				<AllLoadPolicyParams ElementChild="MicrobiologyFinding" LoadPolicy="DeleteAll"/>
+				<id SystemName="PRO_CIA" root="LaboratoryResult_Id" extension="LabResult_MB_DilExt_CAG_ChangePatient_FullData_19_5"/>
+				<StatusCode SystemName="PRO_CIA" code="Active" codeSystem="ActStatus_LabResults" domainCode="ActStatus"/>
+				<MethodCode SystemName="PRO_CIA" code="0005" codeSystem="ObservationMethod" domainCode="ObservationMethod"/> 
+- <!-- <Value_Unit SystemName="Baseline" code="mg/dL" codeSystem="UCUM" displayName="mg/dL" domainCode="UnitsOfMeasureCaseInsensitive" />
+ -->
+				<code SystemName="Baseline" code="16914-4" codeSystem="LOINC" displayName="Glucose, post XXX challenge" domainCode="TestType"/> 
+  ‏ 
+ <LaboratoryResultInterpretarion code="N" codeSystem="2.16.840.1.113883.5.83" displayName="Normal" domainCode="ObservationInterpretation"/>
+				<LabResultText Content="">
+					<mediaType SystemName="Baseline" code="text/plain" codeSystem="MediaType" displayName="text/plain" domainCode="MediaType"/>
+					<TextPart SequenceNumber="1" PartCaption="ResultText" LineText="--------------------------------------------------------------------------------------------"/>
+				</LabResultText>
+				<performerOrganization Name="Murray Insurance Agency">
+					<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+					<orgPartCode SystemName="Baseline" code="INS" codeSystem="dbMOrganizationPartCodes" domainCode="OrganizationPartRoleType"/>
+					<id SystemName="DemoEMPI" root="Organization_Id" extension="Murray Insurance Agency"/>
+				</performerOrganization>
+			</LaboratoryResult>
+			<LaboratoryResult ActClassId="LaboratoryResult" EffectiveTime="201203070815" Value_conversion="Result Line: COMMENT ON WOUNDC">
+				<elementLoadPolicy>Override</elementLoadPolicy>
+				<AllLoadPolicyParams ElementChild="MicrobiologyFinding" LoadPolicy="DeleteAll"/>
+				<id SystemName="MT_COCNB" root="LaboratoryResult_Id" extension="LabResult_MB_DilExt_CAG_ChangePatient_FullData_19_6"/>
+				<StatusCode SystemName="HCA_General" code="F " codeSystem="ActStatus_LabResults" domainCode="ActStatus"/>
+				<code SystemName="MT_COCNB" code="WOUNDC" codeSystem="TestType" displayName="WOUND CULTURE" domainCode="TestType"/>
+				<MicrobiologyFinding ActClassId="MicrobiologyFinding" text="Comments: +,++,+++,S=SUSCEPTIBLE MS=MODERATELY SUSCEPTIBLE I=INTERMEDIATE R=RESISTANT N/R=NOT REPORTED BLAC=BETA LACTAMASE POSITIVE CC=COST CODE TFG=THYMIDINE DEPENDENT STRAIN MIC=MCG/ML(MG/L) BLANK=DATA NOT AVAILABLE, OR DRUG NOT ADVISABLE/TESTED IB APPEARS IN PLACE OF S,MS,+,++, OR +++ WITH SPECIES KNOWN TO POSSESS INDUCIBLE B-LACTAMASES; POTENTIALLY THEY MAY BECOME RESISTANT TO ALL B-LACTAM DRUGS. MONITORING OF PATIENTS DURING/AFTER THERAPY IS RECOMMENDED. AVOID OTHER/COMBINED B-LACTAM DRUGS. A) USE MAXIMUM DOSES OF DRUGS WITH AN AMINOGLYCOSIDE FOR P. AERUGINOSA IN PATIENTS WITH GRANULOCYTOPENIA OR SERIOUS INFECTIONS. B) BREAKPOINTS BASED ON PARENTERAL DOSE. FOR CEFUROXIME PO USE 8=S, 8=R OR URINARY ENTERIC ISOLATES 4=S, 8-16=MS 16=R. ------------------------------------------------------------ * INTERPRETATIONS BASED ON APPROX. ADULT ATTAINABLE SYSTEMIC/URINE LEVELS, EXCEPT DRUGS WITH 3 DILUTIONS WHICH PRINT NCCLS. DOSES ARE GUIDELINES; CONSIDER WEIGHT AND RENAL/HEPATIC FUNCTION. URINE INTERPRETATION FOR LOWER UTI ONLY. ** INTERPRETATIONS BASED ON NCCLS M7-2A. TICAR/K CLAV'ATE FOR GRAM POSITIVES BASED IN MANUFACTURER'S BREAKPOINTS. ">
+					<elementLoadPolicy>Override</elementLoadPolicy>
+					<AllLoadPolicyParams ElementChild="MicrobiologyFindingsusceptibility " LoadPolicy="DeleteAll"/>
+					<id SystemName="MT_COCNB" root="MicrobiologyFinding_Id" extension="MicrobiologyFinding_DilExt_CAG_ChangePatient_FullData_19_21_2"/>
+					<SubjectMicroorganism desc="BRANHAMELLA CATARRHALIS">
+						<elementLoadPolicy>ReferenceAdditive</elementLoadPolicy>
+						<id SystemName="MT_COCNB" root="MicroOrganism_Id" extension="BRACAT_BRANHAMELLA CATARRHALIS"/>
+						<code SystemName="MT_COCNB" code="BRACAT" codeSystem="OrganismEntityCode" displayName="BRANHAMELLA CATARRHALIS" domainCode="EntityCode"/>
+					</SubjectMicroorganism>
+				</MicrobiologyFinding>
+			</LaboratoryResult>
+		</LaboratoryEvent>
+		<Condition ActClassId="ChiefComplaint" effectiveTime_start="201010090203">
+			<elementLoadPolicy>Override</elementLoadPolicy>
+			<id SystemName="Baseline" root="dbMotionGUID" extension="RBT_bfdcdb2f-bb2f-43f9"/>
+			<code SystemName="Baseline" code="33962009" codeSystem="ObservationConditionTypes" displayName="chief Complaint" domainCode="ObservationConditionTypes"/>
+			<value SystemName="DemoEMPI" domainCode="DiagnosisValue" originalText="CHEST PAIN"/>
+		</Condition>
+	</PatientRecord>
+	<messageLoadInstructions availableElements="3" ControlActID="cef63360-0bcd-47b7-97c0-c26d124102e7">
+		<FIFOPatientRegID root="DemoEMPI" extension="FIFOPatientRegID_DilExt_CAG_ChangePatient_FullData_19"/>
+	</messageLoadInstructions>
+</q1>

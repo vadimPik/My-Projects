@@ -42,7 +42,7 @@ const Navigation = () => {
                     <CDBSidebarContent className="sidebar-content">
 
                     <CDBSidebarMenu>
-                        <NavLink exact to="/favorites" activeClassName="activeClicked">
+                        {/* <NavLink exact to="/favorites" activeClassName="activeClicked">
                         <CDBSidebarMenuItem icon="columns">Over View</CDBSidebarMenuItem>
                         </NavLink>
                         <NavLink exact to="/browse" activeClassName="activeClicked">
@@ -53,6 +53,19 @@ const Navigation = () => {
                         </NavLink>
                         <NavLink exact to="/analytics" activeClassName="activeClicked">
                         <CDBSidebarMenuItem icon="chart-line">Care Event</CDBSidebarMenuItem>
+                        </NavLink> */}
+
+                        <NavLink exact to="/dashboard" activeClassName="activeClicked">
+                            <CDBSidebarMenuItem icon="columns">24H Dashboard</CDBSidebarMenuItem>
+                            </NavLink>
+                            <NavLink exact to="/message" activeClassName="activeClicked">
+                            <CDBSidebarMenuItem icon="table">Message</CDBSidebarMenuItem>
+                            </NavLink>
+                            <NavLink exact to="/expiredMessage" activeClassName="activeClicked">
+                            <CDBSidebarMenuItem icon="user">Expired Message</CDBSidebarMenuItem>
+                            </NavLink>
+                            <NavLink exact to="/careEvent" activeClassName="activeClicked">
+                            <CDBSidebarMenuItem icon="chart-line">Care Event</CDBSidebarMenuItem>
                         </NavLink>
 
                         {/* <NavLink

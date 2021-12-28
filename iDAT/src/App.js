@@ -42,14 +42,14 @@ function App() {
         <Switch>
           <Route path='/' exact render={() => {
                                           return (
-                                            <Redirect to="/favorites" /> 
+                                            <Redirect to="/dashboard" /> 
                                           )
                                         }} >
           </Route>
-          <Route path='/browse' exact>
+          <Route path='/message' exact>
             <BrowseBeersPage />
           </Route>
-          <Route path='/favorites' exact>
+          <Route path='/dashboard' exact>
             <FavoriteBeersPage />
           </Route>
         </Switch>
