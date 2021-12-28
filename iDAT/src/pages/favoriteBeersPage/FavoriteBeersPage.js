@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import FavoriteBeers from '../../components/favoriteBeers/FavoriteBeers'
 import { Fragment } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import { itemsActions } from '../../store/items-slice';
 import classes from './FavoriteBeersPage.module.css'
 import ModalWindow from '../../components/ui/modalWindow/ModalWindow';
@@ -45,7 +45,9 @@ const FavoriteBeersPage = (props) => {
                                             </Button> 
                                           </div> 
                                         :
-                                        <div className="font-weight-bold text-center mt-sm-4">No Favorites Beer to display. Click on Favorite icon in Browse page to start adding favorite beers </div>  
+                                        <div className="font-weight-bold text-center mt-sm-4">
+                                            <Image src='Dashboard24H.JPG'></Image>
+                                        </div>  
 
                 }
            

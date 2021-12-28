@@ -52,6 +52,9 @@ function App() {
           <Route path='/dashboard' exact>
             <FavoriteBeersPage />
           </Route>
+          <Route path='/messagePrefetch' exact>
+            <BrowseBeersPage />
+          </Route>
         </Switch>
   
         </Fragment>

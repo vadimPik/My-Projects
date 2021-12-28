@@ -1,104 +1,9 @@
-// import Beers from '../../components/beers/Beers'
-// import { Fragment, useEffect, useRef } from 'react';
-// import { useHistory, useLocation } from 'react-router-dom';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { InputGroup, FormControl, Form, Row, Col, Button } from 'react-bootstrap';
-// import SearchBeer from '../../components/ui/search/SearchBeer'
-// import { uiActions } from '../../store/ui-slice';
-// import ModalWindow from '../../components/ui/modalWindow/ModalWindow'
-// import classes from './BrowseBeersPage.module.css';
-
-
-
-// let searchParam;
-// const modalTitle = "Input empty";
-// const modalBody = "Please Enter food for start searching beer";
-
-// const BrowseBeersPage = (props) => {
-//      const dispatch = useDispatch();
-
-//      const searchValue = useSelector((state) => state.ui.searchValue);
-//      const isSearchEmptyModalVisible = useSelector((state) => state.ui.isSearchEmptyModalVisible);
-    
-//     const history = useHistory();
-//     const location = useLocation();
-//     const beerSearchInputRef = useRef();
-
-//     useEffect(() => {
-//         searchParam = new URLSearchParams(location.search).get('search');
-        
-//         if (searchParam && searchParam !== '' ){
-//             if (searchParam !== searchValue) {
-//                 dispatch(uiActions.changSearchValue(searchParam));
-//             }
-//         }else {
-//             dispatch(uiActions.changSearchValue(''));
-//         }
-
-//         //eslint-disable-next-line
-//     }, []);
-
-//     const cancelModalHandler = () => {
-//         dispatch(uiActions.changeSearchEmptyWindowVisble(false));
-//     };
-
-//     const hideHandler = () => {
-//         dispatch(uiActions.changeSearchEmptyWindowVisble(false));
-//     };
-
-//     const searchClickHandle = () => {
-//         searchParam = beerSearchInputRef.current.value;
-//         history.push('/browse?search=' + searchParam);
-
-//         if (searchParam && searchParam !== '' ) {
-//             if (searchParam !== searchValue ) {
-//                 dispatch(uiActions.changSearchValue(searchParam));
-//             }
-//         } else {
-//             dispatch(uiActions.changeSearchEmptyWindowVisble(true));
-//             dispatch(uiActions.changSearchValue(''));
-//         }
-//     };
-
-//     return (
-//         <Fragment>
-//             <div className={classes.browseCards}>
-//                 <Form className="mt-sm-4 pl-sm-5">
-//                     <Row className="align-items-center ">
-//                         <Col xs="auto">
-//                             <Form.Control
-//                                 className="mb-2"
-//                                 id="inlineFormInput"
-//                                 placeholder="Food Pairing"
-//                                 ref = { beerSearchInputRef }
-//                             />
-//                         </Col>
-//                         <Col xs="auto">
-//                             <Button variant="outline-dark" size="nm" className="mb-2" onClick={ searchClickHandle } >
-//                                 Submit
-//                             </Button>
-//                         </Col>
-//                     </Row>
-//                 </Form>
-
-//                 <ModalWindow  isShow={ isSearchEmptyModalVisible } title={ modalTitle } body= { modalBody } onCancel={ cancelModalHandler } 
-//                     onHide= { hideHandler}  isShowConfimButton= {false}/>   
-
-//                 { searchValue !== '' && <SearchBeer searchParam={ searchParam } location={ location }/>}
-
-//                 <Beers />
-//             </div>
-//       </Fragment>
-//     );
-// }
-
-
 import React, { useState } from 'react';
 import {AgGridColumn, AgGridReact} from 'ag-grid-react';
 import'ag-grid-enterprise'; 
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 
 import { useDispatch, useSelector} from 'react-redux';
 import { getMessagesData } from '../../store/beer-actions';
@@ -109,6 +14,8 @@ import classes from './BrowseBeersPage.module.css';
 import { itemsActions } from '../../store/items-slice';
 import BeerModal from '../../components/beerModal/BeerModal';
 import axios from 'axios';
+
+import { Dropdown, DropdownButton} from 'react-bootstrap';
 
 const modalTitle = "Input empty";
 const modalBody = "Please Enter food for start searching beer";
@@ -157,19 +64,86 @@ const BrowseBeersPage = () => {
 
    // const rowData =  useSelector((state) => state.beers.items);
 
+   const [gridApi, setGridApi] = useState(null);
+   const [gridColumnApi, setGridColumnApi] = useState(null);
     const [rowData, setRowData] = useState(null);
-    const [gridApi, setGridApi] = useState(null);
-
-    /* const onGridReady = (params) => {
             
-        const updateData = (data) => params.api.setRowData(data);
+   const onGridReady = (params) => {
+     setGridApi(params.api);
+     setGridColumnApi(params.columnApi);
     
+     const updateData = (data) => {
+       document.querySelector('#All').checked = true;
+       setRowData(data);
+     };
+ 
         fetch('messages_grid.json')
           .then((resp) => resp.json())
           .then((data) => updateData(data));
-      }; */
+   };
 
-      const onGridReady = (params) => {
+   var dateFilterParams = {
+    comparator: function (filterLocalDateAtMidnight, cellValue) {
+      var cellDate = asDate(cellValue);
+      if (filterLocalDateAtMidnight.getTime() === cellDate.getTime()) {
+        return 0;
+      }
+      if (cellDate < filterLocalDateAtMidnight) {
+        return -1;
+      }
+      if (cellDate > filterLocalDateAtMidnight) {
+        return 1;
+      }
+    },
+  };
+
+   var ageType = 'All';
+function asDate(dateAsString) {
+  //var splitFields = dateAsString.split('/');
+  //console.log('asDate:' + new Date(dateAsString));
+  return new Date(dateAsString);
+}
+ 
+
+   const externalFilterChanged = (newValue) => {
+     ageType = newValue;
+     console.log('externalFilterChanged');
+     gridApi.onFilterChanged();
+   };
+ 
+   const isExternalFilterPresent = () => {
+     return ageType !== 'All';
+   };
+ 
+   const doesExternalFilterPass = (node) => {
+
+    console.log('doesExternalFilterPass');
+     switch (ageType) {
+       /*case 'below25':
+         return node.data.age < 25;
+       case 'between25and50':
+         return node.data.age >= 25 && node.data.age <= 50;
+       case 'above50':
+         return node.data.age > 50;*/
+         
+        case 'dateAfter24H':
+            //console.log('node.data.ArchTime' + node.data.ArchTime + 'compare:' |+ asDate(node.data.ArchTime) > new Date(2020, 1, 1));
+            return asDate(node.data.ArchTime) > new Date(2021, 11, 27);
+         case 'dateAfterWeek':
+            //console.log('node.data.ArchTime' + node.data.ArchTime + 'compare:' |+ asDate(node.data.ArchTime) > new Date(2020, 1, 1));
+            return asDate(node.data.ArchTime) > new Date(2021, 11, 20);
+         case 'dateAfterMonth':
+            //console.log('node.data.ArchTime' + node.data.ArchTime + 'compare:' |+ asDate(node.data.ArchTime) > new Date(2020, 1, 1));
+            return asDate(node.data.ArchTime) > new Date(2021, 10, 27);
+        case 'notReplaced':
+            return node.data.ArchMessageID ==50230;
+       default:
+         return true;
+     }
+   };
+ 
+
+      /*const onGridReady = (params) => {
         setGridApi(params.api);
         //setGridColumnApi(params.columnApi);
     
@@ -194,7 +168,7 @@ const BrowseBeersPage = () => {
         fetch('messages_grid.json')
           .then((resp) => resp.json())
           .then((data) => updateData(data));
-      };
+      };*/
 
       const onCellDoubleClicked = (params) => {
         dispatch(uiActions.changeSearchEmptyWindowVisble(true));
@@ -435,7 +409,7 @@ const BrowseBeersPage = () => {
       };
 
    return (
-       <div className="ag-theme-alpine" style={{height: 1200, width: 1400}}>
+       <div style={{height: 850, width: 1400}}>
 
       {/* <ModalWindow  isShow={ isSearchEmptyModalVisible } title={ modalTitle } body= { modalBody } onCancel={ cancelModalHandler } 
                           onHide= { hideHandler}  isShowConfimButton= {false}/>   */}
@@ -448,7 +422,96 @@ const BrowseBeersPage = () => {
         {/* <BeerModal item={props.item} key={ArchMessageID}/> */}
 
           {/* <BeerModal isShow={ isSearchEmptyModalVisible }/> */}
+          <div className={ classes.testcontainer }>
+          <div className= { classes.testheadercombo }>
+            <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="UPMC"   >
+                <Dropdown.Item eventKey="1">UPMC</Dropdown.Item>
+                <Dropdown.Item eventKey="2">HCA</Dropdown.Item>
+                <Dropdown.Divider />
+            </DropdownButton>
 
+            <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="Message Type"  >
+            </DropdownButton>
+            <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="Assigning Auth"  >
+            </DropdownButton>
+            <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="Source System"  >
+            </DropdownButton>
+            <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="Status"  >
+            </DropdownButton>
+            <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="Trigger Event"  >
+            </DropdownButton>
+            <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="Msg Content"  >
+            </DropdownButton>
+            <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="MRN"  >
+            </DropdownButton>
+            <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="MSG ID"  >
+            </DropdownButton>
+           </div>
+          <div className= { classes.testheader }>
+
+          
+          
+          <label>
+            <input
+              type="radio"
+              name="filter"
+              id="All"
+              onChange={() => externalFilterChanged('All')}
+            />
+            All
+          </label>
+          
+          <label>
+            <input
+              type="radio"
+              name="filter"
+              id="dateAfter24H"
+              onChange={() => externalFilterChanged('dateAfter24H')}
+            />
+            Last 24 Hour
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="filter"
+              id="dateAfterWeek"
+              onChange={() => externalFilterChanged('dateAfterWeek')}
+            />
+            Last Week
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="filter"
+              id="dateAfterMonth"
+              onChange={() => externalFilterChanged('dateAfterMonth')}
+            />
+            Last Month
+          </label>
+          <label>
+          <input
+              type="radio"
+              name="filter"
+              id="notReplaced"
+              onChange={() => externalFilterChanged('notReplaced')}
+            />
+            Filter out replaced message
+          </label>
+          
+          </div>
+          
+         
+           
+        
+        
+        <div
+          id="myGrid"
+          style={{
+            height: '100%',
+            width: '100%',
+          }}
+          className="ag-theme-alpine-dark"
+        >
            <AgGridReact
                 defaultColDef={{
                     flex: 1,
@@ -467,7 +530,7 @@ const BrowseBeersPage = () => {
                   }}
                   rowBuffer={0}
                   rowSelection={'multiple'}
-                  rowModelType={'infinite'}
+                  //rowModelType={'infinite'}
                   cacheBlockSize={20}
                   cacheOverflowSize={2}
                   maxConcurrentDatasourceRequests={1}
@@ -485,26 +548,31 @@ const BrowseBeersPage = () => {
                   suppressRowClickSelection={true}
                   rowSelection={'multiple'}
                   navigateToNextCell={navigateToNextCell}
+                  isExternalFilterPresent={isExternalFilterPresent}
+                  doesExternalFilterPass={doesExternalFilterPass}
+                  onGridReady={onGridReady}
+                  rowData={rowData}
+                  
                  >
-               <AgGridColumn field="ArchMessageID" filter="agNumberColumnFilter" checkboxSelection={true} headerCheckboxSelection={true}  headerCheckboxSelectionFilteredOnly={true} minWidth={160}></AgGridColumn>
-               <AgGridColumn field="BTSInterchangeID" filter="agNumberColumnFilter" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="ArchTime"  filter="agDateColumnFilter" minWidth={200}></AgGridColumn>
-               <AgGridColumn field="MRN" filter="agTextColumnFilter" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="MRN_SystemName" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="MessageControlID" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="MessageSourceSystem" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="MessageTriggerEvent" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="MessageType" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="MessageCreationTime" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="LastLoadingState" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="LastLoadingStateDate" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="ErrorID" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="BTSReceiveLocationName" minWidth={180}></AgGridColumn>
-               <AgGridColumn field="DED" minWidth={10}></AgGridColumn>
+               <AgGridColumn field="ArchMessageID" filter="agNumberColumnFilter" checkboxSelection={true} headerCheckboxSelection={true}  headerCheckboxSelectionFilteredOnly={true} minWidth={160} sortable="true"></AgGridColumn>
+               <AgGridColumn field="BTSInterchangeID" filter="agNumberColumnFilter" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="ArchTime"  filter="agDateColumnFilter" filterParams={dateFilterParams} minWidth={200} sortable="true"></AgGridColumn>
+               <AgGridColumn field="MRN" filter="agTextColumnFilter" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="MRN_SystemName" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="MessageControlID" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="MessageSourceSystem" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="MessageTriggerEvent" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="MessageType" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="MessageCreationTime" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="LastLoadingState" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="LastLoadingStateDate" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="ErrorID" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="BTSReceiveLocationName" minWidth={180} sortable="true"></AgGridColumn>
+               <AgGridColumn field="DED" minWidth={10} sortable="true"></AgGridColumn>
            </AgGridReact>
        </div>
-
-       
+       </div>
+         </div>
    );
 };
 

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import {Nav, Navbar} from 'react-bootstrap';
+import {Nav, Navbar, Image} from 'react-bootstrap';
 import classes from './Navigation.module.css';
 
 import React from 'react';
@@ -29,6 +29,8 @@ const Navigation = () => {
                     style={{ color: 'inherit'}}
                 >
                     iDAT
+
+                    <Image src='pngegg.png'></Image>
                     {/* Sidebar */}
                 </a>
                 
@@ -59,13 +61,16 @@ const Navigation = () => {
                             <CDBSidebarMenuItem icon="columns">24H Dashboard</CDBSidebarMenuItem>
                             </NavLink>
                             <NavLink exact to="/message" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="table">Message</CDBSidebarMenuItem>
+                                <CDBSidebarMenuItem icon="table">Message</CDBSidebarMenuItem>
+                            </NavLink>
+                            <NavLink exact to="/messagePrefetch" activeClassName="activeClicked">
+                                <CDBSidebarMenuItem icon="table">CQ Prefetch Messages</CDBSidebarMenuItem>
                             </NavLink>
                             <NavLink exact to="/expiredMessage" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="user">Expired Message</CDBSidebarMenuItem>
+                                <CDBSidebarMenuItem icon="user">Expired Message</CDBSidebarMenuItem>
                             </NavLink>
                             <NavLink exact to="/careEvent" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="chart-line">Care Event</CDBSidebarMenuItem>
+                                <CDBSidebarMenuItem icon="chart-line">Care Event</CDBSidebarMenuItem>
                         </NavLink>
 
                         {/* <NavLink
