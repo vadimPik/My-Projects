@@ -15,7 +15,7 @@ import { itemsActions } from '../../store/items-slice';
 import BeerModal from '../../components/beerModal/BeerModal';
 import axios from 'axios';
 
-import { Dropdown, DropdownButton} from 'react-bootstrap';
+import { Dropdown, DropdownButton, Button} from 'react-bootstrap';
 
 const modalTitle = "Input empty";
 const modalBody = "Please Enter food for start searching beer";
@@ -411,9 +411,6 @@ function asDate(dateAsString) {
    return (
        <div style={{height: 850, width: 1400}}>
 
-      {/* <ModalWindow  isShow={ isSearchEmptyModalVisible } title={ modalTitle } body= { modalBody } onCancel={ cancelModalHandler } 
-                          onHide= { hideHandler}  isShowConfimButton= {false}/>   */}
-
       <ModalWindow  isShowTabs={true} isShow={ isSearchEmptyModalVisible } onCancel={ cancelModalHandler } 
                                 onHide= { hideHandler}  isShowConfimButton= {false} size="xl" HDMresult={HDMresult} CDRresult={CDRresult} HL7result={HL7result}/>  
 
@@ -446,6 +443,9 @@ function asDate(dateAsString) {
             </DropdownButton>
             <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="MSG ID"  >
             </DropdownButton>
+            <div className={classes.flexchild}>
+            <Button variant="primary" >Search</Button>
+            </div>
            </div>
           <div className= { classes.testheader }>
 
@@ -572,7 +572,7 @@ function asDate(dateAsString) {
            </AgGridReact>
        </div>
        </div>
-         </div>
+    </div>
    );
 };
 

@@ -30,7 +30,7 @@ const Navigation = () => {
                 >
                     iDAT
 
-                    <Image src='pngegg.png'></Image>
+                    <Image className={classes.logo} src='pngegg.png'></Image>
                     {/* Sidebar */}
                 </a>
                 
@@ -61,7 +61,7 @@ const Navigation = () => {
                             <CDBSidebarMenuItem icon="columns">24H Dashboard</CDBSidebarMenuItem>
                             </NavLink>
                             <NavLink exact to="/message" activeClassName="activeClicked">
-                                <CDBSidebarMenuItem icon="table">Message</CDBSidebarMenuItem>
+                                <CDBSidebarMenuItem icon="table">Messages</CDBSidebarMenuItem>
                             </NavLink>
                             <NavLink exact to="/messagePrefetch" activeClassName="activeClicked">
                                 <CDBSidebarMenuItem icon="table">CQ Prefetch Messages</CDBSidebarMenuItem>

@@ -17,7 +17,7 @@
     border: 1px solid grey;
     padding: 10px;
     border-radius: 5px;
-    background-color:  rgb(128, 160, 182);
+    background-color:  rgb(170, 203, 206);
   }
   .testheadercombo {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -28,6 +28,7 @@
    
     padding: 10px;
     border-radius: 5px;
+
    
   }
 
@@ -37,7 +38,7 @@
     height: 0rem;
 }
 
-.testheadercombopanel {
-    
-   
-}
+.flexchild {
+    margin-left: 3rem;
+    margin-top: -3.75rem;
+}  
