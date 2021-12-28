@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import {Nav, Navbar} from 'react-bootstrap';
+import {Nav, Navbar,Image} from 'react-bootstrap';
 import classes from './Navigation.module.css';
 
 import React from 'react';
@@ -28,10 +28,13 @@ const Navigation = () => {
                     className="text-decoration-none fa-2x"
                     style={{ color: 'inherit'}}
                 >
-                    iDAT
+                    iDAT 
+                    
                     {/* Sidebar */}
                 </a>
-                
+               
+                <Image src='pngegg.png'></Image>
+           
                 </CDBSidebarHeader>
                 <div
                     style={{
