@@ -101,11 +101,18 @@ function asDate(dateAsString) {
          return node.data.age >= 25 && node.data.age <= 50;
        case 'above50':
          return node.data.age > 50;*/
-         case 'notReplaced':
+         
+        case 'dateAfter24H':
+            //console.log('node.data.ArchTime' + node.data.ArchTime + 'compare:' |+ asDate(node.data.ArchTime) > new Date(2020, 1, 1));
+            return asDate(node.data.ArchTime) > new Date(2021, 11, 27);
+         case 'dateAfterWeek':
+            //console.log('node.data.ArchTime' + node.data.ArchTime + 'compare:' |+ asDate(node.data.ArchTime) > new Date(2020, 1, 1));
+            return asDate(node.data.ArchTime) > new Date(2021, 11, 20);
+         case 'dateAfterMonth':
+            //console.log('node.data.ArchTime' + node.data.ArchTime + 'compare:' |+ asDate(node.data.ArchTime) > new Date(2020, 1, 1));
+            return asDate(node.data.ArchTime) > new Date(2021, 10, 27);
+        case 'notReplaced':
             return node.data.ArchMessageID ==50230;
-         case 'dateAfter2020':
-        //console.log('node.data.ArchTime' + node.data.ArchTime + 'compare:' |+ asDate(node.data.ArchTime) > new Date(2020, 1, 1));
-         return asDate(node.data.ArchTime) > new Date(2020, 12, 1);
        default:
          return true;
      }
@@ -208,14 +215,33 @@ function asDate(dateAsString) {
 
           <BeerModal isShow={ isSearchEmptyModalVisible }/>
           <div className={ classes.testcontainer }>
-        
+          <div className= { classes.testheadercombo }>
             <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="UPMC"   >
                 <Dropdown.Item eventKey="1">UPMC</Dropdown.Item>
                 <Dropdown.Item eventKey="2">HCA</Dropdown.Item>
                 <Dropdown.Divider />
             </DropdownButton>
-           
+
+            <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="Message Type"  >
+            </DropdownButton>
+            <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="Assigning Auth"  >
+            </DropdownButton>
+            <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="Source System"  >
+            </DropdownButton>
+            <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="Status"  >
+            </DropdownButton>
+            <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="Trigger Event"  >
+            </DropdownButton>
+            <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="Msg Content"  >
+            </DropdownButton>
+            <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="MRN"  >
+            </DropdownButton>
+            <DropdownButton id="dropdown-rank" className={ classes.dropDownList } variant="outline-dark" focusFirstItemOnShow="true"  title="MSG ID"  >
+            </DropdownButton>
+           </div>
           <div className= { classes.testheader }>
+
+          
           
           <label>
             <input
@@ -226,6 +252,34 @@ function asDate(dateAsString) {
             />
             All
           </label>
+          
+          <label>
+            <input
+              type="radio"
+              name="filter"
+              id="dateAfter24H"
+              onChange={() => externalFilterChanged('dateAfter24H')}
+            />
+            Last 24 Hour
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="filter"
+              id="dateAfterWeek"
+              onChange={() => externalFilterChanged('dateAfterWeek')}
+            />
+            Last Week
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="filter"
+              id="dateAfterMonth"
+              onChange={() => externalFilterChanged('dateAfterMonth')}
+            />
+            Last Month
+          </label>
           <label>
           <input
               type="radio"
@@ -235,16 +289,13 @@ function asDate(dateAsString) {
             />
             Filter out replaced message
           </label>
-          <label>
-            <input
-              type="radio"
-              name="filter"
-              id="dateAfter2020"
-              onChange={() => externalFilterChanged('dateAfter2020')}
-            />
-            Last Year
-          </label>
-        </div>
+          
+          </div>
+          
+         
+           
+        
+        
         <div
           id="myGrid"
           style={{

@@ -19,9 +19,25 @@
     border-radius: 5px;
     background-color:  rgb(128, 160, 182);
   }
+  .testheadercombo {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-around;
+   
+    padding: 10px;
+    border-radius: 5px;
+   
+  }
 
   .dropDownList {
     background-color:cornflowerblue; 
-    top:-50px;
+    top:-60px;
     height: 0rem;
+}
+
+.testheadercombopanel {
+    
+   
 }

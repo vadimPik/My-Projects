@@ -49,6 +49,9 @@ function App() {
           <Route path='/browse' exact>
             <BrowseBeersPage />
           </Route>
+          <Route path='/browseprefetch' exact>
+            <BrowseBeersPage />
+          </Route>
           <Route path='/favorites' exact>
             <FavoriteBeersPage />
           </Route>
